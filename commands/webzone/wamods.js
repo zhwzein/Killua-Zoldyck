@@ -14,10 +14,9 @@ module.exports = {
         for (let i of fetch.result) {
             caption += `⭔ Apk Name : ${i.apk_name}\n`
             caption += `⭔ Apk Url : ${i.apk_url}\n`
-            caption += `⭔ Apk Desc : ${i.apk_desc}\n`
-            caption += `⭔ Apk Image : ${i.apk_image}\n\n`
+            caption += `⭔ Apk Desc : ${i.apk_desc}\n\n`
         }
-        killua.sendText(m.from, caption, m)
+        killua.sendFile(m.from, fetch.result[0].apk_image, "", m, { caption })
     },
     isQuery: true
 }

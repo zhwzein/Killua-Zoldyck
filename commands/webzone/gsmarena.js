@@ -25,7 +25,7 @@ module.exports = {
         caption += `⭔ Battery : ${fetch.result.batrai}\n`
         caption += `⭔ Merek Battery : ${fetch.result.merek_batre}\n\n`
         caption += `⭔ Detail : ${fetch.result.detail}\n`
-        killua.sendText(m.from, caption, m)
+        killua.sendFile(m.from, fetch.result.thumb, "", m, { caption })
     },
     isQuery: true
 }

@@ -4,9 +4,11 @@
 
 ## Killua-Zoldyck
 
-> Script WhatsApp Bot Using Library Baileys
+> Example case from my Rest APIs for WhatsApp Bot
 
-> This Script is for everyone, not for Sale!
+> User must have zenz apikey to use this repo, register [here](https://zenzapi.xyz/) to get apikey
+
+> This Script WhatsApp Bot Using Library Baileys & Script is free for everyone, not for Sale!
 
 </br>
 
@@ -18,7 +20,7 @@
 ---
 
 <!-- Requirements -->
-<b><details><summary>Requirements</summary>
+<b><details><summary>Requirements</summary></b>
 * Some Text Editor
 * [Node JS](https://nodejs.org/en/)
 * [Git](https://git-scm.com/downloads)
@@ -27,19 +29,19 @@
 ```bash
 Add FFmpeg to PATH environment variable
 ```
-</b></details>
+</details>
 
 <!-- Installation -->
-<b><details><summary>Installation</summary>
+<b><details><summary>Installation</summary></b>
 ```bash
 > git clone https://github.com/zhwzein/Killua-Zoldyck
 > cd Killua-Zoldyck
 > npm install
 ```
-</b></details>
+</details>
 
 <!-- Edit -->
-<b><details><summary>Edit Config</summary>
+<b><details><summary>Edit Config.js</summary></b>
 ```bash
 global.APIKeys = {
 	'https://zenzapi.xyz': 'YOURAPIKEY',
@@ -47,27 +49,59 @@ global.APIKeys = {
   
 global.owner = ["62812XXX"]
 ```
-GET APIKEY [HERE](https://zenzapi.xyz/)
-</b></details>
+</details>
 
 <!-- Start -->
-<b><details><summary>Start BOT</summary>
+<b><details><summary>Start BOT</summary></b>
 ```bash
 1. For Multi Device
 > npm run start
+
 2. For Legacy
 > npm run legacy
-```
+
 SCAN THE QR USING YOUR WHATSAPP!
-</b></details>
+```
+
+</details>
 
 ---
 
 | Features |  Availability |
 | :------: |  :----------: |
-|   Islami     |       Y      |
-|   Downloader     |       Y      |
+|   Convert     |       ✅      |
+|   Database     |       ✅      |
+|   Owner     |       ✅      |
+|   Islami     |       ✅      |
+|   Downloader     |       ✅      |
+|   Webzone     |       ✅      |
+|   Searching     |       ✅      |
 
+</details>
+
+<!-- Edit -->
+<details><summary>Upcoming Features</summary><br>
+	
+| Features |  Availability |
+| :------: |  :----------: |
+|   Textpro     |       ❌      |
+|   Photooxy     |       ❌      |
+|   Ephoto     |       ❌      |
+|   Anime Web     |       ❌      |
+|   Nekos Life     |       ❌      |
+|   More Nsfw     |       ❌      |
+|   Random Image     |       ❌      |
+|   Random Text     |       ❌      |
+|   Information     |       ❌      |
+|   News     |       ❌      |
+|   Entertainment     |       ❌      |
+|   Photo Editor      |       ❌      |
+|   Creator     |       ❌      |
+|   Primbon     |       ❌      |
+|   Stalker     |       ❌      |
+|   Other     |       ❌      |
+	
+</details><hr>
 
 ## Thanks To
 * [`@adiwajshing/baileys`](https://github.com/adiwajshing/baileys)

@@ -29,7 +29,7 @@ module.exports = async (killua, m, commands, chatUpdate) => {
 
         if (options.autoRead) (killua.type == "legacy") ? await killua.chatRead(m.key, 1) : await killua.sendReadReceipt(from, sender, [m.id])
         if (options.mute && !isOwner) return
-        if (options.public && m.fromMe) return
+        if (options.self && !isOwner && !m.fromMe) return
 
         var prefix = /^[°•π÷×¶∆£¢€¥®™+✓_=|~!?@#%^&.©^]/gi.test(body) ? body.match(/^[°•π÷×¶∆£¢€¥®™+✓_=|~!?@#%^&.©^]/gi)[0] : Function.checkPrefix(prefa, body).prefix ?? ""
 
@@ -120,7 +120,7 @@ module.exports = async (killua, m, commands, chatUpdate) => {
 
         try {
             cmd.exec(killua, m, {
-                name: 'killua Morou',
+                name: 'killua Zoldyck',
                 metadata,
                 pushName: pushname,
                 participants,

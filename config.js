@@ -18,8 +18,8 @@ global.APIKeys = {
 // Other
 global.options = {
     autoRead: true,
-    mute: false,
-    public: false
+    self: true,
+    mute: false
 }
 
 global.prefa = /^[zZ#$+.?_&<>!/\\]/
@@ -34,6 +34,7 @@ global.author = "https://zenzapi.xyz"
 
 global.mess = (type, m) => {
     let msg = {
+        wait: 'Wait, in progress',
         owner: 'Perintah ini hanya dapat digunakan oleh Owner!',
         group: 'Perintah ini hanya dapat digunakan di group!',
         private: 'Perintah ini hanya dapat digunakan di private chat!',

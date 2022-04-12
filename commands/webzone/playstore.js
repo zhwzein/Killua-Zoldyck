@@ -5,11 +5,11 @@ module.exports = {
     alias: ["pstore"],
     desc: "Search App From PlayStore",
     type: "webzone",
-    example: `No Query Title, Example : %prefix%command Bstation`,
+    example: `Example : %prefix%command Bstation`,
     exec: async(killua, m, { text, command, prefix, toUpper }) => {
         if (!text) return m.reply(`No Query Title`)
         let fetch = await fetchUrl(global.api("zenz", "/webzone/playstore", { query: text }, "apikey"))
-        if (fetch.result.length == 0) return m.reply('No Results Found')
+        if (fetch.result.length == 0) return global.mess("error", m)
         let caption = `PlayStore Search Query : ${toUpper(text)}\n\n`
         for (let i of fetch.result) {
             caption += `⭔ Name : ${i.name}\n`

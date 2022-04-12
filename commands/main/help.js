@@ -5,7 +5,6 @@ module.exports = {
     type: "main",
     exec: async(killua, m, { commands, args, prefix, text, toUpper }) => {
         if (args[0]) {
-            let prefix = '$'
             let data = []
             let name = args[0].toLowerCase()
             let cmd = commands.get(name) || Array.from(commands.values()).find((v) => v.alias.includes(name))

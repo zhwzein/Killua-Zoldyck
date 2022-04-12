@@ -6,9 +6,10 @@ module.exports = {
     alias: [],
     desc: "Search Wallpaper from https://www.besthdwallpaper.com",
     type: "search",
-    example: "No Query Title, %prefix%command killua",
+    example: "Example : %prefix%command killua",
     exec: async(killua, m, { text, command, toUpper }) => {
-        if (!text) return m.reply(`Example : ${prefix + command} killua Morou`)
+        global.mess("wait", m)
+        if (!text) return m.reply(`Example : ${prefix + command} killua Zoldyck`)
         let fetch = await wallpaper(text)
         let random = fetch[Math.floor(Math.random() * fetch.length)]
         let buttons = [

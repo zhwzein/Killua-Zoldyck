@@ -5,10 +5,11 @@ module.exports = {
     alias: ["yts","ytsr"],
     desc: "Search Video From YouTube",
     type: "search",
-    example: "No Query Title, %prefix%command Muse Indonesia",
+    example: "Example : %prefix%command Muse Indonesia",
     exec: async(killua, m, { command, text, toUpper }) => {
+        global.mess("wait", m)
         let fetch = await fetchUrl(global.api("zenz", "/searching/ytsearch", { query: text }, "apikey"))
-        if (fetch.result.length == 0) return m.reply("No Results Found")
+        if (fetch.result.length == 0) return global.mess("error", m)
         let caption = `YouTube Search Query : ${toUpper(text)}\n\n`
         let result = fetch.result.filter(v => v.type == "video").map(v => v)
         for (let i of result) {

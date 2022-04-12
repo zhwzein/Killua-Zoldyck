@@ -6,6 +6,7 @@ module.exports = {
     desc: "List Of Cities throughout Indonesia",
     type: "islami",
     exec: async(killua, m) => {
+        global.mess("wait", m)
         let fetch = await fetchUrl(global.api("zenz", "/islami/listkota", {}, "apikey"))
         if (fetch.result.length == 0) return global.mess("error", m)
         let teks = `List Kota Di seluruh Indonesia\n\n`

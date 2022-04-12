@@ -5,9 +5,11 @@ module.exports = {
     alias: ["twitmp3","twtmp3","twitteraudio"],
     desc: "Download Media From https://twitter.com",
     type: "downloader",
-    example: "No Query Url, %prefix%command https://twitter.com/i/status/1463482301136789509",
+    example: "Example : %prefix%command https://twitter.com/i/status/1463482301136789509",
     exec: async(killua, m, { prefix, command, text }) => {
+        global.mess("wait", m)
         let fetch = await fetchUrl(global.api("zenz", "/downloader/twitter", { url: isUrl(text)[0] }, "apikey"))
+        if (fetch.result.length == 0) return global.mess("error", m)
         let buttons = [
             {buttonId: `twitter ${text}`, buttonText: {displayText: '► Video'}, type: 1}
         ]

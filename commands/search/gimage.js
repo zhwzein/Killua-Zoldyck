@@ -5,9 +5,10 @@ module.exports = {
     alias: ["image"],
     desc: "Search Image from Google",
     type: "search",
-    example: "No Query Title, %prefix%command killua",
+    example: "Example : %prefix%command killua",
     exec: async(killua, m, { text, command, toUpper }) => {
-        if (!text) return m.reply(`Example : ${prefix + command} killua Morou`)
+        global.mess("wait", m)
+        if (!text) return m.reply(`Example : ${prefix + command} killua Zoldyck`)
         let fetch = await fetchUrl(global.api("zenz", "/searching/gimage", { query: text }, "apikey"))
         let random = fetch.result[Math.floor(Math.random() * fetch.result.length)]
         let buttons = [

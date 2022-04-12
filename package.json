@@ -1,0 +1,52 @@
+{
+  "name": "killua-zoldyck",
+  "version": "1.0.0",
+  "description": "WhatsApp Bot Using Lib Baileys",
+  "main": "index.js",
+  "type": "commonjs",
+  "dependencies": {
+    "@adiwajshing/baileys": "github:adiwajshing/baileys",
+    "@adiwajshing/keyed-db": "^0.2.4",
+    "axios": "^0.24.0",
+    "chalk": "^4.1.2",
+    "cheerio": "^1.0.0-rc.10",
+    "child_process": "^1.0.2",
+    "crypto": "^1.0.1",
+    "file-type": "^16.5.3",
+    "fluent-ffmpeg": "^2.1.2",
+    "moment-timezone": "^0.5.34",
+    "node-webpmux": "^3.1.0",
+    "path": "^0.12.7",
+    "pino": "^7.9.2",
+    "qrcode-terminal": "^0.12.0",
+    "util": "^0.12.4",
+    "yargs": "^17.4.0"
+  },
+  "devDependencies": {
+    "@hapi/boom": "^9.1.4",
+    "jimp": "^0.16.1",
+    "pino": "^7.6.5",
+    "qrcode-terminal": "^0.12.0"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "legacy": "node index.js --legacy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhwzein/Killua-Zoldyck.git"
+  },
+  "keywords": [
+    "bot",
+    "whatsapp-bot",
+    "whatsapp-api",
+    "baileys",
+    "zenzapi"
+  ],
+  "author": "ZHWZEIN",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zhwzein/Killua-Zoldyck/issues"
+  },
+  "homepage": "https://github.com/zhwzein/Killua-Zoldyck#readme"
+}

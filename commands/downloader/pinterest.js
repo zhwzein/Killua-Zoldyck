@@ -10,7 +10,7 @@ module.exports = {
         global.mess("wait", m)
         let fetch = await fetchUrl(global.api("zenz", "/downloader/pinterestdl", { url: isUrl(text)[0] }, "apikey"))
         if (fetch.result.length == 0) return global.mess("error", m)
-        killua.sendFile(m.from, fetch.result, "", m, { caption: `Download Pinterest From : ${isUrl(text)[0]}` })
+        killua.sendFile(m.from, fetch.result, "", m, { caption: `Download Pinterest Video From : ${isUrl(text)[0]}` })
     },
     isQuery: true
 }

@@ -21,7 +21,7 @@ module.exports = {
             headerType: 4
         }
         killua.sendMessage(m.from, buttonMessage, { quoted: m })
-        killua.sendFile(m.from, { audio: { url: fetch.result.audio }, mimetype: "audio/mpeg" }, { quoted: m })
+        killua.sendFile(m.from, fetch.result.audio, "", m)
     },
     isQuery: true
 }

@@ -10,7 +10,7 @@ module.exports = {
         global.mess("wait", m)
         let fetch = await fetchUrl(global.api("zenz", "/downloader/xvideos", { url: isUrl(text)[0] }, "apikey"))
         if (fetch.result.length == 0) return global.mess("error", m)
-        let teks = `⭔ Title : ${fetch.result.title}\n⭔ Duration :\n${fetch.result.duration}s`
+        let teks = `⭔ Title : ${fetch.result.title}\n⭔ Duration : ${fetch.result.duration}s`
         killua.sendFile(m.from, fetch.result.files.low, "", m, { caption: teks })
     },
     isQuery: true

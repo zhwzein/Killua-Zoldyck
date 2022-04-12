@@ -4,7 +4,7 @@
 
 ## Killua-Zoldyck
 
-> Script WhatsApp Bot Multi Device
+> Script WhatsApp Bot Using Library Baileys
 
 > This Script is for everyone, not for Sale!
 
@@ -53,7 +53,10 @@ GET APIKEY [HERE](https://zenzapi.xyz/)
 <!-- Start -->
 <b><details><summary>Start BOT</summary>
 ```bash
-> npm start
+1. For Multi Device
+> npm run start
+2. For Legacy
+> npm run legacy
 ```
 SCAN THE QR USING YOUR WHATSAPP!
 </b></details>
@@ -70,6 +73,7 @@ SCAN THE QR USING YOUR WHATSAPP!
 * [`@adiwajshing/baileys`](https://github.com/adiwajshing/baileys)
 * [`Mhankbarbar`](https://github.com/MhankBarBar)
 * [`DikaArdnt`](https://github.com/DikaArdnt)
+* [`Faizbastomi`](https://github.com/FaizBastomi)
 
 
 License: [MIT](https://en.wikipedia.org/wiki/MIT_License)

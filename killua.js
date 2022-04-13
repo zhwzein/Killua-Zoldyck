@@ -12,6 +12,7 @@ global.db = JSON.parse(fs.readFileSync("./tmp/database.json"))
 if (global.db) global.db = {
     sticker: {},
     database: {},
+    chats: {},
     ...(global.db || {})
 }
 
@@ -42,6 +43,10 @@ module.exports = async (killua, m, commands, chatUpdate) => {
         let cmdName = body.replace(prefix, '').trim().split(/ +/).shift().toLowerCase()
         const cmd = commands.get(cmdName) || Array.from(commands.values()).find((v) => v.alias.find((x) => x.toLowerCase() == cmdName)) || ""
         
+        if (m.message) {
+            console.log(chalk.black(chalk.bgWhite('[ PESAN ]')), chalk.black(chalk.bgGreen(new Date)), chalk.black(chalk.bgGreen(body || type)) + "\n" + chalk.black(chalk.bgWhite("=> Dari")), chalk.black(chalk.bgGreen(m.pushName)), chalk.black(chalk.yellow(sender)) + "\n" + chalk.black(chalk.bgWhite("=> Di")), chalk.bgGreen(isGroup ? metadata.subject : m.pushName, from))  
+        }
+
         // Sticker Command
         if (isMedia && m.msg.fileSha256 && (m.msg.fileSha256.toString("hex") in global.db.sticker)) {
             let hash = global.db.sticker[m.msg.fileSha256.toString("hex")]
@@ -63,16 +68,24 @@ module.exports = async (killua, m, commands, chatUpdate) => {
         }
 
         // Database
+        try {
+            let chat = global.db.chats[m.from]
+            if (typeof chat !== "object") global.db.chats = {}
+            if (chat) {
+                if (!('antidelete' in chat)) chat.antidelete = true
+            } else global.db.chats[m.from] = {
+                antidelete: true
+            }
+        } catch(e) {
+            console.error(e)
+        }
+
 
         // - Write
         setInterval(() => {
             fs.writeFileSync('./tmp/database.json', JSON.stringify(global.db, null, 2))
         }, 15 * 1000)
-
-
-        if (m.message) {
-            console.log(chalk.black(chalk.bgWhite('[ PESAN ]')), chalk.black(chalk.bgGreen(new Date)), chalk.black(chalk.bgGreen(body || type)) + "\n" + chalk.black(chalk.bgWhite("=> Dari")), chalk.black(chalk.bgGreen(m.pushName)), chalk.black(chalk.yellow(sender)) + "\n" + chalk.black(chalk.bgWhite("=> Di")), chalk.bgGreen(isGroup ? metadata.subject : m.pushName, from))  
-        }
+        
 
         if (!cmd) return
 

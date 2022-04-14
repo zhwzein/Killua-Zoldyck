@@ -4,9 +4,9 @@ const { Simple, Collection, Function } = require("./lib")
 const { isUrl, isNumber } = Function
 const Func = require("./lib")
 const fs = require("fs")
+const moment = require("moment-timezone")
 const chalk = require("chalk")
 const util = require("util")
-let cooldown = new Map()
 
 global.db = JSON.parse(fs.readFileSync("./tmp/database.json"))
 if (global.db) global.db = {
@@ -86,6 +86,22 @@ module.exports = async (killua, m, commands, chatUpdate) => {
             fs.writeFileSync('./tmp/database.json', JSON.stringify(global.db, null, 2))
         }, 15 * 1000)
         
+
+        // Anti Delete
+        if (m.message && m.message.protocolMessage && m.message.protocolMessage.type == 0) {
+            if (!db.chats[m.from].antidelete) return
+            let key = m.message.protocolMessage.key
+            let msg = await killua.serializeM(await Store.loadMessage(key.remoteJid, key.id))
+            let teks = `
+「 Message Delete Detect 」
+⬡ Name : ${msg.pushName}
+⬡ User : @${msg.sender.split("@")[0]}
+⬡ Date : ${moment(msg.messageTimestamp * 1000).tz("Asia/Jakarta")}
+⬡ Type : ${msg.type}
+            `
+            killua.sendText(m.from, teks, msg, { mentions: [msg.sender] })
+            killua.relayMessage(m.from, msg.message, { messageId: msg.id })
+        }
 
         if (!cmd) return
 

@@ -23,7 +23,7 @@ global.options = {
 }
 
 global.prefa = /^[zZ#$+.?_&<>!/\\]/
-global.owner = ["6281288339373"]
+global.owner = ["62812XXX"]
 global.sessionName = {
     legacy: "/tmp/killua-legacy",
     multi: "/tmp/killua-multi"

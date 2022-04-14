@@ -43,7 +43,6 @@ const readCommands = () => {
     }
 }
 
-
 const connect = async () => {
     await readCommands()
     let { version, isLatest } = await fetchLatestBaileysVersion()

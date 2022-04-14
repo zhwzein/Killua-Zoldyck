@@ -4,7 +4,7 @@
 
 ## Killua-Zoldyck
 
-> Example case from my Rest APIs for WhatsApp Bot
+> Example case from Zenz Rest APIs for WhatsApp Bot
 
 > User must have zenz apikey to use this repo, register [here](https://zenzapi.xyz/) to get apikey
 

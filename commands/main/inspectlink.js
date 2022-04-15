@@ -4,13 +4,13 @@ module.exports = {
     name: "inspect",
     alias: ["inspeksi"],
     desc: "Get Detail Group From Link",
-    type: "group",
+    type: "main",
     examle: "Example : %prefix%command https://chat.whatsapp.com/xxx",
-    exec: async(hisoka, m, { text }) => {
+    exec: async(killua, m, { text }) => {
         let linkRegex = /chat\.whatsapp\.com\/(?:invite\/)?([0-9A-Za-z]{20,24})/i
         let [, code] = text.match(linkRegex) || {}
         if (!code) return m.reply("Link Invalid")
-        let res = await hisoka.groupQueryInvite(code)
+        let res = await killua.groupQueryInvite(code)
         if (!res) return m.reply(String(res))
         let teks = `
     「 Group Link Inspector 」
@@ -30,11 +30,11 @@ module.exports = {
         `
         let pp
         try {
-            pp = await hisoka.profilePictureUrl(res.id, "image")
+            pp = await killua.profilePictureUrl(res.id, "image")
         } catch {
             pp = "https://tse2.mm.bing.net/th?id=OIP.n1C1oxOvYLLyDIavrBFoNQHaHa&pid=Api&P=0&w=153&h=153"
         }
-        hisoka.sendFile(m.from, pp, "", m, { caption: teks, mentions: await hisoka.parseMention(teks) })
+        killua.sendFile(m.from, pp, "", m, { caption: teks, mentions: await killua.parseMention(teks) })
     },
     isQuery: true
 }

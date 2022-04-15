@@ -76,6 +76,8 @@ SCAN THE QR USING YOUR WHATSAPP!
 |   Downloader     |       ✅      |
 |   Webzone     |       ✅      |
 |   Searching     |       ✅      |
+|   Textpro     |       ✅      |
+|   Ephoto     |       ✅      |
 
 </details>
 
@@ -84,9 +86,7 @@ SCAN THE QR USING YOUR WHATSAPP!
 	
 | Features |  Availability |
 | :------: |  :----------: |
-|   Textpro     |       ❌      |
 |   Photooxy     |       ❌      |
-|   Ephoto     |       ❌      |
 |   Anime Web     |       ❌      |
 |   Nekos Life     |       ❌      |
 |   More Nsfw     |       ❌      |

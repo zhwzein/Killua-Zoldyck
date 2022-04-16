@@ -19,6 +19,7 @@ module.exports = {
             caption += `⭔ Thumbnail : ${i.thumbnail}\n`
             caption += `⭔ Url : ${i.url}\n\n`
         }
+        //killua.sendFile(m.from, fetch.result[0].img, "", m, { caption }) yg gambarnya kena internet positif
         killua.sendText(m.from, caption, m)
     },
     isQuery: true

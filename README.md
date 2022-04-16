@@ -78,6 +78,8 @@ SCAN THE QR USING YOUR WHATSAPP!
 |   Searching     |       ✅      |
 |   Textpro     |       ✅      |
 |   Ephoto     |       ✅      |
+|   Anime Web     |       ✅      |
+|   Stalker     |       ✅      |
 
 </details>
 
@@ -87,7 +89,6 @@ SCAN THE QR USING YOUR WHATSAPP!
 | Features |  Availability |
 | :------: |  :----------: |
 |   Photooxy     |       ❌      |
-|   Anime Web     |       ❌      |
 |   Nekos Life     |       ❌      |
 |   More Nsfw     |       ❌      |
 |   Random Image     |       ❌      |
@@ -98,7 +99,6 @@ SCAN THE QR USING YOUR WHATSAPP!
 |   Photo Editor      |       ❌      |
 |   Creator     |       ❌      |
 |   Primbon     |       ❌      |
-|   Stalker     |       ❌      |
 |   Other     |       ❌      |
 	
 </details><hr>

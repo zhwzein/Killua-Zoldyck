@@ -17,7 +17,7 @@ module.exports = {
         let buttonMessage = {
             image: { url: random },
             caption: `Search Google Image Query : ${toUpper(text)}`,
-            footer: `Powered By https://zenzapi.xyz`,
+            footer: `Powered By https://zenzapis.xyz`,
             buttons: buttons,
             headerType: 4
         }

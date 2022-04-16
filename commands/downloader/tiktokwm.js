@@ -17,7 +17,7 @@ module.exports = {
         let buttonMessage = {
             video: { url: fetch.result.video_original },
             caption: `Download Tiktok From : ${isUrl(text)[0]}`,
-            footer: 'Powered by https://zenzapi.xyz',
+            footer: 'Powered by https://zenzapis.xyz',
             buttons: buttons,
             headerType: 5
         }

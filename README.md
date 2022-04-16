@@ -6,7 +6,7 @@
 
 > Example case from Zenz Rest APIs for WhatsApp Bot
 
-> User must have zenz apikey to use this repo, register [here](https://zenzapi.xyz/) to get apikey
+> User must have zenz apikey to use this repo, register [here](https://zenzapis.xyz/) to get apikey
 
 > This Script WhatsApp Bot Using Library Baileys & Script is free for everyone, not for Sale!
 
@@ -44,7 +44,7 @@ Add FFmpeg to PATH environment variable
 <b><details><summary>Edit Config.js</summary></b>
 ```bash
 global.APIKeys = {
-	'https://zenzapi.xyz': 'YOURAPIKEY',
+	'https://zenzapis.xyz': 'YOURAPIKEY',
 }
   
 global.owner = ["62812XXX"]

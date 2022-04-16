@@ -7,12 +7,12 @@ global.reloadFile = (file, options = {}) => {
 
 // Rest Api
 global.APIs = {
-	zenz: 'https://zenzapi.xyz',
+	zenz: 'https://zenzapis.xyz',
 }
 
 // Apikey
 global.APIKeys = {
-	'https://zenzapi.xyz': 'YOURAPIKEY',
+	'https://zenzapis.xyz': 'YOURAPIKEY',
 }
 
 // Other
@@ -30,7 +30,7 @@ global.sessionName = {
 }
 
 global.packname = "zenzapi"
-global.author = "https://zenzapi.xyz"
+global.author = "https://zenzapis.xyz"
 
 global.mess = (type, m) => {
     let msg = {

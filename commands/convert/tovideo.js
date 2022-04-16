@@ -1,5 +1,6 @@
-const { fetchUrl, isUrl } = require("../../lib/Function")
-const fs = require('fs')
+const { getRandom } = require("../../lib/Function")
+let axios = require('axios')
+let BodyForm = require('form-data')
 
 module.exports = {
     name: "tovideo",
@@ -10,14 +11,14 @@ module.exports = {
         if (!quoted) return  m.reply(`Reply to Supported media With Caption ${prefix + command}`)
         if (/image|video|sticker/.test(mime)) {
             global.mess("wait", m)
-            let imgbb = require('imgbb-uploader')
-            let download = await killua.downloadAndSaveMediaMessage(quoted)
-            let apikey = await imgbb("8170c546056168c248430201c4bf22b6", download)
-            hasil = apikey.display_url
-            let fetch = await fetchUrl(global.api("zenz", "/convert/webp-to-mp4", { url: hasil }, "apikey"))
-            if (fetch.result.length == 0) return global.mess("error", m)
-            killua.sendFile(m.from, fetch.result, "", m, { caption: 'Convert Sticker Gif To Video' })
-            await fs.unlinkSync(download)
+            let download = await killua.downloadMediaMessage(quoted)
+            const form = new BodyForm()
+            form.append('sampleFile', download, { filename: getRandom('webp') })
+            axios.post(global.api("zenz", "/upload/webp-to-mp4", {}, "apikey"), form.getBuffer(), { headers: { "content-type": `multipart/form-data; boundary=${form._boundary}`}
+            }).then(({ data }) => {
+                if (data.length == 0) return global.mess("error", m)
+                killua.sendFile(m.from, data.result, "", m, { caption: 'Convert Sticker Gif To Video' })
+            })
         } else {
             return m.reply(`Reply to Supported media With Caption ${prefix + command}`, m.from, { quoted: m })
         }

@@ -12,7 +12,7 @@ global.APIs = {
 
 // Apikey
 global.APIKeys = {
-	'https://zenzapis.xyz': 'YOURAPIKEY',
+	'https://zenzapis.xyz': 'zahwazeinx',
 }
 
 // Other

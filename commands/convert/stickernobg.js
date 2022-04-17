@@ -1,4 +1,5 @@
-const { fetchUrl, isUrl } = require("../../lib/Function")
+const { getRandom } = require("../../lib/Function")
+const request = require('request')
 const fs = require('fs')
 
 module.exports = {
@@ -10,12 +11,23 @@ module.exports = {
         if (!quoted) return  m.reply(`Reply to Supported media With Caption ${prefix + command}`)
         if (/image/.test(mime)) {
             global.mess("wait", m)
-            let imgbb = require('imgbb-uploader')
             let download = await killua.downloadAndSaveMediaMessage(quoted)
-            let apikey = await imgbb("8170c546056168c248430201c4bf22b6", download)
-            hasil = apikey.display_url
-            killua.sendFile(m.from, global.api("zenz", "/convert/sticker-nobg", { url: hasil }, "apikey"), "", m, { asSticker: true, author: global.author, packname: global.packname, categories: ['😄','😊'] })
-            await fs.unlinkSync(download)
+            file_name = getRandom('jpg')
+            request({
+                url: global.api("zenz", "/convert/sticker-nobg", {}, "apikey"),
+                method: 'POST',
+                formData: {
+                    "sampleFile": fs.createReadStream(download)
+                },
+                encoding: "binary"
+            }, async function(error, response, body) {
+                fs.unlinkSync(download)
+                fs.writeFileSync(file_name, body, "binary")
+                ini_buff = fs.readFileSync(file_name)
+                await killua.sendFile(m.from, ini_buff, "", m, { asSticker: true, author: global.author, packname: global.packname, categories: ['😄','😊'] }).then(() => {
+                    fs.unlinkSync(file_name)
+                })
+            });
         } else {
             return m.reply(`Reply to Supported media With Caption ${prefix + command}`, m.from, { quoted: m })
         }

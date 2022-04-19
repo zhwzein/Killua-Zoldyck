@@ -4,7 +4,8 @@ module.exports = {
     desc: "Create Maker From https://ephoto360.com/",
     type: "textmaker",
     example: `List Type :\n\n${type().sort((a, b) => a - b).join("\n")}\n\nExample : %prefix%command <type> <text>`,
-    exec: async(hisoka, m, { text, args, command }) => {
+    exec: async(killua, m, { text, args, command }) => {
+        global.mess("wait", m)
         type = args[0].toLowerCase()
         let [text1, ...text2] = text.replace(args[0], "").trimStart().split`|`
         text2 = text2.join("|")
@@ -41,7 +42,8 @@ module.exports = {
                 killua.sendFile(m.from, global.api("zenz", "/ephoto/valorant", { text: text1, text2: text2, text3: text2 }, "apikey"), "", m, { caption: `Ephoto Valorant`})
             break
         }
-    }
+    },
+    isQuery: true
 }
 
 function type() {

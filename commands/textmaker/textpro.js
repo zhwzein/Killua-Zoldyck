@@ -4,7 +4,8 @@ module.exports = {
     desc: "Create Maker From https://textpro.me",
     type: "textmaker",
     example: `List Type :\n\n${type().sort((a, b) => a - b).join("\n")}\n\nExample : %prefix%command <type> <text>`,
-    exec: async(hisoka, m, { text, args, command, prefix }) => {
+    exec: async(killua, m, { text, args }) => {
+        global.mess("wait", m)
         type = args[0].toLowerCase()
         let [text1, ...text2] = text.replace(args[0], "").trimStart().split`|`
         text2 = text2.join("|")

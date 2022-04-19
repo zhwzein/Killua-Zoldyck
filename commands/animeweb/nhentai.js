@@ -6,10 +6,9 @@ module.exports = {
     desc: "Nhentai Search Information",
     type: "animeweb",
     example: `Example : %prefix%command 114512`,
-    exec: async(killua, m, { text, command, prefix, toUpper }) => {
+    exec: async(killua, m, { text }) => {
         global.mess("wait", m)
         let fetch = await fetchUrl(global.api("zenz", "/anime/nhentai", { query: text }, "apikey"))
-        if (fetch.result.length == 0) return global.mess("error", m)
         let caption = `Nhentai Search :\n\n`
         let i = fetch.result
         caption += `⭔ ID : ${i.id}\n`

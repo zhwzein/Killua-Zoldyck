@@ -6,10 +6,9 @@ module.exports = {
     desc: "Kiryuu Search Information",
     type: "animeweb",
     example: `Example : %prefix%command love`,
-    exec: async(killua, m, { text, command, prefix, toUpper }) => {
+    exec: async(killua, m, { text }) => {
         global.mess("wait", m)
         let fetch = await fetchUrl(global.api("zenz", "/anime/kiryuu", { query: text }, "apikey"))
-        if (fetch.result.length == 0) return global.mess("error", m)
         let caption = `Kiryuu Search :\n\n`
         for (let i of fetch.result) {
             caption += `⭔ Title : ${i.manga_name}\n`

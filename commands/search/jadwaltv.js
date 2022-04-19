@@ -24,7 +24,7 @@ module.exports = {
     ⭔ tvone
     ⭔ tvri
     `,
-    exec: async(killua, m, { text, command, prefix, toUpper }) => {
+    exec: async(killua, m, { text, toUpper }) => {
         global.mess("wait", m)
         let fetch = await fetchUrl(global.api("zenz", "/searching/jadwaltv", { query: text }, "apikey"))
         if (fetch.result.length == 0) return global.mess("error", m)

@@ -16,7 +16,6 @@ module.exports = {
             form.append('sampleFile', download, { filename: getRandom('webp') })
             axios.post(global.api("zenz", "/convert/webp-to-mp4", {}, "apikey"), form.getBuffer(), { headers: { "content-type": `multipart/form-data; boundary=${form._boundary}`}
             }).then(({ data }) => {
-                if (data.length == 0) return global.mess("error", m)
                 killua.sendFile(m.from, data.result, "", m, { caption: 'Convert Sticker Gif To Video' })
             })
         } else {

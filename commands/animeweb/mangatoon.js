@@ -6,10 +6,9 @@ module.exports = {
     desc: "Mangatoon Search Information",
     type: "animeweb",
     example: `Example : %prefix%command love`,
-    exec: async(killua, m, { text, command, prefix, toUpper }) => {
+    exec: async(killua, m, { text }) => {
         global.mess("wait", m)
         let fetch = await fetchUrl(global.api("zenz", "/anime/mangatoon", { query: text }, "apikey"))
-        if (fetch.result.length == 0) return global.mess("error", m)
         let caption = `Mangatoon Search :\n\n`
         let i = fetch.result
         caption += `⭔ Judul : ${i.judul}\n`

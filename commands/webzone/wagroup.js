@@ -6,7 +6,7 @@ module.exports = {
     desc: "Search WhatsApp Group",
     type: "webzone",
     example: `Example : %prefix%command Mabar`,
-    exec: async(killua, m, { text, command, prefix, toUpper }) => {
+    exec: async(killua, m, { text, toUpper }) => {
         global.mess("wait", m)
         let fetch = await fetchUrl(global.api("zenz", "/webzone/wagroup", { query: text }, "apikey"))
         if (fetch.result.length == 0) return global.mess("error", m)

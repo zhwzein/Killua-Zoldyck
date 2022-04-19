@@ -5,9 +5,9 @@ const fs = require('fs')
 module.exports = {
     name: "stickernobg",
     alias: ["nobg","sbg"],
-    desc: "Convert Image To Sticker With no background",
+    desc: "Convert Image To Sticker With No Background",
     type: "convert",
-    exec: async(killua, m, { command, prefix, text, quoted, mime }) => {
+    exec: async(killua, m, { command, prefix, quoted, mime }) => {
         if (!quoted) return  m.reply(`Reply to Supported media With Caption ${prefix + command}`)
         if (/image/.test(mime)) {
             global.mess("wait", m)

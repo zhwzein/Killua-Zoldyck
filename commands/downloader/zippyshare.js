@@ -2,7 +2,7 @@ const { fetchUrl, isUrl } = require("../../lib/Function")
 
 module.exports = {
     name: "zippyshare",
-    alias: ["zippyshare"],
+    alias: ["zippydownload"],
     desc: "Download Media From https://zippyshare.com",
     type: "downloader",
     example: "Example : %prefix%command https://www46.zippyshare.com/v/Lfea7zv1/file.html",

@@ -27,7 +27,7 @@ module.exports = {
                 await killua.sendFile(m.from, ini_buff, "", m, { asSticker: true, author: global.author, packname: global.packname, categories: ['😄','😊'] }).then(() => {
                     fs.unlinkSync(file_name)
                 })
-            });
+            })
         } else {
             return m.reply(`Reply to Supported media With Caption ${prefix + command}`, m.from, { quoted: m })
         }

@@ -3,13 +3,12 @@ const { fetchUrl } = require("../../lib/Function")
 module.exports = {
     name: "nekopoirandom",
     alias: ["randomnekopoi"],
-    desc: "Nekopoi Random Information",
+    desc: "Random Nekopoi Information",
     type: "animeweb",
     example: `Example : %prefix%command`,
-    exec: async(killua, m, { text, command, prefix, toUpper }) => {
+    exec: async(killua, m, {}) => {
         global.mess("wait", m)
         let fetch = await fetchUrl(global.api("zenz", "/anime/nekopoi/random", {}, "apikey"))
-        if (fetch.result.length == 0) return global.mess("error", m)
         let caption = `Nekopoi Random :\n\n`
         let i = fetch.result
             caption += `⭔ Title : ${i.title}\n`

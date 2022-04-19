@@ -3,7 +3,7 @@ const { fetchUrl, isUrl } = require("../../lib/Function")
 module.exports = {
     name: "facebook",
     alias: ["fbdl"],
-    desc: "Download Media From https://facebook.com",
+    desc: "Download Video From https://facebook.com",
     type: "downloader",
     example: "Example : %prefix%command https://fb.watch/9F1vsetkrG",
     exec: async(killua, m, { text }) => {

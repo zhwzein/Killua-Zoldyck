@@ -8,6 +8,7 @@ module.exports = {
     type: "convert",
     exec: async(killua, m, { command, prefix, text, quoted, mime }) => {
         if (!quoted) return  m.reply(`Reply to Supported media With Caption ${prefix + command}`)
+        global.mess("wait", m)
         if (/image|video|sticker/.test(mime)) {
             let download = await quoted.download()
             killua.sendFile(m.from, download, "", m, { asSticker: true, author: global.author, packname: global.packname, categories: ['😄','😊'] })

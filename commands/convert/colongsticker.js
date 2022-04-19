@@ -1,5 +1,3 @@
-const { isUrl } = require("../../lib/Function")
-
 module.exports = {
     name: "colongsticker",
     alias: ["colong"],

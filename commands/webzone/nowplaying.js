@@ -6,7 +6,7 @@ module.exports = {
     desc: "Search Jadwal From Jadwalnonton",
     type: "webzone",
     example: `Example : %prefix%command`,
-    exec: async(killua, m, { text, command, prefix, toUpper }) => {
+    exec: async(killua, m, {}) => {
         global.mess("wait", m)
         let fetch = await fetchUrl(global.api("zenz", "/webzone/nowplayingbioskop", {}, "apikey"))
         if (fetch.result.length == 0) return global.mess("error", m)

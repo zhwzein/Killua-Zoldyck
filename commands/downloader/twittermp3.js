@@ -9,7 +9,6 @@ module.exports = {
     exec: async(killua, m, { prefix, command, text }) => {
         global.mess("wait", m)
         let fetch = await fetchUrl(global.api("zenz", "/downloader/twitter", { url: isUrl(text)[0] }, "apikey"))
-        if (fetch.result.length == 0) return global.mess("error", m)
         let buttons = [
             {buttonId: `twitter ${text}`, buttonText: {displayText: '► Video'}, type: 1}
         ]

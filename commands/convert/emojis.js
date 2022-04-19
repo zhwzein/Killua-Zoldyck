@@ -6,7 +6,7 @@ module.exports = {
     desc: "Convert Emojis 2 To Sticker",
     type: "convert",
     example: `List Type :\n\n${type().sort((a, b) => a - b).join("\n")}\n\nExample : %prefix%command <type> <text>`,
-    exec: async(killua, m, { command, prefix, text, args, quoted, mime }) => {
+    exec: async(killua, m, { command, prefix, text, args }) => {
         if (!text) return m.reply(`Example : ${prefix + command} apple 😅`)
         type = args[0].toLowerCase()
         let [text1, ...text2] = text.replace(args[0], "").trimStart().split`|`
@@ -34,7 +34,7 @@ module.exports = {
             case "facebook":
                 killua.sendFile(m.from, fetch.result.facebook, "", m, { asSticker: true, author: global.author, packname: global.packname, categories: ['😄','😊'] })
             break
-            case "jooxPixel":
+            case "jooxpixel":
                 killua.sendFile(m.from, fetch.result.jooxPixel, "", m, { asSticker: true, author: global.author, packname: global.packname, categories: ['😄','😊'] })
             break
             case "openemoji":
@@ -46,10 +46,10 @@ module.exports = {
             case "messanger":
                 killua.sendFile(m.from, fetch.result.messanger, "", m, { asSticker: true, author: global.author, packname: global.packname, categories: ['😄','😊'] })
             break
-            case "LG":
+            case "lg":
                 killua.sendFile(m.from, fetch.result.LG, "", m, { asSticker: true, author: global.author, packname: global.packname, categories: ['😄','😊'] })
             break
-            case "HTC":
+            case "htc":
                 killua.sendFile(m.from, fetch.result.HTC, "", m, { asSticker: true, author: global.author, packname: global.packname, categories: ['😄','😊'] })
             break
             case "mozilla":
@@ -61,7 +61,7 @@ module.exports = {
             case "docomo":
                 killua.sendFile(m.from, fetch.result.docomo, "", m, { asSticker: true, author: global.author, packname: global.packname, categories: ['😄','😊'] })
             break
-            case "KDDI":
+            case "kddi":
                 killua.sendFile(m.from, fetch.result.KDDI, "", m, { asSticker: true, author: global.author, packname: global.packname, categories: ['😄','😊'] })
             break
         }
@@ -70,5 +70,5 @@ module.exports = {
 }
 
 function type() {
-    return ["apple", "google","samsung", "microsoft", "whatsapp", "twitter", "facebook", "jooxPixel", "openemoji", "emojidex", "messanger", "LG", "HTC", "mozilla", "softbank", "docomo", "KDDI"]
+    return ["apple", "google","samsung", "microsoft", "whatsapp", "twitter", "facebook", "jooxpixel", "openemoji", "emojidex", "messanger", "lg", "htc", "mozilla", "softbank", "docomo", "kddi"]
 }

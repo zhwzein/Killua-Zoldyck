@@ -5,7 +5,7 @@ module.exports = {
     alias: ["textrandom"],
     desc: "Generate Random Text & Quotes",
     type: "randomtext",
-    example: `List Type :\n\n${type().sort((a, b) => a - b).join("\n")}\n\nExample : %prefix%command <type> <text>`,
+    example: `List Type :\n\n${type().sort((a, b) => a - b).join("\n")}\n\nExample : %prefix%command <type>`,
     exec: async(killua, m, { text, toUpper }) => {
         let fetch = await fetchUrl(global.api("zenz", "/randomtext/" + text, {}, "apikey"))
         let buttons = [

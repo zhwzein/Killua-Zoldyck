@@ -3,7 +3,7 @@ module.exports = {
     alias: ["imagerandom"],
     desc: "Generate Random Image From Apis",
     type: "randomimage",
-    example: `List Type :\n\n${type().sort((a, b) => a - b).join("\n")}\n\nExample : %prefix%command <type> <text>`,
+    example: `List Type :\n\n${type().sort((a, b) => a - b).join("\n")}\n\nExample : %prefix%command <type>`,
     exec: async(killua, m, { text, toUpper }) => {
         let fetch = await global.api("zenz", "/api/random/" + text, {}, "apikey")
         let buttons = [

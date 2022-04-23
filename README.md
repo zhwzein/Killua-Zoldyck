@@ -80,6 +80,7 @@ SCAN THE QR USING YOUR WHATSAPP!
 |   Ephoto     |       ✅      |
 |   Anime Web     |       ✅      |
 |   Stalker     |       ✅      |
+|   Random Text     |       ✅      |
 
 </details>
 
@@ -92,7 +93,6 @@ SCAN THE QR USING YOUR WHATSAPP!
 |   Nekos Life     |       ❌      |
 |   More Nsfw     |       ❌      |
 |   Random Image     |       ❌      |
-|   Random Text     |       ❌      |
 |   Information     |       ❌      |
 |   News     |       ❌      |
 |   Entertainment     |       ❌      |

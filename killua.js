@@ -7,6 +7,7 @@ const fs = require("fs")
 const moment = require("moment-timezone")
 const chalk = require("chalk")
 const util = require("util")
+const { correct } = require("./lib/Correct")
 
 global.db = JSON.parse(fs.readFileSync("./tmp/database.json"))
 if (global.db) global.db = {
@@ -32,8 +33,9 @@ module.exports = async (killua, m, commands, chatUpdate) => {
         if (options.mute && !isOwner) return
         if (options.self && !isOwner && !m.fromMe) return
 
-        var prefix = /^[°•π÷×¶∆£¢€¥®™+✓_=|~!?@#%^&.©^]/gi.test(body) ? body.match(/^[°•π÷×¶∆£¢€¥®™+✓_=|~!?@#%^&.©^]/gi)[0] : Function.checkPrefix(prefa, body).prefix ?? ""
+        var prefix = /^[°•π÷×¶∆£¢€¥®™+✓_=|~!?@#%^&.©^]/gi.test(body) ? body.match(/^[°•π÷×¶∆£¢€¥®™+✓_=|~!?@#%^&.©^]/gi)[0] : Function.checkPrefix(prefa, body).prefix ?? "#"
 
+        let isCmd = body.startsWith(prefix)
         let quoted = m.quoted ? m.quoted : m
         let mime = (quoted.msg || m.msg).mimetype
         let isMedia = /image|video|sticker|audio/.test(mime)
@@ -103,7 +105,24 @@ module.exports = async (killua, m, commands, chatUpdate) => {
             killua.relayMessage(m.from, msg.message, { messageId: msg.id })
         }
 
-        if (!cmd) return
+        if (isCmd && !cmd) {
+            var array = Array.from(commands.keys());
+            Array.from(commands.values()).map((v) => v.alias).join(" ").replace(/ +/gi, ",").split(",").map((v) => array.push(v))
+
+            var anu = await correct(cmdName, array)
+            var alias = commands.get(anu.result) || Array.from(commands.values()).find((v) => v.alias.find((x) => x.toLowerCase() == anu.result)) || ""
+console.log(anu)
+            teks = `
+Command *Not Found!*, Maybe you mean is 
+
+*_Command :_* ${prefix + anu.result}
+*_Alias :_* ${alias.alias.join(", ")}
+*_Accurary :_* ${anu.rating}
+
+_Send command again if needed_
+            `
+            m.reply(teks)
+        } else if (!cmd) return
 
 
         if (cmd.isMedia && !isMedia) {

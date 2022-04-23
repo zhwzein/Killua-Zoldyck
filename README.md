@@ -69,18 +69,20 @@ SCAN THE QR USING YOUR WHATSAPP!
 
 | Features |  Availability |
 | :------: |  :----------: |
-|   Convert     |       ✅      |
-|   Database     |       ✅      |
-|   Owner     |       ✅      |
-|   Islami     |       ✅      |
-|   Downloader     |       ✅      |
-|   Webzone     |       ✅      |
-|   Searching     |       ✅      |
-|   Textpro     |       ✅      |
-|   Ephoto     |       ✅      |
-|   Anime Web     |       ✅      |
-|   Stalker     |       ✅      |
-|   Random Text     |       ✅      |
+|   Convert     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/convert)      |
+|   Database     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/database)      |
+|   Owner     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/owner)      |
+|   Islami     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/islami)      |
+|   Downloader     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/downloader)      |
+|   Webzone     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/webzone)      |
+|   Searching     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/search)      |
+|   Textpro     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/textmaker)      |
+|   Ephoto     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/textmaker)      |
+|   Anime Web     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/animeweb)      |
+|   Stalker     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/stalker)      |
+|   Random Text     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/randomtext)      |
+|   Random Image     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/randomimage)      |
+|   Nekos Life     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/nekoslife)      |
 
 </details>
 
@@ -90,9 +92,7 @@ SCAN THE QR USING YOUR WHATSAPP!
 | Features |  Availability |
 | :------: |  :----------: |
 |   Photooxy     |       ❌      |
-|   Nekos Life     |       ❌      |
 |   More Nsfw     |       ❌      |
-|   Random Image     |       ❌      |
 |   Information     |       ❌      |
 |   News     |       ❌      |
 |   Entertainment     |       ❌      |

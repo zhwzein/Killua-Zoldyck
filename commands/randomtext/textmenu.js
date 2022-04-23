@@ -1,6 +1,6 @@
 module.exports = {
     name: "textmenu",
-    alias: ["listmenu"],
+    alias: ["menutext"],
     desc: "listMessage Random Text & Quotes",
     type: "randomtext",
     example: "Example : %prefix%command",

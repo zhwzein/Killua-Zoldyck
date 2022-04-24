@@ -22,5 +22,5 @@ module.exports = {
 }
 
 function type() {
-    return ["anime","waifu","husbu","neko","shinobu","megumin","waifus","nekos","trap","blowjob"]
+    return ["cosplay","darkjoke","meme","memeindo","anime","waifu","husbu","neko","shinobu","megumin","patrick","waifus","nekos","trap","blowjob"]
 }

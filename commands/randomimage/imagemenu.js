@@ -8,6 +8,10 @@ module.exports = {
         const sections = [{
             title: "Random Image",
             rows: [
+                {title: "Random Cosplayer", rowId: "randomimage cosplay"},
+                {title: "Random darkjoke", rowId: "randomimage darkjoke"},
+                {title: "Random Meme", rowId: "randomimage meme"},
+                {title: "Random MemeIndo", rowId: "randomimage memeindo"},
                 {title: "Random Anime Couple", rowId: "animecouple"},
                 {title: "Random Anime", rowId: "randomimage anime"},
                 {title: "Random Waifu", rowId: "randomimage waifu"},
@@ -15,6 +19,7 @@ module.exports = {
                 {title: "Random Neko", rowId: "randomimage neko"},
                 {title: "Random Shinobu", rowId: "randomimage shinobu"},
                 {title: "Random Megumin", rowId: "randomimage megumin"},
+                {title: "Random Patrick", rowId: "randomimage patrick"},
             ]
         },
         {

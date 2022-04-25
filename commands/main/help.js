@@ -25,17 +25,18 @@ module.exports = {
                 teks += `│\n`
                 teks += `└───────⭓\n\n`
             }
-            let buttons = [
-                { buttonId: `coffe`, buttonText: { displayText: 'Next Image' }, type: 1 }
+
+            let templateButtons = [
+                {index: 1, urlButton: {displayText: 'Source Code', url: 'https://github.com/zhwzein/Killua-Zoldyck'}},
             ]
-            let buttonMessage = {
-                image: { url: 'https://camo.githubusercontent.com/23f3195d91e7095ae37ef6a22475b9f1206f8334bc3e5ca61637f7d7e8cf962a/68747470733a2f2f692e70696e696d672e636f6d2f373336782f66662f38372f62372f66663837623730653963396465613464396361333263393533386138316333622e6a7067' },
-                caption: teks,
+            
+            let templateMessage = {
+                text: teks,
                 footer: `Powered By ${global.api("zenz")}`,
-                buttons: buttons,
-                headerType: 4
+                templateButtons: templateButtons
             }
-            killua.sendMessage(m.from, buttonMessage, { quoted: m })
+
+            killua.sendMessage(m.from, templateMessage, { quoted: m })
         }
     }
 }

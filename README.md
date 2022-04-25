@@ -67,6 +67,8 @@ SCAN THE QR USING YOUR WHATSAPP!
 
 ---
 
+<details><summary>Available Features</summary><br>
+	
 | Features |  Availability |
 | :------: |  :----------: |
 |   Convert     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/convert)      |
@@ -83,6 +85,7 @@ SCAN THE QR USING YOUR WHATSAPP!
 |   Random Text     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/randomtext)      |
 |   Random Image     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/randomimage)      |
 |   Nekos Life     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/nekoslife)      |
+|   More Nsfw     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/morensfw)      |
 
 </details>
 
@@ -91,8 +94,6 @@ SCAN THE QR USING YOUR WHATSAPP!
 	
 | Features |  Availability |
 | :------: |  :----------: |
-|   Photooxy     |       ❌      |
-|   More Nsfw     |       ❌      |
 |   Information     |       ❌      |
 |   News     |       ❌      |
 |   Entertainment     |       ❌      |

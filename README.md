@@ -86,6 +86,7 @@ SCAN THE QR USING YOUR WHATSAPP!
 |   Random Image     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/randomimage)      |
 |   Nekos Life     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/nekoslife)      |
 |   More Nsfw     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/morensfw)      |
+|   Creator     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/creator)      |
 
 </details>
 
@@ -98,7 +99,6 @@ SCAN THE QR USING YOUR WHATSAPP!
 |   News     |       ❌      |
 |   Entertainment     |       ❌      |
 |   Photo Editor      |       ❌      |
-|   Creator     |       ❌      |
 |   Primbon     |       ❌      |
 |   Other     |       ❌      |
 	

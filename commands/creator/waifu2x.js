@@ -3,20 +3,18 @@ const request = require('request')
 const fs = require('fs')
 
 module.exports = {
-    name: "smeme",
-    alias: ["mememaker"],
-    desc: "Meme Maker From Memegen",
+    name: "waifu2x",
+    alias: ["upscaler"],
+    desc: "Upscaler Image Maker",
     type: "creator",
-    exec: async(killua, m, { command, text, prefix, quoted, mime }) => {
+    exec: async(killua, m, { command, prefix, quoted, mime }) => {
         if (!quoted) return  m.reply(`Reply to Supported media With Caption ${prefix + command}`)
         if (/image/.test(mime)) {
-            if (!text.includes('|')) return m.reply(`Example : ${prefix + command} Top|Bottom`)
             global.mess("wait", m)
-            let [a, b] = text.split`|`
             let download = await killua.downloadAndSaveMediaMessage(quoted)
             file_name = getRandom('jpg')
             request({
-                url: global.api("zenz", "/creator/smeme", {text: a, text2: b}, "apikey"),
+                url: global.api("zenz", "/creator/waifu2x", {}, "apikey"),
                 method: 'POST',
                 formData: {
                     "sampleFile": fs.createReadStream(download)

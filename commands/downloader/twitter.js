@@ -13,7 +13,7 @@ module.exports = {
             {buttonId: `twittermp3 ${text}`, buttonText: {displayText: '♫ Audio'}, type: 1}
         ]
         let buttonMessage = {
-            video: { url: fetch.result.HD || fetch.result.SD },
+            video: { url: fetch.result.hd || fetch.result.sd },
             caption: `⭔ Desc : ${fetch.result.desc}\n⭔ Source Url : ${isUrl(text)[0]}`,
             footer: 'Powered by https://zenzapis.xyz',
             buttons: buttons,

@@ -3,9 +3,9 @@ let axios = require('axios')
 let BodyForm = require('form-data')
 
 module.exports = {
-    name: "uploader",
-    alias: ["tourl","upload"],
-    desc: "Upload Image To Url",
+    name: "tourl",
+    alias: ["uploader","upload"],
+    desc: "Convert Image To Url",
     type: "convert",
     example: "Example : %prefix%command text",
     exec: async(killua, m, { command, prefix, text, quoted, mime }) => {

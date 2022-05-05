@@ -22,5 +22,5 @@ module.exports = {
 }
 
 function type() {
-    return ["cosplay","darkjoke","meme","memeindo","anime","waifu","husbu","neko","shinobu","megumin","patrick","waifus","nekos","trap","blowjob"]
+    return ["cosplay","darkjoke","meme","memeindo","anime","waifu","husbu","neko","shinobu","megumin","uniform","maid","marin-kitagawa","mori-calliope","raiden-shogun","oppai","selfies","patrick","waifus","nekos","trap","blowjob","hentai","milf","oral","paizuri","ecchi","ero"]
 }

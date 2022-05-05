@@ -19,6 +19,13 @@ module.exports = {
                 {title: "Random Neko", rowId: "randomimage neko"},
                 {title: "Random Shinobu", rowId: "randomimage shinobu"},
                 {title: "Random Megumin", rowId: "randomimage megumin"},
+                {title: "Random Uniform", rowId: "randomimage uniform"},
+                {title: "Random Maid", rowId: "randomimage maid"},
+                {title: "Random MarinKitagawa", rowId: "randomimage marin-kitagawa"},
+                {title: "Random MoriCalliope", rowId: "randomimage mori-calliope"},
+                {title: "Random RaidenShogun", rowId: "randomimage raiden-shogun"},
+                {title: "Random Oppai", rowId: "randomimage oppai"},
+                {title: "Random Selfies", rowId: "randomimage selfies"},
                 {title: "Random Patrick", rowId: "randomimage patrick"},
             ]
         },
@@ -28,7 +35,14 @@ module.exports = {
                 {title: "Random Waifu [NSFW]", rowId: "randomimage waifus"},
                 {title: "Random Neko [NSFW]", rowId: "randomimage nekos"},
                 {title: "Random Trap [NSFW]", rowId: "randomimage trap"},
-                {title: "Random Blowjob [NSFW]", rowId: "randomimage blowjob"}
+                {title: "Random Ass [NSFW]", rowId: "randomimage blowjob"},
+                {title: "Random Blowjob [NSFW]", rowId: "randomimage ass"},
+                {title: "Random Hentai [NSFW]", rowId: "randomimage hentai"},
+                {title: "Random Milf [NSFW]", rowId: "randomimage milf"},
+                {title: "Random Oral [NSFW]", rowId: "randomimage oral"},
+                {title: "Random Paizuri [NSFW]", rowId: "randomimage paizuri"},
+                {title: "Random Ecchi [NSFW]", rowId: "randomimage ecchi"},
+                {title: "Random Ero [NSFW]", rowId: "randomimage ero"},
             ]
         }]
         const listMessage = {

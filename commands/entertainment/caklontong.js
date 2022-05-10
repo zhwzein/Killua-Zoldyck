@@ -8,10 +8,10 @@ module.exports = {
     alias: ["clontong"],
     desc: "Entertaiment Fiture Cak Lontong",
     type: "entertainment",
-    start: async(hisoka, m) => {
+    start: async(killua, m) => {
         let game = global.db.game.caklontong
         let id = "game_" + m.from
-        if (id in game) return hisoka.sendMessage(m.from, "There are still unfinished cak lontong sessions", { quoted: game[id][0] })
+        if (id in game) return killua.sendMessage(m.from, "There are still unfinished cak lontong sessions", { quoted: game[id][0] })
         let res = await fetchUrl(global.api("zenz", "/api/caklontong", {}, "apikey"))
         let json = await res.result
         let caption = `

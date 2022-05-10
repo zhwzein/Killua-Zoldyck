@@ -6,11 +6,11 @@ module.exports = {
     alias: ["fam100"],
     desc: "Entertaiment Fiture Family100",
     type: "entertainment",
-    start: async(hisoka, m) => {
+    start: async(killua, m) => {
         let family100 = global.db.game.family100
         let id = "game_" + m.from
         if (id in family100) {
-            hisoka.sendMessage(m.from, "There are still unfinished Siapakah Aku sessions", { quoted: game[id].msg })
+            killua.sendMessage(m.from, "There are still unfinished Siapakah Aku sessions", { quoted: game[id].msg })
             throw false
         }
         let res = await fetchUrl(global.api("zenz", "/api/family100", {}, "apikey"))

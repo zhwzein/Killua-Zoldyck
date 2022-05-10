@@ -8,11 +8,11 @@ module.exports = {
     alias: ["skata"],
     desc: "Entertaiment Fiture Susun Kata",
     type: "entertainment",
-    start: async(hisoka, m) => {
+    start: async(killua, m) => {
         let game = global.db.game.susunkata
         let id = "game_" + m.from
         if (id in game) {
-            hisoka.sendMessage(m.from, "There are still unfinished Susun Kata sessions", { quoted: game[id][0] })
+            killua.sendMessage(m.from, "There are still unfinished Susun Kata sessions", { quoted: game[id][0] })
             throw false
         }
         let res = await fetchUrl(global.api("zenz", "/api/susunkata", {}, "apikey"))

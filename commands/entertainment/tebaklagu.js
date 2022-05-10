@@ -16,7 +16,7 @@ module.exports = {
             killua.sendMessage(m.from, "There are still unfinished Susun Kata sessions", { quoted: game[id][0] })
             throw false
         }
-        let res = await fetchUrl("https://killua-morou.netlify.app/assets/database/tebaklagu.json")
+        let res = await fetchUrl("https://hisoka-morou.netlify.app/assets/database/tebaklagu.json")
         let json = res[Math.floor(Math.random() * res.length)]
         game[id] = [
             await killua.sendMessage(m.from, { audio: { url: json.link_song }, mimetype: "audio/mpeg", fileName: "???" }, { quoted: m }),

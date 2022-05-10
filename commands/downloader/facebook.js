@@ -10,7 +10,7 @@ module.exports = {
         global.mess("wait", m)
         let fetch = await fetchUrl(global.api("zenz", "/downloader/facebook", { url: isUrl(text)[0] }, "apikey"))
         if (fetch.result.length == 0) return global.mess("error", m)
-        killua.sendFile(m.from, fetch.result.media[1].url || fetch.result.media[0].url, "", m, { jpegThumbnail: await fetchBuffer(fetch.result.thumbnail), caption: `⭔ Title : ${fetch.result.tile}\n⭔ Source Url : ${fetch.result.url}` })
+        killua.sendFile(m.from, fetch.result.medias[1].url || fetch.result.medias[0].url, "", m, { caption: `⭔ Title : ${fetch.result.title}\n⭔ Source Url : ${fetch.result.url}` })
     },
     isQuery: true
 }

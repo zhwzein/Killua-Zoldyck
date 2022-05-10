@@ -8,10 +8,10 @@ module.exports = {
     example: `List Type :\n\n${type().sort((a, b) => a - b).join("\n")}\n\nExample : %prefix%command <type> <text>`,
     exec: async(killua, m, { command, prefix, text, args }) => {
         if (!text) return m.reply(`Example : ${prefix + command} apple 😅`)
-        type = args[0].toLowerCase()
+        let type = args[0].toLowerCase()
         let [text1, ...text2] = text.replace(args[0], "").trimStart().split`|`
         text2 = text2.join("|")
-        let fetch = await fetchUrl(global.api("zenz", `/api/emoji`, {query: text1}, "apikey"))
+        let fetch = await fetchUrl(global.api("zenz", `/creator/emoji`, {query: text1}, "apikey"))
         switch(type) {
             case "apple": 
                 killua.sendFile(m.from, fetch.result.apple, "", m, { asSticker: true, author: global.author, packname: global.packname, categories: ['😄','😊'] })

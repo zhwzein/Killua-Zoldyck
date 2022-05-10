@@ -14,8 +14,20 @@ if (global.db) global.db = {
     sticker: {},
     database: {},
     chats: {},
+    game: {},
     ...(global.db || {})
 }
+
+// Entertainment
+let family100 = global.db.game.family100 = {}
+let caklontog = global.db.game.caklontong = {}
+let tebakgambar = global.db.game.tebakgambar = {}
+let asahotak = global.db.game.asahotak = {}
+let siapakahaku = global.db.game.siapakahaku = {}
+let susunkata = global.db.game.susunkata = {}
+let tekateki = global.db.game.tekateki = {}
+let tebakbendera = global.db.game.tebakbendera = {}
+let tebaklagu = global.db.game.tebaklagu = {}
 
 module.exports = async (killua, m, commands, chatUpdate) => {
     try {
@@ -103,6 +115,187 @@ module.exports = async (killua, m, commands, chatUpdate) => {
             `
             killua.sendText(m.from, teks, msg, { mentions: [msg.sender] })
             killua.relayMessage(m.from, msg.message, { messageId: msg.id })
+        }
+        
+        // Entertaiment
+        try {
+            let threshold = 0.72
+            if (("game_" + m.from in family100)) {
+                let id = "game_" + m.from
+                let room = family100[id]
+                let teks = m.text.toLowerCase().replace(/[^\w\s\-]+/, '')
+                let isSurender = /^((me)?nyerah|surr?ender)$/i.test(m.text.toLowerCase())
+                if (!isSurender) {
+                    let index = room.jawaban.indexOf(teks)
+                    if (index < 0) {
+                        if (Math.max(...room.jawaban.filter((_, index) => !room.terjawab[index]).map(jawaban => correct(jawaban, [teks]))) >= threshold) m.reply("Almost Correct Answer")
+                        return !0
+                    }
+                    if (room.terjawab[index]) return !0
+                    room.terjawab[index] = sender
+                    //global.db.users[sender].exp += room.winScore
+                }
+                let isWin = room.terjawab.length === room.terjawab.filter(v => v).length
+                let caption = `
+*Question :* ${room.soal}
+
+There is *${room.jawaban.length}* answers${room.jawaban.find(v => v.includes(' ')) ? `
+(some answers have spaces)
+`: ''}
+${isWin ? `*All Answers Answered*` : isSurender ? '*Surrender!*' : ''}
+${Array.from(room.jawaban, (jawaban, index) => {
+            return isSurender || room.terjawab[index] ? `(${index + 1}) ${jawaban} ${room.terjawab[index] ? '@' + room.terjawab[index].split('@')[0] : ''}`.trim() : false
+        }).filter(v => v).join('\n')}
+${isSurender ? '' : ``}
+                `.trim()
+                let msg = await killua.sendMessage(m.from, { text: caption, mentions: killua.parseMention(caption) }, { quoted: m })
+                room.msg = msg
+                if (isWin || isSurender) delete family100["game_" + m.from]
+
+                return !0
+            }
+
+            // Cak Lontong
+            if (("game_" + m.from in caklontog)) {
+                let id = "game_" + m.from
+                if (!(id in caklontog)) return m.reply("Cak Lontong game session has ended")
+                if (m._data.quotedStanzaID == caklontog[id][0].id.id) {
+                    let json = JSON.parse(JSON.stringify(caklontog[id][1]))
+                    if (m.text.toLowerCase() == json.jawaban.toLowerCase().trim()) {
+                        //global.db.users[sender].exp += caklontong[id][2]
+                        await m.reply(`Right Answer!\n${json.deskripsi}`)
+                        clearTimeout(caklontog[id][3])
+                        delete caklontog[id]
+                    } else if (correct(m.text.toLowerCase(), [json.jawaban.toLowerCase().trim()]) >= threshold)
+                        m.reply("Almost Right")
+                    else
+                        m.reply("Wrong Answer")
+                }
+
+                return !0
+            }
+
+            // Tebak Gambar
+            if (("game_" + m.from in tebakgambar)) {
+                let id = "game_" + m.from
+                if (!(id in tebakgambar)) return m.reply("tebak gambar game session has ended")
+                if (m._data.quotedStanzaID === tebakgambar[id][0].id.id) {
+                    let json = JSON.parse(JSON.stringify(tebakgambar[id][1]))
+                    if (m.text.toLowerCase() === json.jawaban.toLowerCase().trim()) {
+                        //global.db.users[sender].exp += caklontong[id][2]
+                        await m.reply(`Right Answer!\n${json.jawaban}\n${json.deskripsi}`)
+                        clearTimeout(tebakgambar[id][3])
+                        delete tebakgambar[id]
+                    } else if (correct(m.text.toLowerCase(), [json.jawaban.toLowerCase()]) >= threshold)
+                        m.reply("Almost Right")
+                    else
+                        m.reply("Wrong Answer")
+                }
+
+                return !0
+            }
+
+            // Asah Otak
+            if (("game_" + m.from in asahotak)) {
+                let id = "game_" + m.from
+                if (!(id in asahotak)) return m.reply("Asah Otak game session has ended")
+                if (m._data.quotedStanzaID == asahotak[id][0].id.id) {
+                    let json = JSON.parse(JSON.stringify(asahotak[id][1]))
+                    if (m.text.toLowerCase() == json.jawaban.toLowerCase().trim()) {
+                        //global.db.users[sender].exp += caklontong[id][2]
+                        await m.reply(`Right Answer!\n${json.jawaban}`)
+                        clearTimeout(asahotak[id][3])
+                        delete asahotak[id]
+                    } else if (correct(m.text.toLowerCase(), [json.jawaban.toLowerCase().trim()]) >= threshold)
+                        m.reply("Almost Right")
+                    else
+                        m.reply("Wrong Answer")
+                }
+
+                return !0
+            }
+
+            // SIapakah Aku
+            if (("game_" + m.from in siapakahaku)) {
+                let id = "game_" + m.from
+                if (!(id in siapakahaku)) return m.reply("Siapakah Aku game session has ended")
+                if (m._data.quotedStanzaID == siapakahaku[id][0].id.id) {
+                    let json = JSON.parse(JSON.stringify(siapakahaku[id][1]))
+                    if (m.text.toLowerCase() == json.jawaban.toLowerCase().trim()) {
+                        //global.db.users[sender].exp += caklontong[id][2]
+                        await m.reply(`Right Answer!\n${json.jawaban}`)
+                        clearTimeout(siapakahaku[id][3])
+                        delete siapakahaku[id]
+                    } else if (correct(m.text.toLowerCase(), [json.jawaban.toLowerCase().trim()]) >= threshold)
+                        m.reply("Almost Right")
+                    else
+                        m.reply("Wrong Answer")
+                }
+
+                return !0
+            }
+
+            // Susun Kata
+            if (("game_" + m.from in susunkata)) {
+                let id = "game_" + m.from
+                if (!(id in susunkata)) return m.reply("Susun Kata game session has ended")
+                if (m._data.quotedStanzaID == susunkata[id][0].id.id) {
+                    let json = JSON.parse(JSON.stringify(susunkata[id][1]))
+                    if (m.text.toLowerCase() == json.jawaban.toLowerCase().trim()) {
+                        //global.db.users[sender].exp += caklontong[id][2]
+                        await m.reply(`Right Answer!\n${json.jawaban}`)
+                        clearTimeout(susunkata[id][3])
+                        delete susunkata[id]
+                    } else if (correct(m.text.toLowerCase(), [json.jawaban.toLowerCase().trim()]) >= threshold)
+                        m.reply("Almost Right")
+                    else
+                        m.reply("Wrong Answer")
+                }
+
+                return !0
+            }
+
+            // Tebak Bendera
+            if (("game_" + m.from in tebakbendera)) {
+                let id = "game_" + m.from
+                if (!(id in tebakbendera)) return m.reply("Tebak Bendera game session has ended")
+                if (m._data.quotedStanzaID === tebakbendera[id][0].id.id) {
+                    let json = JSON.parse(JSON.stringify(tebakbendera[id][1]))
+                    if (m.text.toLowerCase() === json.name.toLowerCase().trim()) {
+                        //global.db.users[sender].exp += caklontong[id][2]
+                        await m.reply(`Right Answer!\n${json.name}`)
+                        clearTimeout(tebakbendera[id][3])
+                        delete tebakbendera[id]
+                    } else if (correct(m.text.toLowerCase(), [json.name.toLowerCase()]) >= threshold)
+                        m.reply("Almost Right")
+                    else
+                        m.reply("Wrong Answer")
+                }
+
+                return !0
+            }
+
+            // Tebak Lagu
+            if (("game_" + m.from in tebaklagu)) {
+                let id = "game_" + m.from
+                if (!(id in tebaklagu)) return m.reply("Tebak Bendera game session has ended")
+                if (m._data.quotedStanzaID == tebaklagu[id][0].id.id) {
+                    let json = JSON.parse(JSON.stringify(tebaklagu[id][1]))
+                    if (m.text.toLowerCase() == json.jawaban.toLowerCase().trim()) {
+                        //global.db.users[sender].exp += caklontong[id][2]
+                        await m.reply(`Right Answer!\nTitle : ${json.jawaban}\nArtist : ${json.artist}`)
+                        clearTimeout(tebaklagu[id][3])
+                        delete tebaklagu[id]
+                    } else if (correct(m.text.toLowerCase(), [json.jawaban.toLowerCase()]) >= threshold)
+                        m.reply("Almost Right")
+                    else
+                        m.reply("Wrong Answer")
+                }
+
+                return !0
+            }
+        } catch (e) {
+            console.error(e)
         }
 
         if (isCmd && !cmd) {

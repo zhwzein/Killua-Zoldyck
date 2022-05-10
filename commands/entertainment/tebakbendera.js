@@ -5,24 +5,24 @@ let timeout = 120000
 let poin = 4999
 
 module.exports = {
-    name: "tebakgambar",
-    alias: ["tgambar"],
-    desc: "Entertaiment Fiture Tebak Gambar",
+    name: "tebakbendera",
+    alias: ["tbendera"],
+    desc: "Entertaiment Fiture Tebak Bendera",
     type: "entertainment",
     start: async(hisoka, m) => {
-        let game = global.db.game.tebakgambar
-        let id = "_game" + m.from
+        let game = global.db.game.tebakbendera
+        let id = "game_" + m.from
         if (id in game) {
             hisoka.sendMessage(m.from, "There are still unfinished Susun Kata sessions", { quoted: game[id][0] })
             throw false
         }
-        let res = await fetchUrl(global.api("zenz", "/api/tebakgambar", {}, "apikey"))
+        let res = await fetchUrl(global.api("zenz", "/api/tebakbendera", {}, "apikey"))
         let json = await res.result
         game[id] = [
-            await hisoka.sendFile(m.from, json.img, "", m, { caption: `Answers the following questions\n${json.deskripsi}\n\nTimeout *${(timeout / 1000).toFixed(2)} second(s)*`),
+            await hisoka.sendFile(m.from, json.img, "", m, { caption: `Answers the following questions\nCode : ${json.flag}\n\nTimeout *${(timeout / 1000).toFixed(2)} second(s)*` }),
             json, poin,
             setTimeout(async () => {
-                if (game[id]) await m.reply(`Time has run out!\nthe answer is *${json.jawaban}*`)
+                if (game[id]) await m.reply(`Time has run out!\nthe answer is *${json.name}*`)
                 delete game[id]
             }, timeout)
         ]

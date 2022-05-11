@@ -1,20 +1,18 @@
 module.exports = {
     name: "takesticker",
-    alias: ["takestick","take"],
+    alias: ["colong","take"],
     desc: "Take And Change Sticker Exif",
     type: "convert",
-    example: "Example : %prefix%command packname|author",
-    exec: async(killua, m, { command, prefix, text, quoted, mime }) => {
+    exec: async(killua, m, { command, prefix, args, quoted, mime }) => {
         if (!quoted) return  m.reply(`Reply to Supported media With Caption ${prefix + command}`)
         if (/image|video|sticker/.test(mime)) {
-            if (!text.includes('|')) return m.reply(`Example : ${prefix + command} packname|author`)
+            anu = args.join(" ").split('|')
+            const packname = anu[0] !== '' ? anu[0] : global.packname
+            const author = anu[1] !== '' ? anu[1] : global.author
             let download = await quoted.download()
-            let [a, b] = text.split`|`
-            global.mess("wait", m)
-            killua.sendFile(m.from, download, "", m, { asSticker: true, author: b, packname: a, categories: ['😄','😊'] })
+            killua.sendFile(m.from, download, "", m, { asSticker: true, author: author, packname: packname, categories: ['😄','😊'] })
         } else {
             return m.reply(`Reply to Supported media With Caption ${prefix + command}`, m.from, { quoted: m })
         }
     },
-    isQuery: true
 }

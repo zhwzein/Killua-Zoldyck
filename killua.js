@@ -379,11 +379,10 @@ _Send command again if needed_
                 }
             })
         } catch (e) {
-            killua.sendMessage(from, { text: String(e) }, { quoted: m })
+            console.log(e)
         }   
     } catch (e) {
         console.log(e)
-        killua.sendMessage(m.from, { text: String(e) }, { quoted: m })
     }
 }
 

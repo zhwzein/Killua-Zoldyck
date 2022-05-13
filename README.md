@@ -89,20 +89,12 @@ SCAN THE QR USING YOUR WHATSAPP!
 |   Creator     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/creator)      |
 |   Entertainment  |     ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/entertainment)      |
 |   Photo Editor  |   ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/photoeditor)      |
+|   Information   |  ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/information)      |
+|   News   |  ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/news)      |
+|   Primbon   |  ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/primbon)      |
 
 </details>
 
-<!-- Edit -->
-<details><summary>Upcoming Features</summary><br>
-	
-| Features |  Availability |
-| :------: |  :----------: |
-|   Information     |       ❌      |
-|   News     |       ❌      |
-|   Primbon     |       ❌      |
-|   Other     |       ❌      |
-	
-</details><hr>
 
 ## Thanks To
 * [`@adiwajshing/baileys`](https://github.com/adiwajshing/baileys)

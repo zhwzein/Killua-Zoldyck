@@ -3,8 +3,8 @@ const { fetchUrl } = require("../../lib/Function")
 module.exports = {
     name: "harilarangan",
     alias: ["harilarangan"],
-    desc: "Primbon",
-    type: "Cek Primbon Hari Baik",
+    desc: "Cek Primbon Hari Baik",
+    type: "primbon",
     example: `Example : %prefix%command 11 06 2007`,
     exec: async(killua, m, { args, prefix, command }) => {
         let [a, b, c] = args

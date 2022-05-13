@@ -3,8 +3,8 @@ const { fetchUrl } = require("../../lib/Function")
 module.exports = {
     name: "cekzodiak",
     alias: ["cekzodiac"],
-    desc: "Primbon",
-    type: "Cek Arti Zodiak",
+    desc: "Cek Arti Zodiak",
+    type: "primbon",
     example: `List Type :\n\n${type().join("\n")}\n\nExample : %prefix%command virgo`,
     exec: async(killua, m, { text }) => {
         let fetch = await fetchUrl(global.api("zenz", "/api/zodiak", { query: text }, "apikey"))

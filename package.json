@@ -1,6 +1,6 @@
 {
   "name": "killua-zoldyck",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "description": "WhatsApp Bot Using Lib Baileys",
   "main": "index.js",
   "type": "commonjs",

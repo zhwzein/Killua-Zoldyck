@@ -4,13 +4,14 @@ const fs = require('fs')
 
 module.exports = {
     name: "upscale",
-    alias: ["upscale","waifu2x"],
+    alias: ["upscaler"],
+    use: "<reply>",
     desc: "Photo Image Editor",
     type: "photoeditor",
-    exec: async(killua, m, { command, prefix, quoted, mime }) => {
+    example: `%prefix%command --image reply`,
+    start: async(killua, m, { command, prefix, quoted, mime }) => {
         if (!quoted) return  m.reply(`Reply to Supported media With Caption ${prefix + command}`)
         if (/image/.test(mime)) {
-            global.mess("wait", m)
             let download = await killua.downloadAndSaveMediaMessage(quoted)
             file_name = getRandom('jpg')
             request({

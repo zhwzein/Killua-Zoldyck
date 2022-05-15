@@ -1,10 +1,11 @@
 module.exports = {
     name: "mnsfwmenu",
     alias: ["morensfwmenu"],
+    use: "[listmenu]",
     desc: "listMessage More Random Image NSFW",
     type: "morensfw",
-    example: "Example : %prefix%command",
-    exec: async(killua, m, {}) => {
+    example: "%prefix%command",
+    start: async(killua, m, {}) => {
         const sections = [{
             title: "Morensfw",
             rows: [

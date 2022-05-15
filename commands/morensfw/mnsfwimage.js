@@ -1,10 +1,11 @@
 module.exports = {
     name: "mnsfwimage",
     alias: ["morensfwimage","mnsfw"],
+    use: "<query>",
     desc: "Generate More Random NSFW Image",
     type: "morensfw",
     example: `List Type :\n\n${type().sort((a, b) => a - b).join("\n")}\n\nExample : %prefix%command <type>`,
-    exec: async(killua, m, { text, toUpper }) => {
+    start: async(killua, m, { text, toUpper }) => {
         let fetch = await global.api("zenz", "/api/morensfw/" + text, {}, "apikey")
         let buttons = [
             {buttonId: `mnsfwimage ${text}`, buttonText: { displayText: 'NEXT'}, type: 1 }

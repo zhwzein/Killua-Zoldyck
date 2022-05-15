@@ -3,10 +3,11 @@ const { fetchUrl } = require("../../lib/Function")
 module.exports = {
     name: "kisahnabi",
     alias: ["nabi"],
+    use: "<query>",
     desc: "The Story of the Prophet",
     type: "islami",
-    example: "Example : %prefix%command <nabi>\n%prefix%command Muhammad",
-    exec: async(killua, m, { text }) => {
+    example: "%prefix%command <nabi>\n%prefix%command Muhammad",
+    start: async(killua, m, { text }) => {
         if (text) {
             title = text.toLowerCase()
             let fetch = await fetchUrl(global.api("zenz", `/islami/kisahnabi/${title}`, {}, "apikey"))

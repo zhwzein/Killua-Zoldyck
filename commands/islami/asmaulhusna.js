@@ -5,7 +5,7 @@ module.exports = {
     alias: ["asmaallah"],
     desc: "Get Asmaul Husna & Translate",
     type: "islami",
-    exec: async(killua, m, { text, args }) => {
+    start: async(killua, m, { text, args }) => {
         if (text) {
             let fetch = await fetchUrl('https://raw.githubusercontent.com/BochilTeam/database/master/religi/asmaulhusna.json')
             let result = fetch.filter(v => v.index == text).map(i => `

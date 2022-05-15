@@ -3,11 +3,11 @@ const { fetchUrl } = require("../../lib/Function")
 module.exports = {
     name: "jadwalsholat",
     alias: ["sholat"],
+    use: "<query>",
     desc: "Get Detail Jadwal Sholat With City",
     type: "islami",
-    example: "Example : %prefix%command Jakarta-Selatan",
-    exec: async(killua, m, { text, toUpper }) => {
-        global.mess("wait", m)
+    example: "%prefix%command Jakarta-Selatan",
+    start: async(killua, m, { text, toUpper }) => {
         let fetch = await fetchUrl(global.api("zenz", "/islami/jadwalshalat", { kota: text }, "apikey"))
         let i = fetch.result
         let teks = `Jadwal Sholat Kota : ${toUpper(text)}\n\n`

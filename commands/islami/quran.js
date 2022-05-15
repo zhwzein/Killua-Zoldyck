@@ -5,7 +5,7 @@ module.exports = {
     alias: ["listsurah","surah","ayat"],
     desc: `List Surah Of All Quran`,
     type: "islami",
-    exec: async(killua, m, { text, args, prefix, command }) => {
+    start: async(killua, m, { text, args, prefix, command }) => {
         let [a, b, c, d] = args
         if (a.toLowerCase() === "list") {
             let fetch = await fetchUrl(global.api("zenz", "/islami/quran", {}, "apikey"))

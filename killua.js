@@ -106,13 +106,7 @@ module.exports = async (killua, m, commands, chatUpdate) => {
             if (!db.chats[m.from].antidelete) return
             let key = m.message.protocolMessage.key
             let msg = await killua.serializeM(await Store.loadMessage(key.remoteJid, key.id))
-            let teks = `
-「 Message Delete Detect 」
-⬡ Name : ${msg.pushName}
-⬡ User : @${msg.sender.split("@")[0]}
-⬡ Date : ${moment(msg.messageTimestamp * 1000).tz("Asia/Jakarta")}
-⬡ Type : ${msg.type}
-            `
+            let teks = `「 Message Delete Detect 」\n\n⬡ Name : ${msg.pushName}\n⬡ User : @${msg.sender.split("@")[0]}\n⬡ Date : ${moment(msg.messageTimestamp * 1000).tz("Asia/Jakarta")}\n⬡ Type : ${msg.type}`
             killua.sendText(m.from, teks, msg, { mentions: [msg.sender] })
             killua.relayMessage(m.from, msg.message, { messageId: msg.id })
         }
@@ -306,11 +300,11 @@ ${isSurender ? '' : ``}
             var alias = commands.get(anu.result) || Array.from(commands.values()).find((v) => v.alias.find((x) => x.toLowerCase() == anu.result)) || ""
 console.log(anu)
             teks = `
-Command *Not Found!*, Maybe you mean is 
+Command *Not Found!*
+Maybe you mean is 
 
 *_Command :_* ${prefix + anu.result}
 *_Alias :_* ${alias.alias.join(", ")}
-*_Accurary :_* ${anu.rating}
 
 _Send command again if needed_
             `
@@ -360,7 +354,7 @@ _Send command again if needed_
         }
 
         try {
-            cmd.exec(killua, m, {
+            cmd.start(killua, m, {
                 name: 'killua Zoldyck',
                 metadata,
                 pushName: pushname,

@@ -3,11 +3,11 @@ const { fetchUrl, isUrl } = require("../../lib/Function")
 module.exports = {
     name: "tiktokwm",
     alias: ["tiktokwm","ttwm","tiktokwatermark"],
+    use: "<url>",
     desc: "Download Media From https://tiktok.com",
     type: "downloader",
-    example: "Example : %prefix%command https://www.tiktok.com/@vernalta/video/695975110141126579",
-    exec: async(killua, m, { text }) => {
-        global.mess("wait", m)
+    example: "%prefix%command <url>",
+    start: async(killua, m, { text }) => {
         let fetch = await fetchUrl(global.api("zenz", "/downloader/tiktok", { url: isUrl(text)[0] }, "apikey"))
         let buttons = [
             {buttonId: `tiktoknowm ${text}`, buttonText: {displayText: '► With Watermark'}, type: 1},

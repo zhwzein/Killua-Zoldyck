@@ -3,11 +3,11 @@ const { fetchUrl, isUrl } = require("../../lib/Function")
 module.exports = {
     name: "twitter",
     alias: ["twdl","twitdl","twitterdl"],
+    use: "<url>",
     desc: "Download Media From https://twitter.com",
     type: "downloader",
-    example: "Example : %prefix%command https://twitter.com/i/status/1463482301136789509",
-    exec: async(killua, m, { text }) => {
-        global.mess("wait", m)
+    example: "%prefix%command <url>",
+    start: async(killua, m, { text }) => {
         let fetch = await fetchUrl(global.api("zenz", "/downloader/twitter", { url: isUrl(text)[0] }, "apikey"))
         let buttons = [
             {buttonId: `twittermp3 ${text}`, buttonText: {displayText: '♫ Audio'}, type: 1}

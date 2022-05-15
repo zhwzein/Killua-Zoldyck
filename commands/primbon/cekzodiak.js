@@ -3,12 +3,12 @@ const { fetchUrl } = require("../../lib/Function")
 module.exports = {
     name: "cekzodiak",
     alias: ["cekzodiac"],
+    use: "<query>",
     desc: "Cek Arti Zodiak",
     type: "primbon",
-    example: `List Type :\n\n${type().join("\n")}\n\nExample : %prefix%command virgo`,
-    exec: async(killua, m, { text }) => {
+    example: `\nList Type :\n\n${type().join("\n")}\n\nExample : %prefix%command <type>`,
+    start: async(killua, m, { text }) => {
         let fetch = await fetchUrl(global.api("zenz", "/api/zodiak", { query: text }, "apikey"))
-        if (fetch.result.length == 0) return global.mess("error", m)
         let caption = `Primbon Arti Zodiak :\n\n`
         let i = fetch.result.result
         caption += `⭔ Nama zodiak : ${i.zodiak}\n`

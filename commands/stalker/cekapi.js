@@ -3,11 +3,11 @@ const { fetchUrl } = require("../../lib/Function")
 module.exports = {
     name: "cekapi",
     alias: ["apikey"],
+    use: "<query>",
     desc: "Apikey Checker From Zenzapis.xyz",
     type: "stalker",
-    example: `Example : %prefix%command APIKEY`,
-    exec: async(killua, m, { text }) => {
-        global.mess("wait", m)
+    example: `%prefix%command <query>`,
+    start: async(killua, m, { text }) => {
         try {
             let fetch = await fetchUrl(global.api("zenz", "/api/cekapi", {apikey: text}))
             let caption = `Apikey Checker :\n\n`

@@ -3,13 +3,12 @@ const { fetchUrl } = require("../../lib/Function")
 module.exports = {
     name: "stalkig",
     alias: ["instagramstalk"],
+    use: "<query>",
     desc: "Instagram Profile Stalker",
     type: "stalker",
-    example: `Example : %prefix%command zhwzein`,
-    exec: async(killua, m, { text, command, prefix, toUpper }) => {
-        global.mess("wait", m)
+    example: `%prefix%command <query>`,
+    start: async(killua, m, { text }) => {
         let fetch = await fetchUrl(global.api("zenz", "/api/stalker/ig", { username: text }, "apikey"))
-        if (fetch.result.length == 0) return global.mess("error", m)
         let caption = `Instagram Profile Stalker :\n\n`
         let i = fetch.result.caption
         caption += `⭔ Fullname : ${i.full_name}\n`

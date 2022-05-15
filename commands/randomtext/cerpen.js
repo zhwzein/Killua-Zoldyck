@@ -5,8 +5,8 @@ module.exports = {
     alias: ["ceritapendek"],
     desc: "Generate Random Cerita Pendek",
     type: "randomtext",
-    example: `Example : %prefix%command`,
-    exec: async(killua, m, {}) => {
+    example: `%prefix%command`,
+    start: async(killua, m, {}) => {
         let fetch = await fetchUrl(global.api("zenz", "/randomtext/cerpen", {}, "apikey"))
         let caption = `Generate Random Cerpen :\n\n`
         caption += `⭔ Judul : ${fetch.result.Judul}\n`

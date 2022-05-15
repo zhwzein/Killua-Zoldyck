@@ -1,10 +1,11 @@
 module.exports = {
     name: "textmenu",
     alias: ["menutext"],
+    use: "[listmenu]",
     desc: "listMessage Random Text & Quotes",
     type: "randomtext",
-    example: "Example : %prefix%command",
-    exec: async(killua, m, {}) => {
+    example: "%prefix%command",
+    start: async(killua, m, {}) => {
         const sections = [{
             title: "Random Text",
             rows: [

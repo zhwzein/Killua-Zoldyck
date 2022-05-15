@@ -3,10 +3,11 @@ let { fetchUrl } = require("../../lib/Function")
 module.exports = {
     name: "randomtext",
     alias: ["textrandom"],
+    use: "<query>",
     desc: "Generate Random Text & Quotes",
     type: "randomtext",
-    example: `List Type :\n\n${type().sort((a, b) => a - b).join("\n")}\n\nExample : %prefix%command <type>`,
-    exec: async(killua, m, { text, toUpper }) => {
+    example: `\nList Type :\n\n${type().sort((a, b) => a - b).join("\n")}\n\nExample : %prefix%command <type>`,
+    start: async(killua, m, { text, toUpper }) => {
         let fetch = await fetchUrl(global.api("zenz", "/randomtext/" + text, {}, "apikey"))
         let buttons = [
             {buttonId: `randomtext ${text}`, buttonText: { displayText: 'NEXT'}, type: 1 }

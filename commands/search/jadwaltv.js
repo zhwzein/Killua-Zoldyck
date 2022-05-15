@@ -3,9 +3,10 @@ const { fetchUrl } = require("../../lib/Function")
 module.exports = {
     name: "jadwaltv",
     alias: ["jadwaltv"],
+    use: "<query>",
     desc: "Search jadwal tv",
     type: "search",
-    example: `Example : %prefix%command gtv\n
+    example: `%prefix%command gtv\n
     query:
 
     ⭔ rcti
@@ -24,10 +25,8 @@ module.exports = {
     ⭔ tvone
     ⭔ tvri
     `,
-    exec: async(killua, m, { text, toUpper }) => {
-        global.mess("wait", m)
+    start: async(killua, m, { text, toUpper }) => {
         let fetch = await fetchUrl(global.api("zenz", "/searching/jadwaltv", { query: text }, "apikey"))
-        if (fetch.result.length == 0) return global.mess("error", m)
         let caption = `Jadwal TV Search Query : ${toUpper(text)}\n\n`
         for (let i of fetch.result.jadwal) {
             caption += `⭔ Acara : ${i.acara}\n`

@@ -3,11 +3,11 @@ let { fetchBuffer, fetchUrl, isUrl } = require("../../lib/Function")
 module.exports = {
     name: "pin",
     alias: ["pin"],
+    use: "<query>",
     desc: "Search Image from Pinterest",
     type: "search",
-    example: "Example : %prefix%command killua",
-    exec: async(killua, m, { text, command, toUpper }) => {
-        global.mess("wait", m)
+    example: "%prefix%command <query>",
+    start: async(killua, m, { text, toUpper }) => {
         let fetch = await fetchUrl(global.api("zenz", "/searching/pinterest", { query: text }, "apikey"))
         let random = fetch.result[Math.floor(Math.random() * fetch.result.length)]
         let buttons = [

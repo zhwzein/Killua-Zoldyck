@@ -3,13 +3,12 @@ const { fetchUrl } = require("../../lib/Function")
 module.exports = {
     name: "xnxxsearch",
     alias: ["xnxxsr"],
+    use: "<query>",
     desc: "Search porn videos xnxx",
     type: "search",
-    example: `Example : %prefix%command blonde`,
-    exec: async(killua, m, { text, command, prefix, toUpper }) => {
-        global.mess("wait", m)
+    example: `%prefix%command <query>`,
+    start: async(killua, m, { text, command, prefix, toUpper }) => {
         let fetch = await fetchUrl(global.api("zenz", "/searching/xnxx/search", { query: text }, "apikey"))
-        if (fetch.result.length == 0) return global.mess("error", m)
         let caption = `Xnxx Search Query : ${toUpper(text)}\n\n`
         for (let i of fetch.result) {
             caption += `⭔ Title : ${i.title}\n`

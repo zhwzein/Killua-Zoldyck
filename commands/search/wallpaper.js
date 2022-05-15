@@ -4,11 +4,11 @@ let { wallpaper } = require("../../lib/Scraper")
 module.exports = {
     name: "wallpaper",
     alias: [],
+    use: "<query>",
     desc: "Search Wallpaper from https://www.besthdwallpaper.com",
     type: "search",
-    example: "Example : %prefix%command killua",
-    exec: async(killua, m, { text, command, toUpper }) => {
-        global.mess("wait", m)
+    example: "%prefix%command <query>",
+    start: async(killua, m, { text, command, toUpper }) => {
         if (!text) return m.reply(`Example : ${prefix + command} killua Zoldyck`)
         let fetch = await wallpaper(text)
         let random = fetch[Math.floor(Math.random() * fetch.length)]

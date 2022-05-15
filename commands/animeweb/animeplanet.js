@@ -2,12 +2,12 @@ const { fetchUrl } = require("../../lib/Function")
 
 module.exports = {
     name: "animeplanet",
-    alias: ["animeplanetasearch"],
-    desc: "Animeplanet Search Information",
+    alias: [],
+    use: "<query>",
+    desc: "Search Anime From Animeplanet",
     type: "animeweb",
-    example: `Example : %prefix%command love`,
-    exec: async(killua, m, { text }) => {
-        global.mess("wait", m)
+    example: `%prefix%command <query>`,
+    start: async(killua, m, { text }) => {
         let fetch = await fetchUrl(global.api("zenz", "/anime/animeplanet", { query: text }, "apikey"))
         let caption = `Animeplanet Search :\n\n`
         for (let i of fetch.result) {

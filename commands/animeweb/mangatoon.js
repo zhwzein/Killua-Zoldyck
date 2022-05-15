@@ -2,12 +2,12 @@ const { fetchUrl } = require("../../lib/Function")
 
 module.exports = {
     name: "mangatoon",
-    alias: ["mangatoon"],
-    desc: "Mangatoon Search Information",
+    alias: [],
+    use: "<query>",
+    desc: "Search Anime From Mangatoon",
     type: "animeweb",
-    example: `Example : %prefix%command love`,
-    exec: async(killua, m, { text }) => {
-        global.mess("wait", m)
+    example: `%prefix%command <query>`,
+    start: async(killua, m, { text }) => {
         let fetch = await fetchUrl(global.api("zenz", "/anime/mangatoon", { query: text }, "apikey"))
         let caption = `Mangatoon Search :\n\n`
         let i = fetch.result

@@ -2,12 +2,12 @@ const { fetchUrl } = require("../../lib/Function")
 
 module.exports = {
     name: "klikmanga",
-    alias: ["klikmangasearch"],
-    desc: "Klikmanga Search Information",
+    alias: [],
+    use: "<query>",
+    desc: "Search Anime From Klikmanga",
     type: "animeweb",
-    example: `Example : %prefix%command love`,
-    exec: async(killua, m, { text }) => {
-        global.mess("wait", m)
+    example: `%prefix%command <query>`,
+    start: async(killua, m, { text }) => {
         let fetch = await fetchUrl(global.api("zenz", "/anime/klikmanga", { query: text }, "apikey"))
         let caption = `Klikmanga Search :\n\n`
         for (let i of fetch.result) {

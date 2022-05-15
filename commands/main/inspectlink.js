@@ -3,10 +3,11 @@ const moment = require("moment-timezone")
 module.exports = {
     name: "inspect",
     alias: ["inspeksi"],
+    use: "<url>",
     desc: "Get Detail Group From Link",
     type: "main",
-    examle: "Example : %prefix%command https://chat.whatsapp.com/xxx",
-    exec: async(killua, m, { text }) => {
+    examle: "Example : %prefix%command <url>",
+    start: async(killua, m, { text }) => {
         let linkRegex = /chat\.whatsapp\.com\/(?:invite\/)?([0-9A-Za-z]{20,24})/i
         let [, code] = text.match(linkRegex) || {}
         if (!code) return m.reply("Link Invalid")

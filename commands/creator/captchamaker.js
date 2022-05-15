@@ -5,13 +5,13 @@ const fs = require('fs')
 module.exports = {
     name: "captchamaker",
     alias: ["ccmaker"],
+    use: "<query>",
     desc: "Captcha Maker",
     type: "creator",
-    example: "Example : %prefix%command Username",
-    exec: async(killua, m, { command, text, prefix, quoted, mime }) => {
+    example: "%prefix%command <query>",
+    start: async(killua, m, { command, text, prefix, quoted, mime }) => {
         if (!quoted) return  m.reply(`Reply to Supported media With Caption ${prefix + command}`)
         if (/image/.test(mime)) {
-            global.mess("wait", m)
             let download = await killua.downloadAndSaveMediaMessage(quoted)
             file_name = getRandom('jpg')
             request({

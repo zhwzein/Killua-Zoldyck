@@ -5,13 +5,14 @@ const fs = require('fs')
 module.exports = {
     name: "ytcomment",
     alias: ["ytc","ytmaker"],
+    use: "<query>",
     desc: "Youtube Comment Maker",
     type: "creator",
-    exec: async(killua, m, { command, text, prefix, quoted, mime }) => {
+    example: "%prefix%command text|username",
+    start: async(killua, m, { command, text, prefix, quoted, mime }) => {
         if (!quoted) return  m.reply(`Reply to Supported media With Caption ${prefix + command}`)
         if (/image/.test(mime)) {
             if (!text.includes('|')) return m.reply(`Example : ${prefix + command} Text|Username`)
-            global.mess("wait", m)
             let [a, b] = text.split`|`
             let download = await killua.downloadAndSaveMediaMessage(quoted)
             file_name = getRandom('jpg')
@@ -33,5 +34,6 @@ module.exports = {
         } else {
             return m.reply(`Reply to Supported media With Caption ${prefix + command}`, m.from, { quoted: m })
         }
-    }
+    },
+    isQuery: true
 }

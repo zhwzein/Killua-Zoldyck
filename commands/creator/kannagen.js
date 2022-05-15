@@ -1,10 +1,11 @@
 module.exports = {
     name: "kannagen",
     alias: ["kannagenerator"],
+    use: "<query>",
     desc: "Kanna Comment Maker",
     type: "creator",
-    example: "Example : %prefix%command text",
-    exec: async(killua, m, { text }) => {
+    example: "%prefix%command <query>",
+    start: async(killua, m, { text }) => {
         killua.sendFile(m.from, global.api("zenz", "/creator/kannagen", {text: text}, "apikey"), "", m)
     },
     isQuery: true

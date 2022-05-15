@@ -4,9 +4,10 @@ const util = require("util")
 module.exports = {
     name: "exec",
     alias: ["$","=<"],
+    use: "<query>",
     desc: "Running Code terminal via Command",
     type: "owner",
-    exec: async(killua, m, { text }) => {
+    start: async(killua, m, { text }) => {
         if (!text) return m.reply(`No query code`)
         execS(text, async (err, stdout) => {
             if (err) return m.reply(err)

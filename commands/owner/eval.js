@@ -5,6 +5,7 @@ const baileys = require("@adiwajshing/baileys")
 module.exports = {
     name: "eval",
     alias: [">",">>","=>"],
+    use: "<query>",
     desc: "Running JavaScript Code via Command",
     type: "owner",
     exec: async (killua, m, opt) => {

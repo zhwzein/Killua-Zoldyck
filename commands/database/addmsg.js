@@ -3,10 +3,11 @@ const { proto } = require("@adiwajshing/baileys")
 module.exports = {
     name: "addmsg",
     alias: ['vn', 'msg', 'video', 'gif', 'audio', 'img', 'sticker'].map(v => 'add' + v),
+    use: "<query>",
     desc: "Add Message to Datbase",
     type: "database",
     example: "Reply or send message with caption %prefix%command <name>",
-    exec: async(killua, m, { prefix, command, text, quoted }) => {
+    start: async(killua, m, { prefix, command, text, quoted }) => {
         let M = proto.WebMessageInfo
         let which = command.replace(/\+|add/i, '')
         let database = global.db.database

@@ -3,7 +3,7 @@ module.exports = {
     alias: ["vn","video","gif","audio","img","sticker","stiker","doc","all"].map(v => "list"+v),
     desc: "list message from database",
     type: "database",
-    exec: async(killua, m, { prefix, command, text }) => {
+    start: async(killua, m, { prefix, command, text }) => {
         let which = command.replace(/list/i, '')
         let database = global.db.database
         let split = Object.entries(database).map(([nama, isi]) => { return { nama, ...isi } })

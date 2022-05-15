@@ -3,7 +3,7 @@ module.exports = {
     alias: ["listcommand"],
     desc: "List Command With Media From Database",
     type: "database",
-    exec: async(killua, m, { quoted }) => {
+    start: async(killua, m, { quoted }) => {
         let text = `
 *List Hash*
 Info: *bold* hash is Locked

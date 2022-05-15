@@ -4,7 +4,7 @@ module.exports = {
     desc: "Generate Random SFW Image From Nekoslife",
     type: "nekoslife",
     example: `List Type :\n\n${type().sort((a, b) => a - b).join("\n")}\n\nExample : %prefix%command <type>`,
-    exec: async(killua, m, { text, toUpper }) => {
+    start: async(killua, m, { text, toUpper }) => {
         let fetch = await global.api("zenz", "/api/anime/sfw/" + text, {}, "apikey")
         let buttons = [
             {buttonId: `sfwimage ${text}`, buttonText: { displayText: 'NEXT'}, type: 1 }

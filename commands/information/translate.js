@@ -3,14 +3,14 @@ const { fetchUrl } = require("../../lib/Function")
 module.exports = {
     name: "translate",
     alias: ["tr","trans"],
+    use: "<query>",
     desc: "Text Translator",
     type: "information",
-    example: `Example : %prefix%command en halo`,
-    exec: async(killua, m, { args, prefix, command }) => {
-        let [a, b] = args
-        if (!a, !b) return m.reply(`Example : ${prefix + command} en halo`)
+    example: `%prefix%command en|query`,
+    start: async(killua, m, { text, prefix, command }) => {
+        if (!text.includes('|')) return m.reply(`Example : ${prefix + command} en|query`)
+        let [a, b] = text.split`|`
         let fetch = await fetchUrl(global.api("zenz", "/api/translate/" + a, { query: b }, "apikey"))
-        if (fetch.result.length == 0) return global.mess("error", m)
         let caption = `Text Translator :\n\n`
         let i = fetch.result
         caption += `⭔ To ${a} : ${i}\n`

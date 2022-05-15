@@ -2,12 +2,12 @@ const { fetchUrl } = require("../../lib/Function")
 
 module.exports = {
     name: "nhentai",
-    alias: ["nhentaisearch"],
-    desc: "Nhentai Search Information",
+    alias: [],
+    use: "<query>",
+    desc: "Search Anime From Nhentai",
     type: "animeweb",
-    example: `Example : %prefix%command 114512`,
-    exec: async(killua, m, { text }) => {
-        global.mess("wait", m)
+    example: `%prefix%command 114512`,
+    start: async(killua, m, { text }) => {
         let fetch = await fetchUrl(global.api("zenz", "/anime/nhentai", { query: text }, "apikey"))
         let caption = `Nhentai Search :\n\n`
         let i = fetch.result

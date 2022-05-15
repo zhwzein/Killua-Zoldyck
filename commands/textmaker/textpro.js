@@ -1,11 +1,11 @@
 module.exports = {
     name: "textpro",
     alias: ["textprome"],
+    use: "<query>",
     desc: "Create Maker From https://textpro.me",
     type: "textmaker",
-    example: `List Type :\n\n${type().sort((a, b) => a - b).join("\n")}\n\nExample : %prefix%command <type> <text>`,
-    exec: async(killua, m, { text, args }) => {
-        global.mess("wait", m)
+    example: `\nList Type :\n\n${type().sort((a, b) => a - b).join("\n")}\n\nExample : %prefix%command <type> <text>`,
+    start: async(killua, m, { text, args }) => {
         type = args[0].toLowerCase()
         let [text1, ...text2] = text.replace(args[0], "").trimStart().split`|`
         text2 = text2.join("|")

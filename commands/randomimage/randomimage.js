@@ -1,10 +1,11 @@
 module.exports = {
     name: "randomimage",
     alias: ["imagerandom"],
+    use: "<query>",
     desc: "Generate Random Image From Apis",
     type: "randomimage",
-    example: `List Type :\n\n${type().sort((a, b) => a - b).join("\n")}\n\nExample : %prefix%command <type>`,
-    exec: async(killua, m, { text, toUpper }) => {
+    example: `\nList Type :\n\n${type().sort((a, b) => a - b).join("\n")}\n\nExample : %prefix%command <type>`,
+    start: async(killua, m, { text, toUpper }) => {
         let fetch = await global.api("zenz", "/api/random/" + text, {}, "apikey")
         let buttons = [
             {buttonId: `randomimage ${text}`, buttonText: { displayText: 'NEXT'}, type: 1 }

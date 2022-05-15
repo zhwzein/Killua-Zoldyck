@@ -2,11 +2,12 @@ const { fetchUrl } = require("../../lib/Function")
 
 module.exports = {
     name: "loli",
-    alias: ["loli"],
+    alias: [],
+    use: "<query>",
     desc: "Generate Random loli Image From Apis",
     type: "randomimage",
-    example: `Example : %prefix%command <type>`,
-    exec: async(killua, m, { text, toUpper }) => {
+    example: `%prefix%command <type>`,
+    start: async(killua, m, { text, toUpper }) => {
         let fetch = await fetchUrl('https://lolikuy.herokuapp.com/')
         if (text.toLowerCase() === "nsfw") {
             let buttons = [

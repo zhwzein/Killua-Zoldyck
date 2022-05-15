@@ -1,10 +1,11 @@
 module.exports = {
     name: "imagemenu",
     alias: ["menuimage"],
+    use: "[listmenu]",
     desc: "listMessage Random Image From Apis",
     type: "randomimage",
-    example: "Example : %prefix%command",
-    exec: async(killua, m, {}) => {
+    example: "%prefix%command",
+    start: async(killua, m, {}) => {
         const sections = [{
             title: "Random Image",
             rows: [

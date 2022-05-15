@@ -5,11 +5,9 @@ module.exports = {
     alias: ["nowplayingbioskop"],
     desc: "Search Jadwal From Jadwalnonton",
     type: "webzone",
-    example: `Example : %prefix%command`,
-    exec: async(killua, m, {}) => {
-        global.mess("wait", m)
+    example: `%prefix%command`,
+    start: async(killua, m, {}) => {
         let fetch = await fetchUrl(global.api("zenz", "/webzone/nowplayingbioskop", {}, "apikey"))
-        if (fetch.result.length == 0) return global.mess("error", m)
         let caption = `Now Bioskop Playing :\n\n`
         for (let i of fetch.result) {
             caption += `⭔ Title : ${i.title}\n`

@@ -3,13 +3,12 @@ const { fetchUrl } = require("../../lib/Function")
 module.exports = {
     name: "gsmarena",
     alias: ["gsmarena"],
+    use: "<query>",
     desc: "Search Phone spec From Gsmarena",
     type: "webzone",
-    example: `Example : %prefix%command Poco X3`,
-    exec: async(killua, m, { text, toUpper }) => {
-        global.mess("wait", m)
+    example: `%prefix%command <query>`,
+    start: async(killua, m, { text, toUpper }) => {
         let fetch = await fetchUrl(global.api("zenz", "/webzone/gsmarena", { query: text }, "apikey"))
-        if (fetch.result.length == 0) return global.mess("error", m)
         let caption = `Gsmarena Search Query : ${toUpper(text)}\n\n`
         caption += `⭔ Judul : ${fetch.result.judul}\n`
         caption += `⭔ Release : ${fetch.result.rilis}\n`

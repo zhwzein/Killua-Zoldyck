@@ -3,13 +3,12 @@ const { fetchUrl } = require("../../lib/Function")
 module.exports = {
     name: "wattpad",
     alias: ["wattpad"],
+    use: "<query>",
     desc: "Search story From wattpad",
     type: "webzone",
-    example: `Example : %prefix%command love`,
-    exec: async(killua, m, { text, toUpper }) => {
-        global.mess("wait", m)
+    example: `%prefix%command <query>`,
+    start: async(killua, m, { text, toUpper }) => {
         let fetch = await fetchUrl(global.api("zenz", "/webzone/wattpad", { query: text }, "apikey"))
-        if (fetch.result.length == 0) return global.mess("error", m)
         let caption = `Wattpad Search Query : ${toUpper(text)}\n\n`
         for (let i of fetch.result) {
             caption += `⭔ Judul : ${i.judul}\n`

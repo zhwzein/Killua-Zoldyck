@@ -3,13 +3,12 @@ const { fetchUrl } = require("../../lib/Function")
 module.exports = {
     name: "webtoons",
     alias: ["webtoon"],
+    use: "<query>",
     desc: "Search story From webtoons",
     type: "webzone",
-    example: `Example : %prefix%command love`,
-    exec: async(killua, m, { text, toUpper }) => {
-        global.mess("wait", m)
+    example: `%prefix%command <query>`,
+    start: async(killua, m, { text, toUpper }) => {
         let fetch = await fetchUrl(global.api("zenz", "/webzone/webtoons", { query: text }, "apikey"))
-        if (fetch.result.length == 0) return global.mess("error", m)
         let caption = `Webtoons Search Query : ${toUpper(text)}\n\n`
         for (let i of fetch.result) {
             caption += `⭔ Judul : ${i.judul}\n`

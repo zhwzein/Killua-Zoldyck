@@ -3,13 +3,12 @@ const { fetchUrl } = require("../../lib/Function")
 module.exports = {
     name: "amino",
     alias: ["aminocommunity"],
+    use: "<query>",
     desc: "Search community from amino",
     type: "webzone",
-    example: `Example : %prefix%command mlbb`,
-    exec: async(killua, m, { text, toUpper }) => {
-        global.mess("wait", m)
+    example: `%prefix%command <query>`,
+    start: async(killua, m, { text, toUpper }) => {
         let fetch = await fetchUrl(global.api("zenz", "/webzone/amino", { query: text }, "apikey"))
-        if (fetch.result.length == 0) return global.mess("error", m)
         let caption = `Amino Search Query : ${toUpper(text)}\n\n`
         for (let i of fetch.result) {
             caption += `⭔ Community Name : ${i.community}\n`

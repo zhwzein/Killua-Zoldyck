@@ -3,13 +3,12 @@ const { fetchUrl } = require("../../lib/Function")
 module.exports = {
     name: "jadwalbioskop",
     alias: ["jadwalbioskop"],
+    use: "<query>",
     desc: "Search Jadwal From Jadwalnonton",
     type: "webzone",
-    example: `Example : %prefix%command Jakarta`,
-    exec: async(killua, m, { text, toUpper }) => {
-        global.mess("wait", m)
+    example: `%prefix%command <query>`,
+    start: async(killua, m, { text, toUpper }) => {
         let fetch = await fetchUrl(global.api("zenz", "/webzone/jadwalbioskop", { kota: text }, "apikey"))
-        if (fetch.result.length == 0) return global.mess("error", m)
         let caption = `Jadwal Bioskop Kota : ${toUpper(text)}\n\n`
         for (let i of fetch.result) {
             caption += `⭔ Location : ${i.title}\n`

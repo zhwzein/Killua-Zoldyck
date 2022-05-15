@@ -4,13 +4,14 @@ const fs = require('fs')
 
 module.exports = {
     name: "stickernobg",
-    alias: ["nobg","sbg"],
+    alias: ["sbg"],
+    use: "<reply>",
     desc: "Convert Image To Sticker With No Background",
     type: "convert",
-    exec: async(killua, m, { command, prefix, quoted, mime }) => {
+    example: `%prefix%command --image reply`,
+    start: async(killua, m, { command, prefix, quoted, mime }) => {
         if (!quoted) return  m.reply(`Reply to Supported media With Caption ${prefix + command}`)
         if (/image/.test(mime)) {
-            global.mess("wait", m)
             let download = await killua.downloadAndSaveMediaMessage(quoted)
             file_name = getRandom('jpg')
             request({
@@ -27,7 +28,7 @@ module.exports = {
                 await killua.sendFile(m.from, ini_buff, "", m, { asSticker: true, author: global.author, packname: global.packname, categories: ['😄','😊'] }).then(() => {
                     fs.unlinkSync(file_name)
                 })
-            });
+            })
         } else {
             return m.reply(`Reply to Supported media With Caption ${prefix + command}`, m.from, { quoted: m })
         }

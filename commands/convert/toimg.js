@@ -5,12 +5,13 @@ const { getRandom } = require("../../lib/Function")
 module.exports = {
     name: "toimg",
     alias:["toimage"],
+    use: "<reply>",
     desc: "Convert Sticker to Image",
     type: "convert",
-    exec: async(killua, m, { command, prefix, quoted, mime }) => {
+    example: `%prefix%command --sticker reply`,
+    start: async(killua, m, { command, prefix, quoted, mime }) => {
         if (!quoted) return  m.reply(`Reply to Supported media With Caption ${prefix + command}`)
         if (/image|video|sticker/.test(mime)) {
-            global.mess("wait", m)
             let download = await killua.downloadAndSaveMediaMessage(quoted)
             let ran = getRandom('png')
             exec(`ffmpeg -i ${download} ${ran}`, (err) => {

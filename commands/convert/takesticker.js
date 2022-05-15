@@ -1,9 +1,11 @@
 module.exports = {
     name: "takesticker",
     alias: ["colong","take"],
+    use: "<reply>",
     desc: "Take And Change Sticker Exif",
     type: "convert",
-    exec: async(killua, m, { command, prefix, args, quoted, mime }) => {
+    example: "\nColong : %prefix%command --sticker reply\nTake : %prefix%command packname|author --sticker reply",
+    start: async(killua, m, { command, prefix, args, quoted, mime }) => {
         if (!quoted) return  m.reply(`Reply to Supported media With Caption ${prefix + command}`)
         if (/image|video|sticker/.test(mime)) {
             anu = args.join(" ").split('|')

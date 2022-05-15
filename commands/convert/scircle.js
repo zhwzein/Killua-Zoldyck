@@ -4,13 +4,14 @@ const fs = require('fs')
 
 module.exports = {
     name: "scircle",
-    alias: ["circle"],
+    alias: ["stickercircle", "circlesticker"],
+    use: "<reply>",
     desc: "Convert Image To Circle Sticker",
     type: "convert",
-    exec: async(killua, m, { command, prefix, text, quoted, mime }) => {
+    example: `%prefix%command --image reply`,
+    start: async(killua, m, { command, prefix, quoted, mime }) => {
         if (!quoted) return  m.reply(`Reply to Supported media With Caption ${prefix + command}`)
         if (/image/.test(mime)) {
-            global.mess("wait", m)
             let download = await killua.downloadAndSaveMediaMessage(quoted)
             file_name = getRandom('jpg')
             request({

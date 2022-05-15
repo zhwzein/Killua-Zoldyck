@@ -4,13 +4,14 @@ let BodyForm = require('form-data')
 
 module.exports = {
     name: "tovideo",
-    alias: ["tovideo","tomp4","v"],
+    alias: ["tomp4","tomedia"],
+    use: "<reply>",
     desc: "Convert Sticker Gif To Video",
     type: "convert",
-    exec: async(killua, m, { command, prefix, text, quoted, mime }) => {
+    example: `%prefix%command --sticker reply`,
+    start: async(killua, m, { command, prefix, quoted, mime }) => {
         if (!quoted) return  m.reply(`Reply to Supported media With Caption ${prefix + command}`)
         if (/image|video|sticker/.test(mime)) {
-            global.mess("wait", m)
             let download = await killua.downloadMediaMessage(quoted)
             const form = new BodyForm()
             form.append('sampleFile', download, { filename: getRandom('webp') })

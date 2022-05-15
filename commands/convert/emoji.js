@@ -2,16 +2,15 @@ const { fetchUrl } = require("../../lib/Function")
 
 module.exports = {
     name: "emoji",
-    alias: ["emoticon"],
+    alias: ["emot", "emoticon"],
+    use: "<query>",
     desc: "Convert Emoji To Sticker",
     type: "convert",
-    example: `List Type :\n\n${type().sort((a, b) => a - b).join("\n")}\n\nExample : %prefix%command <text> <type>`,
-    exec: async(killua, m, { args }) => {
+    example: `\nList Type :\n\n${type().sort((a, b) => a - b).join("\n")}\n\nEmoji : %prefix%command 🤔\nEmoji 2 : %prefix%command 🤔 <type>`,
+    start: async(killua, m, { args }) => {
         let [a, b] = args
         let fetch = await fetchUrl(global.api("zenz", "/creator/emoji", {query: a}, "apikey"))
-        if (!b) {
-            killua.sendFile(m.from, fetch.result.google, "", m, { asSticker: true, author: global.author, packname: global.packname, categories: ['😄','😊'] })
-        } else if (b) {
+        if (b) {
             switch(b.toLowerCase()) {
                 case "apple": 
                     killua.sendFile(m.from, fetch.result.apple, "", m, { asSticker: true, author: global.author, packname: global.packname, categories: ['😄','😊'] })
@@ -71,6 +70,8 @@ module.exports = {
                     killua.sendFile(m.from, fetch.result.au_by_kddi, "", m, { asSticker: true, author: global.author, packname: global.packname, categories: ['😄','😊'] })
                 break
             }
+        } else {
+            killua.sendFile(m.from, fetch.result.google, "", m, { asSticker: true, author: global.author, packname: global.packname, categories: ['😄','😊'] })
         }
     },
     isQuery: true

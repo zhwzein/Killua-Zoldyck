@@ -5,12 +5,13 @@ const ffmpeg = require('fluent-ffmpeg')
 module.exports = {
     name: "stickerp",
     alias: ["sp"],
-    desc: "Convert Image To Sticker No Crop",
+    use: "<reply>",
+    desc: "Convert Image To Sticker Uncropped",
     type: "convert",
-    exec: async(killua, m, { command, prefix, quoted, mime }) => {
+    example: `%prefix%command --image reply`,
+    start: async(killua, m, { command, prefix, quoted, mime }) => {
         if (!quoted) return  m.reply(`Reply to Supported media With Caption ${prefix + command}`)
         if (/image|video|sticker/.test(mime)) {
-            global.mess("wait", m)
             let download = await killua.downloadAndSaveMediaMessage(quoted)
             file_name = getRandom('webp')
             ffmpeg(`./${download}`).input(download).on('end', function () {

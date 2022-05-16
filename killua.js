@@ -42,6 +42,7 @@ module.exports = async (killua, m, commands, chatUpdate) => {
         let isOwner = [killua.user?.jid, ...global.owner].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(sender)
 
         global.isPremium = user.checkPremiumUser(m.sender, _user);
+        global.isAntidelete = group.cekAntidelete(m.from, _group);
         user.expiredCheck(killua, m, _user);
 
         if (options.autoRead) (killua.type == "legacy") ? await killua.chatRead(m.key, 1) : await killua.sendReadReceipt(from, sender, [m.id])
@@ -59,7 +60,7 @@ module.exports = async (killua, m, commands, chatUpdate) => {
         let text = q = args.join(" ")
         let cmdName = body.replace(prefix, '').trim().split(/ +/).shift().toLowerCase()
         const cmd = commands.get(cmdName) || Array.from(commands.values()).find((v) => v.alias.find((x) => x.toLowerCase() == cmdName)) || ""
-        
+
         if (m.message) {
             console.log(chalk.black(chalk.bgWhite('[ PESAN ]')), chalk.black(chalk.bgGreen(new Date)), chalk.black(chalk.bgGreen(body || type)) + "\n" + chalk.black(chalk.bgWhite("=> Dari")), chalk.black(chalk.bgGreen(m.pushName)), chalk.black(chalk.yellow(sender)) + "\n" + chalk.black(chalk.bgWhite("=> Di")), chalk.bgGreen(isGroup ? metadata.subject : m.pushName, from))  
         }
@@ -103,7 +104,7 @@ module.exports = async (killua, m, commands, chatUpdate) => {
         }, 15 * 1000)
 
         // Anti Delete
-        if (m.message && m.message.protocolMessage && m.message.protocolMessage.type == 0) {
+        if (isAntidelete && m.message && m.message.protocolMessage && m.message.protocolMessage.type == 0) {
             if (!db.chats[m.from].antidelete) return
             let key = m.message.protocolMessage.key
             let msg = await killua.serializeM(await Store.loadMessage(key.remoteJid, key.id))
@@ -366,6 +367,7 @@ _Send command again if needed_
 
         try {
 			if (cmd) {
+                if (isGroup) group.addGroup(m.from)
                 user.addUser(m.sender, m.pushName, _user)
                 if (user.isLimit(m.sender, isPremium, isOwner, limitCount, _user) && !m.fromMe)
 				return m.reply(`Your limit has run out, please send ${prefix}limit to check the limit`);

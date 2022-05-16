@@ -1,1 +1,12 @@
-[]
+[
+    {
+        "from": "6281288339373-1632225365@g.us",
+        "offline": false,
+        "welcome": false,
+        "antilink": false,
+        "badword": false,
+        "antidelete": true,
+        "detect": false,
+        "viewOnce": false
+    }
+]

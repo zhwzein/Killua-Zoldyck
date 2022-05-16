@@ -106,9 +106,10 @@ module.exports = async (killua, m, commands, chatUpdate) => {
             if (!db.chats[m.from].antidelete) return
             let key = m.message.protocolMessage.key
             let msg = await killua.serializeM(await Store.loadMessage(key.remoteJid, key.id))
-            let teks = `「 Message Delete Detect 」\n\n⬡ Name : ${msg.pushName}\n⬡ User : @${msg.sender.split("@")[0]}\n⬡ Date : ${moment(msg.messageTimestamp * 1000).tz("Asia/Jakarta")}\n⬡ Type : ${msg.type}`
-            killua.sendText(m.from, teks, msg, { mentions: [msg.sender] })
+            let teks = `「 Message Delete Detect 」\n\n⬡ Name : ${msg.pushName}\n⬡ User : @${msg.sender.split("@")[0]}\n⬡ Date : ${moment(msg.messageTimestamp * 1000).tz("Asia/Jakarta")}\n⬡ Type : ${msg.type}\n`
+            let tekss = teks.replace("GMT+0700", "")
             killua.relayMessage(m.from, msg.message, { messageId: msg.id })
+            await killua.sendText(m.from, tekss, msg, { mentions: [msg.sender] })
         }
         
         // Entertaiment
@@ -317,8 +318,8 @@ _Send command again if needed_
         }
 
         if (cmd.isOwner && !isOwner) {
-            return 
-        }
+			return global.mess("owner", m)
+		}
 
         if (cmd.isGroup && !isGroup) {
             return global.mess("group", m)

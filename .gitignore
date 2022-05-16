@@ -82,7 +82,7 @@ StyleCopReport.xml
 *.tlb
 *.tli
 *.tlh
-*.tmp
+*.database
 *.tmp_proj
 *_wpftmp.csproj
 *.log
@@ -348,4 +348,3 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
-database/user.json

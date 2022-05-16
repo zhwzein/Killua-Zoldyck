@@ -20,7 +20,7 @@ const addUser = (userId, name, _db) => {
     if (position === false) {
         const obj = { id: userId, verified: false, name: name, time: time, limit: 0, balance: 0, premium: false }
         _db.push(obj)
-        fs.writeFileSync('./database/group.json', JSON.stringify(_db, null, 4))
+        fs.writeFileSync('./database/user.json', JSON.stringify(_db, null, 4))
         return false
     }
 }

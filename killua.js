@@ -9,7 +9,7 @@ const chalk = require("chalk")
 const util = require("util")
 const { correct } = require("./lib/Correct")
 
-global.db = JSON.parse(fs.readFileSync("./tmp/database.json"))
+global.db = JSON.parse(fs.readFileSync("./database/db.json"))
 if (global.db) global.db = {
     sticker: {},
     database: {},
@@ -99,7 +99,7 @@ module.exports = async (killua, m, commands, chatUpdate) => {
 
         // - Write
         setInterval(() => {
-            fs.writeFileSync('./tmp/database.json', JSON.stringify(global.db, null, 2))
+            fs.writeFileSync('./database/db.json', JSON.stringify(global.db, null, 2))
         }, 15 * 1000)
 
         // Anti Delete

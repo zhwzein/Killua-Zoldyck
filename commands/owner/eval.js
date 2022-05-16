@@ -8,7 +8,7 @@ module.exports = {
     use: "<query>",
     desc: "Running JavaScript Code via Command",
     type: "owner",
-    exec: async (killua, m, opt) => {
+    start: async (killua, m, opt) => {
         let evaled
         let { text } = opt
         try {

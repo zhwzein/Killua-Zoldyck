@@ -41,6 +41,9 @@ module.exports = async (killua, m, commands, chatUpdate) => {
         let isAdmin = isGroup ? groupAdmin.includes(sender) : false
         let isOwner = [killua.user?.jid, ...global.owner].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(sender)
 
+        global.isPremium = user.checkPremiumUser(m.sender, _user);
+        user.expiredCheck(killua, m, _user);
+
         if (options.autoRead) (killua.type == "legacy") ? await killua.chatRead(m.key, 1) : await killua.sendReadReceipt(from, sender, [m.id])
         if (options.mute && !isOwner) return
         if (options.self && !isOwner && !m.fromMe) return
@@ -94,12 +97,10 @@ module.exports = async (killua, m, commands, chatUpdate) => {
             console.error(e)
         }
 
-
         // - Write
         setInterval(() => {
             fs.writeFileSync('./tmp/database.json', JSON.stringify(global.db, null, 2))
         }, 15 * 1000)
-        
 
         // Anti Delete
         if (m.message && m.message.protocolMessage && m.message.protocolMessage.type == 0) {
@@ -312,6 +313,15 @@ _Send command again if needed_
             m.reply(teks)
         } else if (!cmd) return
 
+        if (cmd.isPremium && !isPremium) {
+			return global.mess("premium", m)
+		}
+
+        if (cmd.isLimit && !isPremium) {
+            if (user.isLimit(m.sender, isPremium, isOwner, limitCount, _user) && !m.fromMe)
+            return m.reply(`Your limit has run out, please send ${prefix}limit to check the limit`);
+            user.limitAdd(m.sender, _user);
+        }
 
         if (cmd.isMedia && !isMedia) {
             return global.mess("media", m)
@@ -355,7 +365,13 @@ _Send command again if needed_
         }
 
         try {
-            cmd.start(killua, m, {
+			if (cmd) {
+                user.addUser(m.sender, m.pushName, _user)
+                if (user.isLimit(m.sender, isPremium, isOwner, limitCount, _user) && !m.fromMe)
+				return m.reply(`Your limit has run out, please send ${prefix}limit to check the limit`);
+				user.limitAdd(m.sender, _user);
+			}
+			cmd.start(killua, m, {
                 name: 'killua Zoldyck',
                 metadata,
                 pushName: pushname,
@@ -373,9 +389,9 @@ _Send command again if needed_
                     return query.replace(/^\w/, c => c.toUpperCase())
                 }
             })
-        } catch (e) {
-            console.log(e)
-        }   
+		} catch (e) {
+			console.error(e);
+		}
     } catch (e) {
         console.log(e)
     }

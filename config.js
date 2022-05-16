@@ -5,37 +5,41 @@ global.reloadFile = (file, options = {}) => {
     nocache(file, module => console.log(`File "${file}" has updated`))
 }
 
-// Rest Api
+// MAIN API
 global.APIs = {
 	zenz: 'https://zenzapis.xyz',
 }
 
-// Apikey
+// APIKEY
 global.APIKeys = {
 	'https://zenzapis.xyz': 'YOURAPIKEY',
 }
 
-// Other
+// OPTIONS
 global.options = {
     autoRead: true,
-    self: true,
+    self: false,
     mute: false
 }
-
-global.prefa = /^[zZ#$+.?_&<>!/\\]/
+global.prefa = /^[#$+.?_&<>!/\\]/
 global.owner = ["62812XXX"]
 global.sessionName = {
     legacy: "/tmp/killua-legacy",
     multi: "/tmp/killua-multi"
 }
-
 global.packname = "zenzapi"
 global.author = "https://zenzapis.xyz"
+
+// USERDATA
+global.user = require("./data/user")
+global._user = JSON.parse(fs.readFileSync("./database/user.json"))
+global.limitCount = 50
 
 global.mess = (type, m) => {
     let msg = {
         wait: 'Wait, in progress',
         owner: 'Perintah ini hanya dapat digunakan oleh Owner!',
+        premium: 'Perintah ini hanya dapat digunakan oleh Premium!',
         group: 'Perintah ini hanya dapat digunakan di group!',
         private: 'Perintah ini hanya dapat digunakan di private chat!',
         admin: 'Perintah ini hanya dapat digunakan oleh admin group!',

@@ -1,0 +1,26 @@
+{
+  "APIs": {
+    "zenz": "https://zenzapis.xyz",
+    "apikey": "YOURAPIKEY"
+  },
+  "options": {
+    "autoRead": false,
+    "self": false,
+    "mute": false,
+    "limitCount": 20,
+    "limitGame": 20
+  },
+  "sessionName": {
+    "legacy": "/database/killua-legacy.json",
+    "multi": "/database/killua-multi.json"
+  },
+  "exif": {
+    "packname": "zenzapi",
+    "author": "https://zenzapi.xyz"
+  },
+  "owner": [
+    "62812xxx"
+  ],
+  "timezone": "Asia/Jakarta",
+  "footer": "Powered by https://zenzapis.xyz"
+}

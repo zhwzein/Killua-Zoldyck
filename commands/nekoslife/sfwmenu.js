@@ -42,5 +42,6 @@ module.exports = {
             sections
         }
         const sendMsg = await killua.sendMessage(m.from, listMessage, { quoted: m })
-    }
+    },
+    noLimit: true,
 }

@@ -28,7 +28,7 @@ const readCommands = () => {
             Commands.type = dirs.filter(v => v !== "_").map(v => v)
             listCommand[groups] = []
             let files = fs.readdirSync(`${dir}/${res}`).filter((file) => file.endsWith(".js"))
-            console.log(files)
+            //console.log(files)
             for (const file of files) {
                 const command = require(`${dir}/${res}/${file}`)
                 listCommand[groups].push(command)

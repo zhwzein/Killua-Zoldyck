@@ -9,5 +9,6 @@ module.exports = {
         const namaUser = `${pushName === undefined ? sender.split("@")[0] : pushName}`
         user.addUser(m.sender, namaUser, _user)
         killua.sendText(m.from, "sukses", m)
-    }
+    },
+    noLimit: true,
 }

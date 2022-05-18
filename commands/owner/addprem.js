@@ -13,7 +13,7 @@ module.exports = {
 			}
 			m.reply("Sukses");
 		} else {
-			user.addPremiumUser(args[1] + "@s.whatsapp.net", args[1], _user);
+			user.addPremiumUser(args[0] + "@s.whatsapp.net", args[1], _user);
 			m.reply("Sukses");
 		}
     },

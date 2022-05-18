@@ -36,21 +36,19 @@ const checkUser = (userId, _db) => {
 
 // LIMIT USERDATA
 const isLimit = (userId, isPremium, isOwner, limitCount, _db) => {
-	if (isOwner) return false
-	if (isPremium) return false
+	if (isPremium || isOwner) return false
 	let found = false
 	for (let i of _db) {
 		if (i.id === userId) {
-			let _user = i.limit
-			if (_user >= limitCount) {
-				found = true
-				return true
-			} else {
-				found = true
-				return false
-			}
+		   if (i.limit >= limitCount) {
+			  found = true
+			  return true
+		   } else {
+			  found = true
+			  return false
+		   }
 		}
-	}
+	 }
 	if (found === false) {
 		const obj = { id: userId, limit: 0 }
 		_db.push(obj)
@@ -58,7 +56,8 @@ const isLimit = (userId, isPremium, isOwner, limitCount, _db) => {
 		return false
 	}
 }
-const limitAdd = (userId, _db) => {
+const limitAdd = (userId, isPremium, isOwner, _db) => {
+	if (isPremium || isOwner) return false;
 	let found = false
 	Object.keys(_db).forEach((i) => {
 		if (_db[i].id === userId) {
@@ -68,6 +67,52 @@ const limitAdd = (userId, _db) => {
 	if (found !== false) {
 		_db[found].limit += 1
 		fs.writeFileSync("./database/user.json", JSON.stringify(_db, null, 4))
+	}
+}
+
+const getLimit = (userId, _db) => {
+	let pos = null
+	let found = false
+	Object.keys(_db).forEach((i) => {
+	   if (_db[i].id === userId) {
+		  pos = i
+		  found = true
+	   }
+	})
+	if (found === false && pos === null) {
+	   const obj = { id: userId, limit: 0 }
+	   _db.push(obj)
+	   fs.writeFileSync("./database/user.json", JSON.stringify(_db, null, 4))
+	   return 0
+	} else {
+	   return _db[pos].limit
+	}
+ }
+// BALANCE USERDATA
+const addBalance = (userId, amount, _db) => {
+	let position = false
+	Object.keys(_db).forEach((i) => {
+		if (_db[i].id === userId) {
+			position = i
+		}
+	})
+	if (position !== false) {
+		_db[position].balance += amount
+		fs.writeFileSync("./database/user.json", JSON.stringify(_db, null, 4))
+	}
+}
+
+const getBalance = (userId, _db) => {
+	let position = false
+	Object.keys(_db).forEach((i) => {
+		if (_db[i].id === userId) {
+			position = i
+		}
+	})
+	if (position !== false) {
+		return _db[position].balance
+	} else {
+		return 0
 	}
 }
 
@@ -96,15 +141,15 @@ const checkPremiumUser = (userId, _db) => {
 		return _db[position].premium
 	}
 }
-const getPremiumExpired = (userId, _dir) => {
+const getPremiumExpired = (userId, _db) => {
 	let position = null
-	Object.keys(_dir).forEach((i) => {
-		if (_dir[i].id === userId) {
+	Object.keys(_db).forEach((i) => {
+		if (_db[i].id === userId) {
 			position = i
 		}
 	})
 	if (position !== null) {
-		return _dir[position].expired
+		return _db[position].expired
 	}
 }
 const expiredCheck = (killua, m, _db) => {
@@ -129,7 +174,7 @@ const expiredCheck = (killua, m, _db) => {
 }
 
 // LIMIT RESET
-cron.schedule('0 6 * * *', () => {
+cron.schedule('28 2 * * *', () => {
     let found = false
 		Object.keys(_user).forEach((i) => {
 			if (_user[i].limit) {
@@ -151,6 +196,9 @@ module.exports = {
    checkUser,
    isLimit,
    limitAdd,
+   getLimit,
+   addBalance,
+   getBalance,
    addPremiumUser,
    checkPremiumUser,
    getPremiumExpired,

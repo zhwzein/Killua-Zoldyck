@@ -44,34 +44,74 @@ const addAntidelete = (userId, _db) => {
 }
 
 const delAntidelete = (userId, _db) => {
-    let found = false;
+    let found = false
     Object.keys(_db).forEach((i) => {
         if (_db[i].from === userId) {
-            found = i;
+            found = i
         }
-    });
+    })
     if (found !== false) {
-        _db[found].antidelete = false;
-        fs.writeFileSync('./database/group.json', JSON.stringify(_db, null, "\t"));
+        _db[found].antidelete = false
+        fs.writeFileSync("./database/group.json", JSON.stringify(_db, null, 4))
     }
-};
+}
 
 const cekAntidelete = (userId, _db) => {
     let found = false
     Object.keys(_db).forEach((i) => {
         if (_db[i].from === userId) {
-            found = i;
+            found = i
     }
-    });
+    })
     if (found !== false) {
-        return _db[found].antidelete;
+        return _db[found].antidelete
     }
-};
+}
+
+const addOffline = (userId, _db) => {
+	let found = false
+	Object.keys(_db).forEach((i) => {
+		if (_db[i].from === userId) {
+			found = i
+		}
+	})
+	if (found !== false) {
+		_db[found].offline = true
+		fs.writeFileSync("./database/group.json", JSON.stringify(_db, null, 4))
+	}
+}
+
+const delOffline = (userId, _db) => {
+    let found = false
+    Object.keys(_db).forEach((i) => {
+        if (_db[i].from === userId) {
+            found = i
+        }
+    })
+    if (found !== false) {
+        _db[found].offline = false
+        fs.writeFileSync("./database/group.json", JSON.stringify(_db, null, 4))
+    }
+}
+
+const cekOffline = (userId, _db) => {
+    let found = false
+    Object.keys(_db).forEach((i) => {
+        if (_db[i].from === userId) {
+            found = i
+    }
+    })
+    if (found !== false) {
+        return _db[found].offline
+    }
+}
 
 module.exports = {
   addGroup,
   addAntidelete,
   delAntidelete,
-  cekAntidelete
-
+  cekAntidelete,
+  addOffline,
+  delOffline,
+  cekOffline
 }

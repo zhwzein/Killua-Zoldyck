@@ -45,5 +45,6 @@ module.exports = {
 
             killua.sendMessage(m.from, templateMessage, { quoted: m })
         }
-    }
+    },
+    noLimit: true,
 }

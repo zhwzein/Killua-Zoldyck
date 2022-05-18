@@ -12,5 +12,6 @@ module.exports = {
             caption += `*ID :* wa.me/${i.id.split("@")[0]}\n*Expired :* ${checkExp.days} day ${checkExp.hours} hour ${ checkExp.minutes } minute ${checkExp.seconds} second\n\n`;
         }
 		killua.sendText(m.from, caption, m)
-    }
+    },
+    noLimit: true,
 }

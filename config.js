@@ -12,7 +12,7 @@ global.APIs = {
 
 // APIKEY
 global.APIKeys = {
-	'https://zenzapis.xyz': 'YOURAPIKEY',
+	'https://zenzapis.xyz': 'andaracantik',
 }
 
 // OPTIONS
@@ -22,20 +22,20 @@ global.options = {
     mute: false
 }
 global.prefa = /^[#$+.?_&<>!/\\]/
-global.owner = ["62812XXX"]
+global.owner = ["447932845783"]
 global.sessionName = {
     legacy: "/database/killua-legacy.json",
     multi: "/database/killua-multi.json"
 }
-global.packname = "zenzapi"
-global.author = "https://zenzapis.xyz"
+global.packname = "Eza sayang banget sama eca 🥺❤️"
+global.author = ""
 
 // USERDATA
 global.user = require("./data/user")
 global.group = require("./data/group")
 global._user = JSON.parse(fs.readFileSync("./database/user.json"))
 global._group = JSON.parse(fs.readFileSync("./database/group.json"))
-global.limitCount = 50
+global.limitCount = 5
 
 global.mess = (type, m) => {
     let msg = {

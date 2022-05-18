@@ -69,7 +69,6 @@ const limitAdd = (userId, isPremium, isOwner, _db) => {
 		fs.writeFileSync("./database/user.json", JSON.stringify(_db, null, 4))
 	}
 }
-
 const getLimit = (userId, _db) => {
 	let pos = null
 	let found = false
@@ -88,6 +87,7 @@ const getLimit = (userId, _db) => {
 	   return _db[pos].limit
 	}
  }
+
 // BALANCE USERDATA
 const addBalance = (userId, amount, _db) => {
 	let position = false
@@ -101,7 +101,6 @@ const addBalance = (userId, amount, _db) => {
 		fs.writeFileSync("./database/user.json", JSON.stringify(_db, null, 4))
 	}
 }
-
 const getBalance = (userId, _db) => {
 	let position = false
 	Object.keys(_db).forEach((i) => {
@@ -174,22 +173,24 @@ const expiredCheck = (killua, m, _db) => {
 }
 
 // LIMIT RESET
-cron.schedule('28 2 * * *', () => {
-    let found = false
-		Object.keys(_user).forEach((i) => {
-			if (_user[i].limit) {
-                found = i
-            }
-		})
-		if (found !== false) {
-            _user[found].limit = 0
-			console.log('Resetting user limit...')
-			fs.writeFileSync("./database/user.json", JSON.stringify(_user, null, 4))
-		}
-}, {
-    scheduled: true,
-    timezone: 'Asia/Jakarta'
-})
+setInterval(() => {
+	cron.schedule('22 21 * * *', () => {
+		let found = false
+			Object.keys(_user).forEach((i) => {
+				if (_user[i].limit) {
+					found = i
+				}
+			})
+			if (found !== false) {
+				_user[found].limit = 0
+				console.log('Resetting user limit...')
+				fs.writeFileSync("./database/user.json", JSON.stringify(_user, null, 4))
+			}
+	}, {
+		scheduled: true,
+		timezone: 'Asia/Jakarta'
+	})
+}, 1000)
 
 module.exports = {
    addUser,

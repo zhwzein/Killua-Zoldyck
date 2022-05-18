@@ -5,6 +5,7 @@ module.exports = {
     desc: "listMessage Random Text & Quotes",
     type: "randomtext",
     example: "%prefix%command",
+    noLimit: true,
     start: async(killua, m, {}) => {
         const sections = [{
             title: "Random Text",

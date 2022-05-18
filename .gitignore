@@ -6,11 +6,11 @@ node_modules
 yarn.lock
 
 # database
-db.json
-group.json
-killua-legacy.json
-killua-multi.json
-user.json
+database/db.json
+database/group.json
+database/killua-legacy.json
+database/killua-multi.json
+database/user.json
 
 # config file
 config.json

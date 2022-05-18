@@ -1,5 +1,3 @@
-
-
 module.exports = {
 	name: "antidelete",
 	alias: ["antidel"],
@@ -7,6 +5,7 @@ module.exports = {
 	desc: "Enable or disable Antidelete Features",
     type: "group",
     example: "%prefix%command enable or disable",
+    noLimit: true,
     start: async(killua, m, { text }) => {
         if (text === 'enable') {
             if (isAntidelete === true) return m.reply('Antidelete already active')

@@ -19,15 +19,20 @@ if (global.db) global.db = {
 }
 
 // Entertainment
-let family100 = global.db.game.family100 = {}
-let caklontog = global.db.game.caklontong = {}
-let tebakgambar = global.db.game.tebakgambar = {}
-let asahotak = global.db.game.asahotak = {}
-let siapakahaku = global.db.game.siapakahaku = {}
-let susunkata = global.db.game.susunkata = {}
-let tekateki = global.db.game.tekateki = {}
-let tebakbendera = global.db.game.tebakbendera = {}
-let tebaklagu = global.db.game.tebaklagu = {}
+global.siapakah = db.game.siapakah = {}
+global.caklontong = db.game.caklontong = {}
+global.family100 = db.game.family100 = {}
+global.tebakkalimat = db.game.tebakkalimat = {}
+global.tebakkata = db.game.tebakkata = {}
+global.asahotak = db.game.asahotak = {}
+global.susunkata = db.game.susunkata = {}
+global.tebakbendera = db.game.tebakbendera = {}
+global.tebakgambar = db.game.tebakgambar = {}
+global.tebakkabupaten = db.game.tebakkabupaten = {}
+global.tebaklagu = db.game.tebaklagu = {}
+global.tekateki = db.game.tekateki = {}
+global.tebaklirik = db.game.tebaklirik = {}
+global.tebaktebakan = db.game.tebaktebakan = {}
 
 module.exports = async (killua, m, commands, chatUpdate) => {
     try {
@@ -41,8 +46,10 @@ module.exports = async (killua, m, commands, chatUpdate) => {
         let isAdmin = isGroup ? groupAdmin.includes(sender) : false
         let isOwner = [killua.user?.jid, ...global.owner].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(sender)
 
-        global.isPremium = user.checkPremiumUser(m.sender, _user);
-        global.isAntidelete = group.cekAntidelete(m.from, _group);
+        global.isPremium = user.checkPremiumUser(m.sender, _user)
+        global.isAntidelete = group.cekAntidelete(m.from, _group)
+        global.isOffline = group.cekOffline(from, _group)
+        
         user.expiredCheck(killua, m, _user);
 
         if (options.autoRead) (killua.type == "legacy") ? await killua.chatRead(m.key, 1) : await killua.sendReadReceipt(from, sender, [m.id])
@@ -61,11 +68,16 @@ module.exports = async (killua, m, commands, chatUpdate) => {
         let cmdName = body.replace(prefix, '').trim().split(/ +/).shift().toLowerCase()
         const cmd = commands.get(cmdName) || Array.from(commands.values()).find((v) => v.alias.find((x) => x.toLowerCase() == cmdName)) || ""
 
-        if (m.message) {
-            console.log(chalk.black(chalk.bgWhite('[ PESAN ]')), chalk.black(chalk.bgGreen(new Date)), chalk.black(chalk.bgGreen(body || type)) + "\n" + chalk.black(chalk.bgWhite("=> Dari")), chalk.black(chalk.bgGreen(m.pushName)), chalk.black(chalk.yellow(sender)) + "\n" + chalk.black(chalk.bgWhite("=> Di")), chalk.bgGreen(isGroup ? metadata.subject : m.pushName, from))  
+        if (isOffline && cmdName && !isAdmin && !isOwner) return
+
+        if (m.message && isGroup) {
+            console.log("" + "\n" + chalk.black(chalk.bgWhite('[ GRUP ]')), chalk.black(chalk.bgBlueBright(isGroup ? metadata.subject : m.pushName)) + "\n" + chalk.black(chalk.bgWhite('[ TIME ]')), chalk.black(chalk.bgBlueBright(new Date)) + "\n" + chalk.black(chalk.bgWhite('[ FROM ]')), chalk.black(chalk.bgBlueBright(m.pushName + " @" + m.sender.split('@')[0])) + "\n" + chalk.black(chalk.bgWhite('[ BODY ]')), chalk.black(chalk.bgBlueBright(body || type)) + "\n" + "")
+        }
+        if (m.message && !isGroup) {    
+            console.log("" + "\n" + chalk.black(chalk.bgWhite('[ PRIV ]')), chalk.black(chalk.bgRedBright('PRIVATE CHATT')) + "\n" + chalk.black(chalk.bgWhite('[ TIME ]')), chalk.black(chalk.bgRedBright(new Date)) + "\n" + chalk.black(chalk.bgWhite('[ FROM ]')), chalk.black(chalk.bgRedBright(m.pushName + " @" + m.sender.split('@')[0])) + "\n" + chalk.black(chalk.bgWhite('[ BODY ]')), chalk.black(chalk.bgRedBright(body || type)) + "\n" + "")
         }
 
-        // Sticker Command
+        // STICKER COMMAND
         if (isMedia && m.msg.fileSha256 && (m.msg.fileSha256.toString("hex") in global.db.sticker)) {
             let hash = global.db.sticker[m.msg.fileSha256.toString("hex")]
             let { text, mentions } = hash
@@ -85,7 +97,7 @@ module.exports = async (killua, m, commands, chatUpdate) => {
             killua.ev.emit("messages.upsert", msg)
         }
 
-        // Database
+        // DATABASE
         try {
             let chat = global.db.chats[m.from]
             if (typeof chat !== "object") global.db.chats = {}
@@ -103,7 +115,7 @@ module.exports = async (killua, m, commands, chatUpdate) => {
             fs.writeFileSync('./database/db.json', JSON.stringify(global.db, null, 2))
         }, 15 * 1000)
 
-        // Anti Delete
+        // ANTI DELETE
         if (isAntidelete && m.message && m.message.protocolMessage && m.message.protocolMessage.type == 0) {
             if (!db.chats[m.from].antidelete) return
             let key = m.message.protocolMessage.key
@@ -114,203 +126,118 @@ module.exports = async (killua, m, commands, chatUpdate) => {
             await killua.sendText(m.from, tekss, msg, { mentions: [msg.sender] })
         }
         
-        // Entertaiment
+        // ENTERTAINMENT
         try {
-            let threshold = 0.72
-            if (("game_" + m.from in family100)) {
-                let id = "game_" + m.from
-                let room = family100[id]
-                let teks = m.text.toLowerCase().replace(/[^\w\s\-]+/, '')
-                let isSurender = /^((me)?nyerah|surr?ender)$/i.test(m.text.toLowerCase())
-                if (!isSurender) {
-                    let index = room.jawaban.indexOf(teks)
-                    if (index < 0) {
-                        if (Math.max(...room.jawaban.filter((_, index) => !room.terjawab[index]).map(jawaban => correct(jawaban, [teks]))) >= threshold) m.reply("Almost Correct Answer")
-                        return !0
-                    }
-                    if (room.terjawab[index]) return !0
-                    room.terjawab[index] = sender
-                    //global.db.users[sender].exp += room.winScore
-                }
-                let isWin = room.terjawab.length === room.terjawab.filter(v => v).length
-                let caption = `
-*Question :* ${room.soal}
-
-There is *${room.jawaban.length}* answers${room.jawaban.find(v => v.includes(' ')) ? `
-(some answers have spaces)
-`: ''}
-${isWin ? `*All Answers Answered*` : isSurender ? '*Surrender!*' : ''}
-${Array.from(room.jawaban, (jawaban, index) => {
-            return isSurender || room.terjawab[index] ? `(${index + 1}) ${jawaban} ${room.terjawab[index] ? '@' + room.terjawab[index].split('@')[0] : ''}`.trim() : false
-        }).filter(v => v).join('\n')}
-${isSurender ? '' : ``}
-                `.trim()
-                let msg = await killua.sendMessage(m.from, { text: caption, mentions: killua.parseMention(caption) }, { quoted: m })
-                room.msg = msg
-                if (isWin || isSurender) delete family100["game_" + m.from]
-
-                return !0
+            if (asahotak.hasOwnProperty(m.sender.split('@')[0]) && !isCmd) {
+                jawaban = asahotak[m.sender.split('@')[0]]
+                if (budy.toLowerCase() == jawaban) {
+                    await killua.sendMessage(m.from, { text:`Selamat Jawaban ${budy} Benar 🎉\n\nIngin bermain lagi? Tekan Tombol Lanjut dibawah\n`, footer:'Entertainment\nPowered By https://zenzapis.xyz', buttons:[{ buttonId:'asahotak', buttonText:{ displayText:'Lanjut'}, type:1 }], headerType:4 }, { quoted: m })
+                    delete asahotak[m.sender.split('@')[0]]
+                } else m.reply('*Jawaban Salah!*')
             }
-
-            // Cak Lontong
-            if (("game_" + m.from in caklontog)) {
-                let id = "game_" + m.from
-                if (!(id in caklontog)) return m.reply("Cak Lontong game session has ended")
-                if (m._data.quotedStanzaID == caklontog[id][0].id.id) {
-                    let json = JSON.parse(JSON.stringify(caklontog[id][1]))
-                    if (m.text.toLowerCase() == json.jawaban.toLowerCase().trim()) {
-                        //global.db.users[sender].exp += caklontong[id][2]
-                        await m.reply(`Right Answer!\n${json.deskripsi}`)
-                        clearTimeout(caklontog[id][3])
-                        delete caklontog[id]
-                    } else if (correct(m.text.toLowerCase(), [json.jawaban.toLowerCase().trim()]) >= threshold)
-                        m.reply("Almost Right")
-                    else
-                        m.reply("Wrong Answer")
-                }
-
-                return !0
+            if (caklontong.hasOwnProperty(m.sender.split('@')[0]) && !isCmd) {
+                jawaban = caklontong[m.sender.split('@')[0]]
+                if (budy.toLowerCase() == jawaban) {
+                    await killua.sendMessage(m.from, { text:`Selamat Jawaban ${budy} Benar 🎉\n\nIngin bermain lagi? Tekan Tombol Lanjut dibawah\n`, footer:'Entertainment\nPowered By https://zenzapis.xyz', buttons:[{ buttonId:'caklontong', buttonText:{ displayText:'Lanjut'}, type:1 }], headerType:4 }, { quoted: m })
+                    delete caklontong[m.sender.split('@')[0]]
+                } else m.reply('*Jawaban Salah!*')
             }
-
-            // Tebak Gambar
-            if (("game_" + m.from in tebakgambar)) {
-                let id = "game_" + m.from
-                if (!(id in tebakgambar)) return m.reply("tebak gambar game session has ended")
-                if (m._data.quotedStanzaID === tebakgambar[id][0].id.id) {
-                    let json = JSON.parse(JSON.stringify(tebakgambar[id][1]))
-                    if (m.text.toLowerCase() === json.jawaban.toLowerCase().trim()) {
-                        //global.db.users[sender].exp += caklontong[id][2]
-                        await m.reply(`Right Answer!\n${json.jawaban}\n${json.deskripsi}`)
-                        clearTimeout(tebakgambar[id][3])
-                        delete tebakgambar[id]
-                    } else if (correct(m.text.toLowerCase(), [json.jawaban.toLowerCase()]) >= threshold)
-                        m.reply("Almost Right")
-                    else
-                        m.reply("Wrong Answer")
-                }
-
-                return !0
+            if (family100.hasOwnProperty(m.sender.split('@')[0]) && !isCmd) {
+                jawaban = family100[m.sender.split('@')[0]]
+                result = Array.from(jawaban).find((v) => v === budy)
+                if (budy.toLowerCase() == result) {
+                    await killua.sendMessage(m.from, { text:`Benar Salah Satu Jawabanya Adalah ${budy} Selamat 🎉\n\nIngin bermain lagi? Tekan Tombol Lanjut dibawah\n`, footer:'Entertainment\nPowered By https://zenzapis.xyz', buttons:[{ buttonId:'family100', buttonText:{ displayText:'Lanjut'}, type:1 }], headerType:4 }, { quoted: m })
+                    delete family100[m.sender.split('@')[0]]
+                } else m.reply('*Jawaban Salah!*')
             }
-
-            // Asah Otak
-            if (("game_" + m.from in asahotak)) {
-                let id = "game_" + m.from
-                if (!(id in asahotak)) return m.reply("Asah Otak game session has ended")
-                if (m._data.quotedStanzaID == asahotak[id][0].id.id) {
-                    let json = JSON.parse(JSON.stringify(asahotak[id][1]))
-                    if (m.text.toLowerCase() == json.jawaban.toLowerCase().trim()) {
-                        //global.db.users[sender].exp += caklontong[id][2]
-                        await m.reply(`Right Answer!\n${json.jawaban}`)
-                        clearTimeout(asahotak[id][3])
-                        delete asahotak[id]
-                    } else if (correct(m.text.toLowerCase(), [json.jawaban.toLowerCase().trim()]) >= threshold)
-                        m.reply("Almost Right")
-                    else
-                        m.reply("Wrong Answer")
-                }
-
-                return !0
+            if (siapakah.hasOwnProperty(m.sender.split('@')[0]) && !isCmd) {
+                jawaban = siapakah[m.sender.split('@')[0]]
+                if (budy.toLowerCase() == jawaban) {
+                    await killua.sendMessage(m.from, { text:`Selamat Jawaban ${budy} Benar 🎉\n\nIngin bermain lagi? Tekan Tombol Lanjut dibawah\n`, footer:'Entertainment\nPowered By https://zenzapis.xyz', buttons:[{ buttonId:'siapakah', buttonText:{ displayText:'Lanjut'}, type:1 }], headerType:4 }, { quoted: m })
+                    delete siapakah[m.sender.split('@')[0]]
+                } else m.reply('*Jawaban Salah!*')
             }
-
-            // SIapakah Aku
-            if (("game_" + m.from in siapakahaku)) {
-                let id = "game_" + m.from
-                if (!(id in siapakahaku)) return m.reply("Siapakah Aku game session has ended")
-                if (m._data.quotedStanzaID == siapakahaku[id][0].id.id) {
-                    let json = JSON.parse(JSON.stringify(siapakahaku[id][1]))
-                    if (m.text.toLowerCase() == json.jawaban.toLowerCase().trim()) {
-                        //global.db.users[sender].exp += caklontong[id][2]
-                        await m.reply(`Right Answer!\n${json.jawaban}`)
-                        clearTimeout(siapakahaku[id][3])
-                        delete siapakahaku[id]
-                    } else if (correct(m.text.toLowerCase(), [json.jawaban.toLowerCase().trim()]) >= threshold)
-                        m.reply("Almost Right")
-                    else
-                        m.reply("Wrong Answer")
-                }
-
-                return !0
+            if (susunkata.hasOwnProperty(m.sender.split('@')[0]) && !isCmd) {
+                jawaban = susunkata[m.sender.split('@')[0]]
+                if (budy.toLowerCase() == jawaban) {
+                    await killua.sendMessage(m.from, { text:`Selamat Jawaban ${budy} Benar 🎉\n\nIngin bermain lagi? Tekan Tombol Lanjut dibawah\n`, footer:'Entertainment\nPowered By https://zenzapis.xyz', buttons:[{ buttonId:'susunkata', buttonText:{ displayText:'Lanjut'}, type:1 }], headerType:4 }, { quoted: m })
+                    delete susunkata[m.sender.split('@')[0]]
+                } else m.reply('*Jawaban Salah!*')
             }
-
-            // Susun Kata
-            if (("game_" + m.from in susunkata)) {
-                let id = "game_" + m.from
-                if (!(id in susunkata)) return m.reply("Susun Kata game session has ended")
-                if (m._data.quotedStanzaID == susunkata[id][0].id.id) {
-                    let json = JSON.parse(JSON.stringify(susunkata[id][1]))
-                    if (m.text.toLowerCase() == json.jawaban.toLowerCase().trim()) {
-                        //global.db.users[sender].exp += caklontong[id][2]
-                        await m.reply(`Right Answer!\n${json.jawaban}`)
-                        clearTimeout(susunkata[id][3])
-                        delete susunkata[id]
-                    } else if (correct(m.text.toLowerCase(), [json.jawaban.toLowerCase().trim()]) >= threshold)
-                        m.reply("Almost Right")
-                    else
-                        m.reply("Wrong Answer")
-                }
-
-                return !0
+            if (tebakbendera.hasOwnProperty(m.sender.split('@')[0]) && !isCmd) {
+                jawaban = tebakbendera[m.sender.split('@')[0]]
+                if (budy.toLowerCase() == jawaban) {
+                    await killua.sendMessage(m.from, { text:`Selamat Jawaban ${budy} Benar 🎉\n\nIngin bermain lagi? Tekan Tombol Lanjut dibawah\n`, footer:'Entertainment\nPowered By https://zenzapis.xyz', buttons:[{ buttonId:'tebakbendera', buttonText:{ displayText:'Lanjut'}, type:1 }], headerType:4 }, { quoted: m })
+                    delete tebakbendera[m.sender.split('@')[0]]
+                } else m.reply('*Jawaban Salah!*')
             }
-
-            // Tebak Bendera
-            if (("game_" + m.from in tebakbendera)) {
-                let id = "game_" + m.from
-                if (!(id in tebakbendera)) return m.reply("Tebak Bendera game session has ended")
-                if (m._data.quotedStanzaID === tebakbendera[id][0].id.id) {
-                    let json = JSON.parse(JSON.stringify(tebakbendera[id][1]))
-                    if (m.text.toLowerCase() === json.name.toLowerCase().trim()) {
-                        //global.db.users[sender].exp += caklontong[id][2]
-                        await m.reply(`Right Answer!\n${json.name}`)
-                        clearTimeout(tebakbendera[id][3])
-                        delete tebakbendera[id]
-                    } else if (correct(m.text.toLowerCase(), [json.name.toLowerCase()]) >= threshold)
-                        m.reply("Almost Right")
-                    else
-                        m.reply("Wrong Answer")
-                }
-
-                return !0
+            if (tebakgambar.hasOwnProperty(m.sender.split('@')[0]) && !isCmd) {
+                jawaban = tebakgambar[m.sender.split('@')[0]]
+                if (budy.toLowerCase() == jawaban) {
+                    await killua.sendMessage(m.from, { text:`Selamat Jawaban ${budy} Benar 🎉\n\nIngin bermain lagi? Tekan Tombol Lanjut dibawah\n`, footer:'Entertainment\nPowered By https://zenzapis.xyz', buttons:[{ buttonId:'tebakgambar', buttonText:{ displayText:'Lanjut'}, type:1 }], headerType:4 }, { quoted: m })
+                    delete tebakgambar[m.sender.split('@')[0]]
+                } else m.reply('*Jawaban Salah!*')
             }
-
-            // Tebak Lagu
-            if (("game_" + m.from in tebaklagu)) {
-                let id = "game_" + m.from
-                if (!(id in tebaklagu)) return m.reply("Tebak Bendera game session has ended")
-                if (m._data.quotedStanzaID == tebaklagu[id][0].id.id) {
-                    let json = JSON.parse(JSON.stringify(tebaklagu[id][1]))
-                    if (m.text.toLowerCase() == json.jawaban.toLowerCase().trim()) {
-                        //global.db.users[sender].exp += caklontong[id][2]
-                        await m.reply(`Right Answer!\nTitle : ${json.jawaban}\nArtist : ${json.artist}`)
-                        clearTimeout(tebaklagu[id][3])
-                        delete tebaklagu[id]
-                    } else if (correct(m.text.toLowerCase(), [json.jawaban.toLowerCase()]) >= threshold)
-                        m.reply("Almost Right")
-                    else
-                        m.reply("Wrong Answer")
-                }
-
-                return !0
+            if (tebakkabupaten.hasOwnProperty(m.sender.split('@')[0]) && !isCmd) {
+                jawaban = tebakkabupaten[m.sender.split('@')[0]]
+                if (budy.toLowerCase() == jawaban) {
+                    await killua.sendMessage(m.from, { text:`Selamat Jawaban ${budy} Benar 🎉\n\nIngin bermain lagi? Tekan Tombol Lanjut dibawah\n`, footer:'Entertainment\nPowered By https://zenzapis.xyz', buttons:[{ buttonId:'tebakkabupaten', buttonText:{ displayText:'Lanjut'}, type:1 }], headerType:4 }, { quoted: m })
+                    delete tebakkabupaten[m.sender.split('@')[0]]
+                } else m.reply('*Jawaban Salah!*')
+            }
+            if (tebakkalimat.hasOwnProperty(m.sender.split('@')[0]) && !isCmd) {
+                jawaban = tebakkalimat[m.sender.split('@')[0]]
+                if (budy.toLowerCase() == jawaban) {
+                    await killua.sendMessage(m.from, { text:`Selamat Jawaban ${budy} Benar 🎉\n\nIngin bermain lagi? Tekan Tombol Lanjut dibawah\n`, footer:'Entertainment\nPowered By https://zenzapis.xyz', buttons:[{ buttonId:'tebakkalimat', buttonText:{ displayText:'Lanjut'}, type:1 }], headerType:4 }, { quoted: m })
+                    delete tebakkalimat[m.sender.split('@')[0]]
+                } else m.reply('*Jawaban Salah!*')
+            }
+            if (tebakkata.hasOwnProperty(m.sender.split('@')[0]) && !isCmd) {
+                jawaban = tebakkata[m.sender.split('@')[0]]
+                if (budy.toLowerCase() == jawaban) {
+                    await killua.sendMessage(m.from, { text:`Selamat Jawaban ${budy} Benar 🎉\n\nIngin bermain lagi? Tekan Tombol Lanjut dibawah\n`, footer:'Entertainment\nPowered By https://zenzapis.xyz', buttons:[{ buttonId:'tebakkata', buttonText:{ displayText:'Lanjut'}, type:1 }], headerType:4 }, { quoted: m })
+                    delete tebakkata[m.sender.split('@')[0]]
+                } else m.reply('*Jawaban Salah!*')
+            }
+            if (tebaklagu.hasOwnProperty(m.sender.split('@')[0]) && !isCmd) {
+                jawaban = tebaklagu[m.sender.split('@')[0]]
+                if (budy.toLowerCase() == jawaban) {
+                    await killua.sendMessage(m.from, { text:`Selamat Jawaban ${budy} Benar 🎉\n\nIngin bermain lagi? Tekan Tombol Lanjut dibawah\n`, footer:'Entertainment\nPowered By https://zenzapis.xyz', buttons:[{ buttonId:'tebaklagu', buttonText:{ displayText:'Lanjut'}, type:1 }], headerType:4 }, { quoted: m })
+                    delete tebaklagu[m.sender.split('@')[0]]
+                } else m.reply('*Jawaban Salah!*')
+            }
+            if (tekateki.hasOwnProperty(m.sender.split('@')[0]) && !isCmd) {
+                jawaban = tekateki[m.sender.split('@')[0]]
+                if (budy.toLowerCase() == jawaban) {
+                    await killua.sendMessage(m.from, { text:`Selamat Jawaban ${budy} Benar 🎉\n\nIngin bermain lagi? Tekan Tombol Lanjut dibawah\n`, footer:'Entertainment\nPowered By https://zenzapis.xyz', buttons:[{ buttonId:'tekateki', buttonText:{ displayText:'Lanjut'}, type:1 }], headerType:4 }, { quoted: m })
+                    delete tekateki[m.sender.split('@')[0]]
+                } else m.reply('*Jawaban Salah!*')
+            }
+            if (tebaklirik.hasOwnProperty(m.sender.split('@')[0]) && !isCmd) {
+                jawaban = tebaklirik[m.sender.split('@')[0]]
+                if (budy.toLowerCase() == jawaban) {
+                    await killua.sendMessage(m.from, { text:`Selamat Jawaban ${budy} Benar 🎉\n\nIngin bermain lagi? Tekan Tombol Lanjut dibawah\n`, footer:'Entertainment\nPowered By https://zenzapis.xyz', buttons:[{ buttonId:'tebaklirik', buttonText:{ displayText:'Lanjut'}, type:1 }], headerType:4 }, { quoted: m })
+                    delete tebaklirik[m.sender.split('@')[0]]
+                } else m.reply('*Jawaban Salah!*')
+            }
+            if (tebaktebakan.hasOwnProperty(m.sender.split('@')[0]) && !isCmd) {
+                jawaban = tebaktebakan[m.sender.split('@')[0]]
+                if (budy.toLowerCase() == jawaban) {
+                    await killua.sendMessage(m.from, { text:`Selamat Jawaban ${budy} Benar 🎉\n\nIngin bermain lagi? Tekan Tombol Lanjut dibawah\n`, footer:'Entertainment\nPowered By https://zenzapis.xyz', buttons:[{ buttonId:'tebaktebakan', buttonText:{ displayText:'Lanjut'}, type:1 }], headerType:4 }, { quoted: m })
+                    delete tebaktebakan[m.sender.split('@')[0]]
+                } else m.reply('*Jawaban Salah!*')
             }
         } catch (e) {
             console.error(e)
         }
 
-        if (isCmd && !cmd) {
+        if (!isOffline && isCmd && !cmd) {
             var array = Array.from(commands.keys());
             Array.from(commands.values()).map((v) => v.alias).join(" ").replace(/ +/gi, ",").split(",").map((v) => array.push(v))
-
-            var anu = await correct(cmdName, array)
+            
+            var anu = correct(cmdName, array)
             var alias = commands.get(anu.result) || Array.from(commands.values()).find((v) => v.alias.find((x) => x.toLowerCase() == anu.result)) || ""
-console.log(anu)
-            teks = `
-Command *Not Found!*
-Maybe you mean is 
-
-*_Command :_* ${prefix + anu.result}
-*_Alias :_* ${alias.alias.join(", ")}
-
-_Send command again if needed_
-            `
+            teks = `Command Not Found!\nMaybe you mean is\n\n*_Command :_* ${prefix + anu.result}\n*_Alias :_* ${alias.alias.join(", ")}\n\n_Send command again if needed_`
             m.reply(teks)
         } else if (!cmd) return
 
@@ -318,11 +245,11 @@ _Send command again if needed_
 			return global.mess("premium", m)
 		}
 
-        if (cmd.isLimit && !isPremium) {
-            if (user.isLimit(m.sender, isPremium, isOwner, limitCount, _user) && !m.fromMe)
-            return m.reply(`Your limit has run out, please send ${prefix}limit to check the limit`);
-            user.limitAdd(m.sender, _user);
-        }
+        //if (cmd.isLimit && !isPremium) {
+        //    if (user.isLimit(m.sender, isPremium, isOwner, limitCount, _user) && !m.fromMe)
+        //    return m.reply(`Your limit has run out, please send ${prefix}limit to check the limit`);
+        //    user.limitAdd(m.sender, isPremium, isOwner, _user);
+        //}
 
         if (cmd.isMedia && !isMedia) {
             return global.mess("media", m)
@@ -366,12 +293,12 @@ _Send command again if needed_
         }
 
         try {
-			if (cmd) {
+			if (cmd && !cmd.noLimit) {
                 if (isGroup) group.addGroup(m.from)
                 user.addUser(m.sender, m.pushName, _user)
                 if (user.isLimit(m.sender, isPremium, isOwner, limitCount, _user) && !m.fromMe)
 				return m.reply(`Your limit has run out, please send ${prefix}limit to check the limit`);
-				user.limitAdd(m.sender, _user);
+				user.limitAdd(m.sender, isPremium, isOwner, _user);
 			}
 			cmd.start(killua, m, {
                 name: 'killua Zoldyck',

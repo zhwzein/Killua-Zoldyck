@@ -1,34 +1,22 @@
-const { fetchUrl } = require("../../lib/Function")
-
-let timeout = 120000
-let poin = 4999
+const { fetchUrl, sleep } = require("../../lib/Function")
 
 module.exports = {
     name: "asahotak",
     alias: ["aotak"],
-    desc: "Entertaiment Fiture Asah Otak",
+    desc: "Entertaiment Asah Otak",
     type: "entertainment",
     start: async(killua, m) => {
-        let game = global.db.game.asahotak
-        let id = "game_" + m.from
-        if (id in game) {
-            killua.sendMessage(m.from, "There are still unfinished Asah Otak sessions", { quoted: game[id][0] })
-            throw false
+        if (asahotak.hasOwnProperty(m.sender.split('@')[0])) return m.reply("Masih Ada Sesi Yang Belum Diselesaikan!")
+        let fetch = await fetchUrl(global.api("zenz", "/api/asahotak", {}, "apikey"))
+        let result = await fetch.result
+        killua.sendText(m.from, `Silahkan Jawab Pertanyaan Berikut\n\n${result.soal}\n\nWaktu : 30s`, m).then(() => {
+            asahotak[m.sender.split('@')[0]] = result.jawaban.toLowerCase()
+            console.log("Jawaban: " + result.jawaban)
+        })
+        await sleep(30000)
+        if (asahotak.hasOwnProperty(m.sender.split('@')[0])) {
+            killua.sendText(m.from, `Waktu Habis\n\nJawaban:  ${asahotak[m.sender.split('@')[0]]}`, m)
+            delete asahotak[m.sender.split('@')[0]]
         }
-        let res = await fetchUrl(global.api("zenz", "/api/asahotak", {}, "apikey"))
-        let json = await res.result
-        let caption = `
-*Question :* ${json.soal}
-
-Timeout *${(timeout / 1000).toFixed(2)} second(s)*
-        `.trim()
-        game[id] = [
-            await m.reply(caption),
-            json, poin,
-            setTimeout(async () => {
-                if (game[id]) await m.reply(`Time has run out!\nthe answer is *${json.jawaban}*`)
-                delete game[id]
-            }, timeout)
-        ]
     }
 }

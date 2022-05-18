@@ -1,30 +1,22 @@
-const { fetchUrl } = require("../../lib/Function")
-
-
-let timeout = 120000
-let poin = 4999
+const { fetchUrl, sleep } = require("../../lib/Function")
 
 module.exports = {
     name: "tebaklagu",
     alias: ["tlagu"],
-    desc: "Entertaiment Fiture Tebak Lagu",
+    desc: "Entertaiment Tebak Lagu",
     type: "entertainment",
     start: async(killua, m) => {
-        let game = global.db.game.tebaklagu
-        let id = "_game" + m.from
-        if (id in game) {
-            killua.sendMessage(m.from, "There are still unfinished Susun Kata sessions", { quoted: game[id][0] })
-            throw false
+        if (tebaklagu.hasOwnProperty(m.sender.split('@')[0])) return m.reply("Masih Ada Sesi Yang Belum Diselesaikan!")
+        let fetch = await fetchUrl("https://hisoka-morou.netlify.app/assets/database/tebaklagu.json")
+        let result = await fetch[Math.floor(Math.random() * fetch.length)]
+        killua.sendMessage(m.from, { audio: { url: result.link_song }, mimetype: "audio/mpeg", fileName: "???" }, { quoted: m }).then(() => {
+            tebaklagu[m.sender.split('@')[0]] = result.jawaban.toLowerCase()
+            console.log("Jawaban: " + result.jawaban)
+        })
+        await sleep(30000)
+        if (tebaklagu.hasOwnProperty(m.sender.split('@')[0])) {
+            killua.sendText(m.from, `Waktu Habis\n\nJawaban:  ${tebaklagu[m.sender.split('@')[0]]}`, m)
+            delete tebaklagu[m.sender.split('@')[0]]
         }
-        let res = await fetchUrl("https://hisoka-morou.netlify.app/assets/database/tebaklagu.json")
-        let json = res[Math.floor(Math.random() * res.length)]
-        game[id] = [
-            await killua.sendMessage(m.from, { audio: { url: json.link_song }, mimetype: "audio/mpeg", fileName: "???" }, { quoted: m }),
-            json, poin,
-            setTimeout(async () => {
-                if (game[id]) await m.reply(`Time has run out!\nthe answer is *${json.jawaban}*`)
-                delete game[id]
-            }, timeout)
-        ]
     }
 }

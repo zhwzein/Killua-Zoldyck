@@ -1,33 +1,22 @@
-const { fetchUrl } = require("../../lib/Function")
-
+const { fetchUrl, sleep } = require("../../lib/Function")
 
 module.exports = {
     name: "family100",
     alias: ["fam100"],
-    desc: "Entertaiment Fiture Family100",
+    desc: "Entertaiment Family100",
     type: "entertainment",
     start: async(killua, m) => {
-        let family100 = global.db.game.family100
-        let id = "game_" + m.from
-        if (id in family100) {
-            killua.sendMessage(m.from, "There are still unfinished Siapakah Aku sessions", { quoted: game[id].msg })
-            throw false
-        }
-        let res = await fetchUrl(global.api("zenz", "/api/family100", {}, "apikey"))
-        let json = await res.result
-        let caption = `
-*Question :* ${json.soal}
-
-There is *${json.jawaban.length}* answers${json.jawaban.find(v => v.includes(' ')) ? `
-(some answers have spaces)
-`: ''}
-        `.trim()
-        family100[id] = {
-            id,
-            msg: await m.reply(caption),
-            ...json,
-            terjawab: Array.from(json.jawaban, () => false),
-            winScore: 500
+        if (family100.hasOwnProperty(m.sender.split('@')[0])) return m.reply("Masih Ada Sesi Yang Belum Diselesaikan!")
+        let fetch = await fetchUrl(global.api("zenz", "/api/family100", {}, "apikey"))
+        let result = await fetch.result
+        killua.sendText(m.from, `Silahkan Jawab Pertanyaan Berikut\n\n${result.soal} ?\nPilih Salah Satu Dari ${result.jawaban.length} Jawaban\n\nWaktu : 30s\n`, m).then(() => {
+            family100[m.sender.split('@')[0]] = result.jawaban
+            console.log("Jawaban: " + result.jawaban)
+        })
+        await sleep(30000)
+        if (family100.hasOwnProperty(m.sender.split('@')[0])) {
+            killua.sendText(m.from, `Waktu Habis\n\nJawaban:  ${family100[m.sender.split('@')[0]]}`, m)
+            delete family100[m.sender.split('@')[0]]
         }
     }
 }

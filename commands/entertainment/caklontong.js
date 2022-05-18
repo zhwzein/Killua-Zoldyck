@@ -1,31 +1,22 @@
-const { fetchUrl } = require("../../lib/Function")
-
-let timeout = 120000
-let poin = 4999
+const { fetchUrl, sleep } = require("../../lib/Function")
 
 module.exports = {
     name: "caklontong",
     alias: ["clontong"],
-    desc: "Entertaiment Fiture Cak Lontong",
+    desc: "Entertaiment Cak Lontong",
     type: "entertainment",
     start: async(killua, m) => {
-        let game = global.db.game.caklontong
-        let id = "game_" + m.from
-        if (id in game) return killua.sendMessage(m.from, "There are still unfinished cak lontong sessions", { quoted: game[id][0] })
-        let res = await fetchUrl(global.api("zenz", "/api/caklontong", {}, "apikey"))
-        let json = await res.result
-        let caption = `
-*Question :* ${json.soal}
-
-Timeout *${(timeout / 1000).toFixed(2)} second(s)*
-        `.trim()
-        game[id] = [
-            await m.reply(caption),
-            json, poin,
-            setTimeout(async () => {
-                if (game[id]) await m.reply(`Time has run out!\nthe answer is *${json.jawaban}*\n${json.deskripsi}`)
-                delete game[id]
-            }, timeout)
-        ]
+        if (caklontong.hasOwnProperty(m.sender.split('@')[0])) return m.reply("Masih Ada Sesi Yang Belum Diselesaikan!")
+        let fetch = await fetchUrl(global.api("zenz", "/api/caklontong", {}, "apikey"))
+        let result = await fetch.result
+        killua.sendText(m.from, `Silahkan Jawab Pertanyaan Berikut\n\n${result.soal}\n\nWaktu : 30s`, m).then(() => {
+            caklontong[m.sender.split('@')[0]] = result.jawaban.toLowerCase()
+            console.log("Jawaban: " + result.jawaban)
+        })
+        await sleep(30000)
+        if (caklontong.hasOwnProperty(m.sender.split('@')[0])) {
+            killua.sendText(m.from, `Waktu Habis\n\nJawaban:  ${caklontong[m.sender.split('@')[0]]}\nKeterangan: ${result.deskripsi}`, m)
+            delete caklontong[m.sender.split('@')[0]]
+        }
     }
 }

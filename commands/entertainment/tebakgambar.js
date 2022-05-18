@@ -1,30 +1,22 @@
-const { fetchUrl } = require("../../lib/Function")
-
-
-let timeout = 120000
-let poin = 4999
+const { fetchUrl, sleep } = require("../../lib/Function")
 
 module.exports = {
     name: "tebakgambar",
     alias: ["tgambar"],
-    desc: "Entertaiment Fiture Tebak Gambar",
+    desc: "Entertaiment Tebak Gambar",
     type: "entertainment",
     start: async(killua, m) => {
-        let game = global.db.game.tebakgambar
-        let id = "_game" + m.from
-        if (id in game) {
-            killua.sendMessage(m.from, "There are still unfinished Susun Kata sessions", { quoted: game[id][0] })
-            throw false
+        if (tebakgambar.hasOwnProperty(m.sender.split('@')[0])) return m.reply("Masih Ada Sesi Yang Belum Diselesaikan!")
+        let fetch = await fetchUrl(global.api("zenz", "/api/tebakgambar", {}, "apikey"))
+        let result = await fetch.result
+        killua.sendFile(m.from, result.img, "", m, { caption: `Silahkan Jawab Pertanyaan Berikut\n\nDeskripsi: ${result.deskripsi}\n\nWaktu : 30s`}).then(() => {
+            tebakgambar[m.sender.split('@')[0]] = result.jawaban.toLowerCase()
+            console.log("Jawaban: " + result.jawaban)
+        })
+        await sleep(30000)
+        if (tebakgambar.hasOwnProperty(m.sender.split('@')[0])) {
+            killua.sendText(m.from, `Waktu Habis\n\nJawaban:  ${tebakgambar[m.sender.split('@')[0]]}`, m)
+            delete tebakgambar[m.sender.split('@')[0]]
         }
-        let res = await fetchUrl(global.api("zenz", "/api/tebakgambar", {}, "apikey"))
-        let json = await res.result
-        game[id] = [
-            await killua.sendFile(m.from, json.img, "", m, { caption: `Answers the following questions\n${json.deskripsi}\n\nTimeout *${(timeout / 1000).toFixed(2)} second(s)*`}),
-            json, poin,
-            setTimeout(async () => {
-                if (game[id]) await m.reply(`Time has run out!\nthe answer is *${json.jawaban}*`)
-                delete game[id]
-            }, timeout)
-        ]
     }
 }

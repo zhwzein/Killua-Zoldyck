@@ -12,7 +12,7 @@ module.exports = {
         let buttonMessage = {
             image: { url: fetch },
             caption: `Random SFW Image ${toUpper(text)}`,
-            footer: `Powered By https://zenzapis.xyz`,
+            footer: config.footer,
             buttons: buttons,
             headerType: 4
         }

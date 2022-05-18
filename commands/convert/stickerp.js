@@ -15,7 +15,7 @@ module.exports = {
             let download = await killua.downloadAndSaveMediaMessage(quoted)
             file_name = getRandom('webp')
             ffmpeg(`./${download}`).input(download).on('end', function () {
-                killua.sendFile(m.from, fs.readFileSync(file_name), "", m, { asSticker: true, author: global.author, packname: global.packname, categories: ['😄','😊'] }).then(() => {
+                killua.sendFile(m.from, fs.readFileSync(file_name), "", m, { asSticker: true, author: config.exif.author, packname: config.exif.packname, categories: ['😄','😊'] }).then(() => {
                     fs.unlinkSync(download)
                     fs.unlinkSync(file_name)
                 })

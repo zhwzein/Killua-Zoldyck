@@ -18,7 +18,7 @@ module.exports = {
             let buttonMessage = {
                 image: { url: fetch.nsfwloli },
                 caption: `Random Image ${toUpper(text)}`,
-                footer: `Powered By https://zenzapis.xyz`,
+                footer: config.footer,
                 buttons: buttons,
                 headerType: 4
             }
@@ -32,7 +32,7 @@ module.exports = {
             let buttonMessage = {
                 image: { url: fetch.sfwloli },
                 caption: `Random Image ${toUpper(text)}`,
-                footer: `Powered By https://zenzapis.xyz`,
+                footer: config.footer,
                 buttons: buttons,
                 headerType: 4
             }
@@ -46,7 +46,7 @@ module.exports = {
             let buttonMessage = {
                 image: { url: fetch.sfwshota },
                 caption: `Random Image ${toUpper(text)}`,
-                footer: `Powered By https://zenzapis.xyz`,
+                footer: config.footer,
                 buttons: buttons,
                 headerType: 4
             }
@@ -61,7 +61,7 @@ module.exports = {
             let buttonMessage = {
                 image: { url: fetch.sfwloli },
                 caption: `Random Image Nsfw Loli`,
-                footer: `Powered By https://zenzapis.xyz`,
+                footer: config.footer,
                 buttons: buttons,
                 headerType: 4
             }

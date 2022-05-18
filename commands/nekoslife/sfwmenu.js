@@ -37,7 +37,7 @@ module.exports = {
         }]
         const listMessage = {
             text: "NekosLife [SFW]",
-            footer: `Powered By https://zenzapis.xyz`,
+            footer: config.footer,
             buttonText: "OPEN LIST",
             sections
         }

@@ -14,7 +14,7 @@ module.exports = {
         ]
         let buttonMessage = {
             text: `Random ${toUpper(text)}\n\n` + fetch.result.message,
-            footer: `Powered By https://zenzapis.xyz`,
+            footer: config.footer,
             buttons: buttons,
             headerType: 4
         }

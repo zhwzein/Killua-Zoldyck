@@ -46,7 +46,7 @@ module.exports = {
             }]
             const listMessage = {
                 text: "List 25 Nabi",
-                footer: `Powered By https://zenzapis.xyz`,
+                footer: config.footer,
                 buttonText: "OPEN LIST",
                 sections
             }

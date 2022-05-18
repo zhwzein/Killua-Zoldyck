@@ -16,8 +16,9 @@ module.exports = {
             group.delAntidelete(m.from, _group)
             m.reply(`Success deactivated Antidelete`)
         } else {
-            m.reply('Pilih enable atau disable!')
+            m.reply(`*⭔ Antidelete Status:* ${group.cekAntidelete(m.from, _group) ? 'Activated' : 'Deactivated'}\n\n_Pilih enable atau disable!_`)
         }
 	},
-    isGroup: true
+    isGroup: true,
+    isAdmin: true,
 }

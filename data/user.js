@@ -7,7 +7,8 @@
 const fs = require("fs")
 const toMs = require("ms")
 const cron = require('node-cron')
-const time = require("moment-timezone").tz('Asia/Jakarta').format('DD/MM HH:mm:ss')
+const config = JSON.parse(fs.readFileSync('./config.json'))
+const time = require("moment-timezone").tz(config.timezone).format('DD/MM HH:mm:ss')
 
 // STORE USERDATA
 const addUser = (userId, name, _db) => {
@@ -57,7 +58,7 @@ const isLimit = (userId, isPremium, isOwner, limitCount, _db) => {
 	}
 }
 const limitAdd = (userId, isPremium, isOwner, _db) => {
-	if (isPremium || isOwner) return false;
+	if (isPremium || isOwner) return false
 	let found = false
 	Object.keys(_db).forEach((i) => {
 		if (_db[i].id === userId) {
@@ -174,7 +175,7 @@ const expiredCheck = (killua, m, _db) => {
 
 // LIMIT RESET
 setInterval(() => {
-	cron.schedule('22 21 * * *', () => {
+	cron.schedule('49 4 * * *', () => {
 		let found = false
 			Object.keys(_user).forEach((i) => {
 				if (_user[i].limit) {
@@ -188,20 +189,20 @@ setInterval(() => {
 			}
 	}, {
 		scheduled: true,
-		timezone: 'Asia/Jakarta'
+		timezone: config.timezone
 	})
-}, 1000)
+}, 0)
 
 module.exports = {
-   addUser,
-   checkUser,
-   isLimit,
-   limitAdd,
-   getLimit,
-   addBalance,
-   getBalance,
-   addPremiumUser,
-   checkPremiumUser,
-   getPremiumExpired,
-   expiredCheck,
+	addUser,
+	checkUser,
+	isLimit,
+	limitAdd,
+	getLimit,
+	addBalance,
+	getBalance,
+	addPremiumUser,
+	checkPremiumUser,
+	getPremiumExpired,
+	expiredCheck,
 }

@@ -16,7 +16,7 @@ module.exports = {
         let buttonMessage = {
             video: { url: fetch.result.nowm },
             caption: `Download Tiktok From : ${isUrl(text)[0]}`,
-            footer: 'Powered by https://zenzapis.xyz',
+            footer: config.footer,
             buttons: buttons,
             headerType: 5
         }

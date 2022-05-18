@@ -41,7 +41,7 @@ module.exports = {
         }]
         const listMessage = {
             text: "More NSFW",
-            footer: `Powered By https://zenzapis.xyz`,
+            footer: config.footer,
             buttonText: "OPEN LIST",
             sections
         }

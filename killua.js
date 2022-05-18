@@ -1,4 +1,4 @@
-require("./config")
+require("./global")
 const { generateWAMessage, areJidsSameUser, proto } = require("@adiwajshing/baileys")
 const { Simple, Collection, Function } = require("./lib")
 const { isUrl, isNumber } = Function
@@ -9,6 +9,7 @@ const chalk = require("chalk")
 const util = require("util")
 const { correct } = require("./lib/Correct")
 
+global.config = JSON.parse(fs.readFileSync('./config.json'))
 global.db = JSON.parse(fs.readFileSync("./database/db.json"))
 if (global.db) global.db = {
     sticker: {},
@@ -44,28 +45,18 @@ module.exports = async (killua, m, commands, chatUpdate) => {
         let groupAdmin = isGroup ? participants.filter(v => v.admin !== null).map(v => v.id) : []
         let isBotAdmin = isGroup ? groupAdmin.includes(killua.user?.jid) : false
         let isAdmin = isGroup ? groupAdmin.includes(sender) : false
-        let isOwner = [killua.user?.jid, ...global.owner].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(sender)
-
-		let isAdmins = isGroup ? getAdmins(participants) : ""
-        global.cekAdmin = (i) => isAdmins.includes(i)
-        global.isBotAdmins = killua.user.id.split(":")[0] + "@s.whatsapp.net"
-
-        function getAdmins(a) {
-            let admins = [];
-            for (let ids of a) {
-                !ids.admin ? "" : admins.push(ids.id);
-            }
-            return admins;
-        }
+        let isOwner = [killua.user?.jid, ...config.owner].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(sender)
+        
         global.isPremium = user.checkPremiumUser(m.sender, _user)
         global.isAntidelete = group.cekAntidelete(m.from, _group)
         global.isOffline = group.cekOffline(from, _group)
-        
+        global.isAntilink = group.cekAntilink(m.from, _group)
+
         user.expiredCheck(killua, m, _user);
 
-        if (options.autoRead) (killua.type == "legacy") ? await killua.chatRead(m.key, 1) : await killua.sendReadReceipt(from, sender, [m.id])
-        if (options.mute && !isOwner) return
-        if (options.self && !isOwner && !m.fromMe) return
+        if (config.options.autoRead) (killua.type == "legacy") ? await killua.chatRead(m.key, 1) : await killua.sendReadReceipt(from, sender, [m.id])
+        if (config.options.mute && !isOwner) return
+        if (config.options.self && !isOwner && !m.fromMe) return
 
         var prefix = /^[°•π÷×¶∆£¢€¥®™+✓_=|~!?@#%^&.©^]/gi.test(body) ? body.match(/^[°•π÷×¶∆£¢€¥®™+✓_=|~!?@#%^&.©^]/gi)[0] : Function.checkPrefix(prefa, body).prefix ?? "#"
 
@@ -121,17 +112,28 @@ module.exports = async (killua, m, commands, chatUpdate) => {
             console.error(e)
         }
 
-        // - Write
         setInterval(() => {
             fs.writeFileSync('./database/db.json', JSON.stringify(global.db, null, 2))
         }, 15 * 1000)
+
+        // ANTILINK
+        if (isGroup && isBotAdmin && isAntilink && !isAdmin && !isOwner) {
+            if (budy.match("://chat.whatsapp.com/")) {
+                setTimeout( () => {
+                    killua.groupParticipantsUpdate(from, [sender], "remove")
+                }, 5 * 1000)
+                setTimeout( () => {
+                    m.reply('*⭔ Link Group Detected!*\n_Sorry you will be kicked from this group!_')
+                }, 0)
+            }
+        }
 
         // ANTI DELETE
         if (isAntidelete && m.message && m.message.protocolMessage && m.message.protocolMessage.type == 0) {
             if (!db.chats[m.from].antidelete) return
             let key = m.message.protocolMessage.key
             let msg = await killua.serializeM(await Store.loadMessage(key.remoteJid, key.id))
-            let teks = `「 Message Delete Detect 」\n\n⬡ Name : ${msg.pushName}\n⬡ User : @${msg.sender.split("@")[0]}\n⬡ Date : ${moment(msg.messageTimestamp * 1000).tz("Asia/Jakarta")}\n⬡ Type : ${msg.type}\n`
+            let teks = `「 Message Delete Detect 」\n\n⬡ Name : ${msg.pushName}\n⬡ User : @${msg.sender.split("@")[0]}\n⬡ Date : ${moment(msg.messageTimestamp * 1000).tz(config.timezone)}\n⬡ Type : ${msg.type}\n`
             let tekss = teks.replace("GMT+0700", "")
             killua.relayMessage(m.from, msg.message, { messageId: msg.id })
             await killua.sendText(m.from, tekss, msg, { mentions: [msg.sender] })
@@ -257,7 +259,7 @@ module.exports = async (killua, m, commands, chatUpdate) => {
 		}
 
         //if (cmd.isLimit && !isPremium) {
-        //    if (user.isLimit(m.sender, isPremium, isOwner, limitCount, _user) && !m.fromMe)
+        //    if (user.isLimit(m.sender, isPremium, isOwner, config.options.limitCount, _user) && !m.fromMe)
         //    return m.reply(`Your limit has run out, please send ${prefix}limit to check the limit`);
         //    user.limitAdd(m.sender, isPremium, isOwner, _user);
         //}
@@ -307,7 +309,7 @@ module.exports = async (killua, m, commands, chatUpdate) => {
 			if (cmd && !cmd.noLimit) {
                 if (isGroup) group.addGroup(m.from)
                 user.addUser(m.sender, m.pushName, _user)
-                if (user.isLimit(m.sender, isPremium, isOwner, limitCount, _user) && !m.fromMe)
+                if (user.isLimit(m.sender, isPremium, isOwner, config.options.limitCount, _user) && !m.fromMe)
 				return m.reply(`Your limit has run out, please send ${prefix}limit to check the limit`);
 				user.limitAdd(m.sender, isPremium, isOwner, _user);
 			}

@@ -15,7 +15,7 @@ module.exports = {
         let buttonMessage = {
             video: { url: fetch.result.thumb },
             caption: `⭔ Desc : ${fetch.result.desc}\n⭔ Source Url : ${isUrl(text)[0]}`,
-            footer: 'Powered by https://zenzapis.xyz',
+            footer: config.footer,
             buttons: buttons,
             headerType: 4
         }

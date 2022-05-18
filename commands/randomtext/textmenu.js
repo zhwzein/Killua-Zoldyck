@@ -36,7 +36,7 @@ module.exports = {
         }]
         const listMessage = {
             text: "Random Text",
-            footer: `Powered By https://zenzapis.xyz`,
+            footer: config.footer,
             buttonText: "OPEN LIST",
             sections
         }

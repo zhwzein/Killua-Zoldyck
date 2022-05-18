@@ -49,7 +49,7 @@ module.exports = {
         }]
         const listMessage = {
             text: "Random Image",
-            footer: `Powered By https://zenzapis.xyz`,
+            footer: config.footer,
             buttonText: "OPEN LIST",
             sections
         }

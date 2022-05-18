@@ -25,7 +25,7 @@ module.exports = {
                 fs.unlinkSync(download)
                 fs.writeFileSync(file_name, body, "binary")
                 ini_buff = fs.readFileSync(file_name)
-                await killua.sendFile(m.from, ini_buff, "", m, { asSticker: true, author: global.author, packname: global.packname, categories: ['😄','😊'] }).then(() => {
+                await killua.sendFile(m.from, ini_buff, "", m, { asSticker: true, author: config.exif.author, packname: config.exif.packname, categories: ['😄','😊'] }).then(() => {
                     fs.unlinkSync(file_name)
                 })
             })

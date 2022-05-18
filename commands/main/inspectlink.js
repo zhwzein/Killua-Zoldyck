@@ -19,12 +19,12 @@ module.exports = {
 ⬡ *ID :* ${res.id}
 ⬡ *Subject :* ${res.subject}
 ⬡ *Subject Update By :* @${res.subjectOwner.split("@")[0]}
-⬡ *Subject Update At :* ${moment(res.subjectTime * 1000).tz("Asia/Jakarta").format("DD-MM-YYYY, HH:MM:SS")}
+⬡ *Subject Update At :* ${moment(res.subjectTime * 1000).tz(config.timezone).format("DD-MM-YYYY, HH:MM:SS")}
 ⬡ *Creator :* @${res.owner ? res.owner.split("@")[0] : res.id.split("-")[0]}
-⬡ *Create At :* ${moment(res.creation * 1000).tz("Asia/Jakarta").format("DD-MM-YYYY, HH:MM:SS")}
+⬡ *Create At :* ${moment(res.creation * 1000).tz(config.timezone).format("DD-MM-YYYY, HH:MM:SS")}
 ⬡ *Members Length :* ${res.size}
 ⬡ *Desc Update By :* ${res.descOwner ? "@" + res.descOwner.split("@")[0] : ""}
-⬡ *Desc Update At :* ${moment(res.descTime * 1000).tz("Asia/Jakarta").format("DD-MM-YYYY, HH:MM:SS")}
+⬡ *Desc Update At :* ${moment(res.descTime * 1000).tz(config.timezone).format("DD-MM-YYYY, HH:MM:SS")}
 ⬡ *Desc ID :* ${res.descId}
 ⬡ *Description :*\n${res.desc ? res.desc : "No Description"}
 ⬡ *Friends Who Are Known to Join :*\n${res.participants ? res.participants.map((user, i) => ++i + ". @" + user.jid.split("@")[0]).join("\n").trim() : "Not Found"}

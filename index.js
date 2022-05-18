@@ -1,4 +1,4 @@
-require("./config")
+require("./global")
 const { default: makeWASocket, DisconnectReason, useSingleFileAuthState, fetchLatestBaileysVersion, delay, jidNormalizedUser, makeWALegacySocket, useSingleFileLegacyAuthState, DEFAULT_CONNECTION_CONFIG, DEFAULT_LEGACY_CONNECTION_CONFIG } = require("@adiwajshing/baileys")
 const fs = require("fs")
 const util = require("util")
@@ -8,15 +8,18 @@ const yargs = require("yargs")
 const path = require("path")
 const { Boom } = require("@hapi/boom")
 const { Collection, Simple, Store } = require("./lib")
+const { exit } = require("process")
+const config = JSON.parse(fs.readFileSync('./config.json'))
 const { serialize, WAConnection } = Simple
 const Commands = new Collection()
+global.prefa = /^[#$+.?_&<>!/\\]/
 Commands.prefix = prefa
 
-global.api = (name, path = '/', query = {}, apikeyqueryname) => (name in global.APIs ? global.APIs[name] : name) + path + (query || apikeyqueryname ? '?' + new URLSearchParams(Object.entries({ ...query, ...(apikeyqueryname ? { [apikeyqueryname]: global.APIKeys[name in global.APIs ? global.APIs[name] : name] } : {}) })) : '')
+global.api = (name, path = '/', query = {}, apikeyqueryname) => (name in config.APIs ? config.APIs[name] : name) + path + (query || apikeyqueryname ? '?' + new URLSearchParams(Object.entries({ ...query, ...(apikeyqueryname ? { [apikeyqueryname]: config.APIs.apikey } : {}) })) : '')
 
 global.opts = new Object(yargs(process.argv.slice(2)).exitProcess(false).parse())
 
-const { state, saveState } = global.opts["legacy"] ? useSingleFileLegacyAuthState(`./${sessionName.legacy}`) : useSingleFileAuthState(`./${sessionName.multi}`)
+const { state, saveState } = global.opts["legacy"] ? useSingleFileLegacyAuthState(`./${config.sessionName.legacy}`) : useSingleFileAuthState(`./${config.sessionName.multi}`)
 
 const readCommands = () => {
     let dir = path.join(__dirname, "./commands")
@@ -50,9 +53,13 @@ const connect = async () => {
         printQRInTerminal: true,
         logger: pino({ level: "silent" }),
         auth: state,
-        version: [2, 2210, 9]
+        version: version
     }
     const killua = new WAConnection(global.opts["legacy"] ? makeWALegacySocket(connOptions) : makeWASocket(connOptions))
+    if (config.APIs.apikey == "YOURAPIKEY") {
+        console.log(chalk.black(chalk.bgRedBright('Apikey is not valid, please check at config.json')))
+        exit()
+    }
     global.Store = Store.bind(killua)
 
     killua.ev.on("creds.update", saveState)

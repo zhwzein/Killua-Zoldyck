@@ -7,11 +7,9 @@ module.exports = {
     use: "<reply>",
 	desc: "Change This Group Photo Profile",
     type: "group",
-    example: "\ndefault : %prefix%command --media reply\nwith original ratio : %prefix%command original",
+    example: "%prefix%command",
     noLimit: true,
     start: async(killua, m, { mime, quoted, text, prefix, command }) => {
-        if (!cekAdmin(m.sender)) return global.mess("admin", m)
-        if (!cekAdmin(isBotAdmins)) return global.mess("botAdmin", m)
         if (/image/.test(mime)) {
             let media = await killua.downloadAndSaveMediaMessage(quoted)
             if (text.toLowerCase() === "original") {
@@ -38,10 +36,12 @@ module.exports = {
                 }).catch(() => m.reply('err'))
             }
         } else {
-            return m.reply(`Reply to Supported media With Caption ${prefix + command}`, m.from, { quoted: m })
+            return m.reply(`Reply to Supported media With Caption ${prefix + command}\n\n_default : ${prefix + command} --media reply_\n_Original Ratio : ${prefix + command} --media reply original_`)
         }
 	},
-    isGroup: true
+    isGroup: true,
+    isAdmin: true,
+    isBotAdmin: true
 }
 
 async function generateProfilePicture(buffer) {

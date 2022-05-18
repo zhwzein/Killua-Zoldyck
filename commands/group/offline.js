@@ -7,7 +7,6 @@ module.exports = {
     example: "%prefix%command enable or disable",
     noLimit: true,
     start: async(killua, m, { text, prefix, command }) => {
-        if (!cekAdmin(m.sender)) return global.mess("admin", m)
         if (text === 'enable') {
             if (isOffline === true) return m.reply('Mute already active')
             group.addOffline(m.from, _group)
@@ -17,9 +16,10 @@ module.exports = {
             group.delOffline(m.from, _group)
             m.reply(`Success BOT Online For This Group`)
         } else {
-            m.reply('Pilih enable atau disable!')
+            m.reply(`*⭔ Offline Status:* ${group.cekOffline(m.from, _group) ? 'Activated' : 'Deactivated'}\n\n_Pilih enable atau disable!_`)
         }
 	},
     isGroup: true,
+    isAdmin: true,
     isOffline: true
 }

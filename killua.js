@@ -79,7 +79,7 @@ module.exports = async (killua, m, commands, chatUpdate) => {
         let cmdName = body.replace(prefix, '').trim().split(/ +/).shift().toLowerCase()
         const cmd = commands.get(cmdName) || Array.from(commands.values()).find((v) => v.alias.find((x) => x.toLowerCase() == cmdName)) || ""
 
-        if (isOffline && cmdName && !isAdmin && !isOwner) return
+        if (isOffline && cmdName && !isOwner && !cmd.isOffline) return
 
         if (m.message && isGroup) {
             console.log("" + "\n" + chalk.black(chalk.bgWhite('[ GRUP ]')), chalk.black(chalk.bgBlueBright(isGroup ? metadata.subject : m.pushName)) + "\n" + chalk.black(chalk.bgWhite('[ TIME ]')), chalk.black(chalk.bgBlueBright(new Date)) + "\n" + chalk.black(chalk.bgWhite('[ FROM ]')), chalk.black(chalk.bgBlueBright(m.pushName + " @" + m.sender.split('@')[0])) + "\n" + chalk.black(chalk.bgWhite('[ BODY ]')), chalk.black(chalk.bgBlueBright(body || type)) + "\n" + "")

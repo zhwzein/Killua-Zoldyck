@@ -13,11 +13,20 @@ module.exports = {
         let i = fetch.result
         caption += `⭔ Title : ${i.title}\n`
         caption += `⭔ Source Url : ${i.url}\n`
-        caption += `⭔ quality : ${i.medias[0].quality}\n`
-        caption += `⭔ extension : ${i.medias[0].extension}\n`
-        caption += `⭔ size : ${i.medias[0].size}\n`
-        caption += `⭔ formattedSize : ${i.medias[0].formattedSize}\n`
-        killua.sendFile(m.from, fetch.result.medias[0].url, "", m, { caption })
+        caption += `⭔ Duration : ${i.duration}\n`
+        caption += `⭔ Source : ${i.source}\n`
+        let buttons = [
+            {buttonId: `play ${i.medias[0].url}`, buttonText: { displayText: 'Video SD'}, type: 1 },
+            {buttonId: `play ${i.medias[1].url}`, buttonText: { displayText: 'Video HD'}, type: 1 }
+        ]
+        let buttonMessage = {
+            image: { url: i.thumbnail },
+            caption: caption,
+            footer: config.footer,
+            buttons: buttons,
+            headerType: 4
+        }
+        killua.sendMessage(m.from, buttonMessage, { quoted: m })
     },
     isQuery: true
 }

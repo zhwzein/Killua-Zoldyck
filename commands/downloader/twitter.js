@@ -9,15 +9,20 @@ module.exports = {
     example: "%prefix%command <url>",
     start: async(killua, m, { text }) => {
         let fetch = await fetchUrl(global.api("zenz", "/downloader/twitter", { url: isUrl(text)[0] }, "apikey"))
+        let caption = `*Twitter Downloader*\n\n`
+        let i = fetch.result
+        caption += `⭔ Desc : ${i.desc}\n`
         let buttons = [
-            {buttonId: `twittermp3 ${text}`, buttonText: {displayText: '♫ Audio'}, type: 1}
+            {buttonId: `play ${i.sd}`, buttonText: { displayText: 'Video SD'}, type: 1 },
+            {buttonId: `play ${i.hd}`, buttonText: { displayText: 'Video HD'}, type: 1 },
+            {buttonId: `play ${i.audio}`, buttonText: { displayText: 'Audio'}, type: 1 }
         ]
         let buttonMessage = {
-            video: { url: fetch.result.hd || fetch.result.sd },
-            caption: `⭔ Desc : ${fetch.result.desc}\n⭔ Source Url : ${isUrl(text)[0]}`,
+            image: { url: i.thumb },
+            caption: caption,
             footer: config.footer,
             buttons: buttons,
-            headerType: 5
+            headerType: 4
         }
         killua.sendMessage(m.from, buttonMessage, { quoted: m })
     },

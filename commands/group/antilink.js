@@ -16,7 +16,17 @@ module.exports = {
             group.delAntilink(m.from, _group)
             m.reply(`Success deactivated Antilink`)
         } else {
-            m.reply(`*⭔ Antilink Status:* ${group.cekAntilink(m.from, _group) ? 'Activated' : 'Deactivated'}\n\n_Pilih enable atau disable!_`)
+            let buttons = [
+                { buttonId: `antilink enable `, buttonText: { displayText: 'ENABLE'}, type: 1 },
+                 {buttonId: `antilink disable `, buttonText: { displayText: 'DISABLE'}, type: 1 }
+            ]
+            let buttonMessage = {
+                text: `*⭔ Antilink Status:* ${group.cekAntilink(m.from, _group) ? 'Activated' : 'Deactivated'}\n\n_Pilih enable atau disable!_`,
+                footer: config.footer,
+                buttons: buttons,
+                headerType: 4
+            }
+            killua.sendMessage(m.from, buttonMessage, { quoted: m })
         }
 	},
     isGroup: true,

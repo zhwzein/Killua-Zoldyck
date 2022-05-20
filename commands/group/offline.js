@@ -16,7 +16,17 @@ module.exports = {
             group.delOffline(m.from, _group)
             m.reply(`Success BOT Online For This Group`)
         } else {
-            m.reply(`*⭔ Offline Status:* ${group.cekOffline(m.from, _group) ? 'Activated' : 'Deactivated'}\n\n_Pilih enable atau disable!_`)
+            let buttons = [
+                { buttonId: `offline enable `, buttonText: { displayText: 'ENABLE'}, type: 1 },
+                 {buttonId: `offline disable `, buttonText: { displayText: 'DISABLE'}, type: 1 }
+            ]
+            let buttonMessage = {
+                text: `*⭔ Offline Status:* ${group.cekOffline(m.from, _group) ? 'Activated' : 'Deactivated'}\n\n_Pilih enable atau disable!_`,
+                footer: config.footer,
+                buttons: buttons,
+                headerType: 4
+            }
+            killua.sendMessage(m.from, buttonMessage, { quoted: m })
         }
 	},
     isGroup: true,

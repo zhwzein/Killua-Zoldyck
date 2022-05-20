@@ -19,20 +19,17 @@
 
 ---
 
-<!-- Requirements -->
-<b><details><summary>Requirements</summary></b>
-* Some Text Editor
-* [Node JS](https://nodejs.org/en/)
-* [Git](https://git-scm.com/downloads)
-* [FFMPEG](https://ffmpeg.org/download.html)
-  
+<!-- Installation -->
+<b><details><summary>Windows Installation</summary></b>  
+<b>Requirements:</b>
+* Download & Install Git [`Click here`](https://git-scm.com/downloads)
+* Download & Install NodeJS [`Click here`](https://nodejs.org/en/download)
+* Download & Install FFmpeg [`Click here`](https://ffmpeg.org/download.html)
+ 
 ```bash
 Add FFmpeg to PATH environment variable
 ```
-</details>
-
-<!-- Installation -->
-<b><details><summary>Installation</summary></b>
+	
 ```bash
 > git clone https://github.com/zhwzein/Killua-Zoldyck
 > cd Killua-Zoldyck
@@ -40,14 +37,35 @@ Add FFmpeg to PATH environment variable
 ```
 </details>
 
-<!-- Edit -->
-<b><details><summary>Edit Config.js</summary></b>
+<b><details><summary>Termux Installation</summary></b>
+
+<p dir="auto">Use Termux application from F-Droid, here is the link: <a href="https://f-droid.org/en/packages/com.termux/" rel="nofollow">https://f-droid.org/en/packages/com.termux/</a>. Google Play variant is deprecated, doesn't receive updates and contains issues as well as outdated repository URLs.</p>
+	
+* Download & Install Termux [`Click here`](https://f-droid.org/repo/com.termux_118.apk)
+	
 ```bash
-global.APIKeys = {
-	'https://zenzapis.xyz': 'YOURAPIKEY',
-}
-  
-global.owner = ["62812XXX"]
+> apt update && apt upgrade
+> apt install git -y
+> apt install nodejs -y
+> apt install ffmpeg -y
+> git clone https://github.com/zhwzein/Killua-Zoldyck
+> cd Killua-Zoldyck
+> pkg install yarn
+> yarn add @adiwajshing/baileys
+> yarn
+```
+</details>
+
+<!-- Edit -->
+<b><details><summary>Edit config.json</summary></b>
+```bash
+"APIs": {
+    "zenz": "https://zenzapis.xyz",
+    "apikey": "YOURAPIKEY"
+ },
+"owner": [
+    "62812xxx"
+ ],
 ```
 </details>
 
@@ -71,28 +89,29 @@ SCAN THE QR USING YOUR WHATSAPP!
 	
 | Features |  Availability |
 | :------: |  :----------: |
-|   Convert     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/convert)      |
-|   Database     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/database)      |
-|   Owner     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/owner)      |
-|   Islami     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/islami)      |
-|   Downloader     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/downloader)      |
-|   Webzone     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/webzone)      |
-|   Searching     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/search)      |
-|   Textpro     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/textmaker)      |
-|   Ephoto     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/textmaker)      |
 |   Anime Web     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/animeweb)      |
-|   Stalker     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/stalker)      |
-|   Random Text     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/randomtext)      |
-|   Random Image     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/randomimage)      |
-|   Nekos Life     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/nekoslife)      |
-|   More Nsfw     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/morensfw)      |
+|   Convert     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/convert)      |
 |   Creator     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/creator)      |
+|   Database     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/database)      |
+|   Downloader     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/downloader)      |
 |   Entertainment  |     ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/entertainment)      |
-|   Photo Editor  |   ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/photoeditor)      |
+|   Group     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/group)      |
 |   Information   |  ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/information)      |
+|   Islami     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/islami)      |
+|   Main     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/main)      |
+|   More Nsfw     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/morensfw)      |
+|   Nekos Life     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/nekoslife)      |
 |   News   |  ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/news)      |
+|   Owner     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/owner)      |
+|   Photo Editor  |   ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/photoeditor)      |
 |   Primbon   |  ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/primbon)      |
-
+|   Random Image     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/randomimage)      |
+|   Random Text     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/randomtext)      |
+|   Search     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/search)      |
+|   Stalker     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/stalker)      |
+|   Textmaker     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/textmaker)      |
+|   Users     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/users)      |
+|   Webzone     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/webzone)      |
 </details>
 
 

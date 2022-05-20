@@ -333,6 +333,8 @@ module.exports = async (killua, m, commands, chatUpdate) => {
                 }
             })
 		} catch (e) {
+            e = String(e)
+            if (!e.includes("cmd.start"))
 			console.error(e);
 		}
     } catch (e) {

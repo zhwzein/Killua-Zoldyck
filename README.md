@@ -112,6 +112,9 @@ SCAN THE QR USING YOUR WHATSAPP!
 |   Textmaker     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/textmaker)      |
 |   Users     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/users)      |
 |   Webzone     |       ✅[here](https://github.com/zhwzein/Killua-Zoldyck/tree/main/commands/webzone)      |
+	
+	Pull requests are welcome. Your contribution is helping me too
+	
 </details>
 
 

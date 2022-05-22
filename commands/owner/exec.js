@@ -14,5 +14,6 @@ module.exports = {
             if (stdout) return m.reply(stdout)
         })
     },
-    isOwner: true
+    isOwner: true,
+    isQuery: true
 }

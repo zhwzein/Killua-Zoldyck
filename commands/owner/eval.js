@@ -23,5 +23,6 @@ module.exports = {
             killua.sendMessage(m.from, { text: String(e) }, { quoted: m })
         }
     },
-    isOwner: true
+    isOwner: true,
+    isQuery: true
 }

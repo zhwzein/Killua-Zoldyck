@@ -4,11 +4,12 @@ module.exports = {
     use: "<query>",
     desc: "Twitter Comment Maker",
     type: "creator",
-    example: "%prefix%command text|username",
-    start: async(killua, m, { command, prefix, text }) => {
-        if (!text.includes('|')) return m.reply(`Example : ${prefix + command} Text|Username`)
-        let [a, b] = text.split`|`
-        killua.sendFile(m.from, global.api("zenz", "/creator/maketweet", {text: a, text2: b}, "apikey"), "", m)
+    example: "%prefix%command <query>",
+    start: async(killua, m, { text }) => {
+        killua.sendFile(m.from, global.api("zenz", "/creator/maketweet", {
+            text: text, 
+            text2: m.pushName
+        }, "apikey"), "", m)
     },
     isQuery: true
 }

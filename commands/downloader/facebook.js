@@ -16,8 +16,8 @@ module.exports = {
         caption += `⭔ Duration : ${i.duration}\n`
         caption += `⭔ Source : ${i.source}\n`
         let buttons = [
-            {buttonId: `play ${i.medias[0].url}`, buttonText: { displayText: 'Video SD'}, type: 1 },
-            {buttonId: `play ${i.medias[1].url}`, buttonText: { displayText: 'Video HD'}, type: 1 }
+            {buttonId: `dl ${i.medias[0].url}`, buttonText: { displayText: 'Video SD'}, type: 1 },
+            {buttonId: `dl ${i.medias[1].url}`, buttonText: { displayText: 'Video HD'}, type: 1 }
         ]
         let buttonMessage = {
             image: { url: i.thumbnail },

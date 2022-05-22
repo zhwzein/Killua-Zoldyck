@@ -13,9 +13,9 @@ module.exports = {
         let i = fetch.result
         caption += `⭔ Desc : ${i.desc}\n`
         let buttons = [
-            {buttonId: `play ${i.sd}`, buttonText: { displayText: 'Video SD'}, type: 1 },
-            {buttonId: `play ${i.hd}`, buttonText: { displayText: 'Video HD'}, type: 1 },
-            {buttonId: `play ${i.audio}`, buttonText: { displayText: 'Audio'}, type: 1 }
+            {buttonId: `dl ${i.sd}`, buttonText: { displayText: 'Video SD'}, type: 1 },
+            {buttonId: `dl ${i.hd}`, buttonText: { displayText: 'Video HD'}, type: 1 },
+            {buttonId: `dl audio ${i.audio}`, buttonText: { displayText: 'Audio'}, type: 1 }
         ]
         let buttonMessage = {
             image: { url: i.thumb },

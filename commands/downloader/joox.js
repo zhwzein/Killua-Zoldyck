@@ -11,8 +11,8 @@ module.exports = {
         let fetch = await fetchUrl(global.api("zenz", "/downloader/joox", { query: text }, "apikey"))
         let teks = `⭔ Title : ${fetch.result.lagu}\n⭔ Album : ${fetch.result.album}\n⭔ Penyanyi : ${fetch.result.penyanyi}\n⭔ Publish : ${fetch.result.publish}`
         let buttons = [
-            {buttonId: `play ${fetch.result.mp3Link}`, buttonText: { displayText: 'Audio MP3'}, type: 1 },
-            {buttonId: `play ${fetch.result.mp4aLink}`, buttonText: { displayText: 'Audio MP4A'}, type: 1 }
+            {buttonId: `dl audio ${fetch.result.mp3Link}`, buttonText: { displayText: 'Audio MP3'}, type: 1 },
+            {buttonId: `dl audio ${fetch.result.mp4aLink}`, buttonText: { displayText: 'Audio MP4A'}, type: 1 }
         ]
         let buttonMessage = {
             image: { url: fetch.result.img },

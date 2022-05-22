@@ -1,16 +1,15 @@
-const { getRandom } = require("../../lib/Function")
+const { getRandom, isUrl } = require("../../lib/Function")
 const request = require('request')
 const fs = require('fs')
 
 module.exports = {
     name: "waifu2x",
-    alias: [],
+    alias: ["waifu2x"],
     use: "<reply>",
     desc: "Upscaler Image From waifu2x",
     type: "creator",
     example: `%prefix%command --image reply`,
     start: async(killua, m, { command, prefix, quoted, mime }) => {
-        if (!quoted) return  m.reply(`Reply to Supported media With Caption ${prefix + command}`)
         if (/image/.test(mime)) {
             let download = await killua.downloadAndSaveMediaMessage(quoted)
             file_name = getRandom('jpg')
@@ -28,8 +27,10 @@ module.exports = {
                 await killua.sendFile(m.from, ini_buff, "", m).then(() => {
                     fs.unlinkSync(file_name)
                 })
-            });
-        } else {
+            })
+        } else if (isUrl(text)) {
+            killua.sendFile(m.from, global.api("zenz", "/creator/waifu2x", { url: isUrl(text)[0] }, "apikey"), "", m)
+        }   else {
             return m.reply(`Reply to Supported media With Caption ${prefix + command}`, m.from, { quoted: m })
         }
     }

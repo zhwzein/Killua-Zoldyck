@@ -66,6 +66,7 @@ module.exports = async (killua, m, commands, chatUpdate) => {
         let isMedia = /image|video|sticker|audio/.test(mime)
         let budy = (typeof m.text == "string" ? m.text : "")
         let args = body.trim().split(/ +/).slice(1)
+        let ar = args.map((v) => v.toLowerCase())
         let text = q = args.join(" ")
         let cmdName = body.replace(prefix, '').trim().split(/ +/).shift().toLowerCase()
         const cmd = commands.get(cmdName) || Array.from(commands.values()).find((v) => v.alias.find((x) => x.toLowerCase() == cmdName)) || ""
@@ -321,6 +322,7 @@ module.exports = async (killua, m, commands, chatUpdate) => {
                 participants,
                 body,
                 args,
+                ar,
                 text,
                 quoted,
                 mime,

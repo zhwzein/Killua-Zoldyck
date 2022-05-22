@@ -9,7 +9,7 @@ module.exports = {
     use: "<reply>",
     desc: "Search Music",
     type: "convert",
-    example: `%prefix%command <text> --image reply`,
+    example: `%prefix%command <text> --audio reply`,
     start: async(killua, m, { command, prefix, text, mime }) => {
         if (/audio/.test(mime)) {
             let download = await killua.downloadMediaMessage(quoted)

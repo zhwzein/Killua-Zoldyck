@@ -1,4 +1,4 @@
-const { getRandom } = require("../../lib/Function")
+const { getRandom, fetchUrl, isUrl } = require("../../lib/Function")
 let axios = require('axios')
 let BodyForm = require('form-data')
 
@@ -9,8 +9,7 @@ module.exports = {
     desc: "Convert Sticker Gif To Video",
     type: "convert",
     example: `%prefix%command --sticker reply`,
-    start: async(killua, m, { command, prefix, quoted, mime }) => {
-        if (!quoted) return  m.reply(`Reply to Supported media With Caption ${prefix + command}`)
+    start: async(killua, m, { command, prefix, quoted, mime, text }) => {
         if (/image|video|sticker/.test(mime)) {
             let download = await killua.downloadMediaMessage(quoted)
             const form = new BodyForm()
@@ -19,7 +18,10 @@ module.exports = {
             }).then(({ data }) => {
                 killua.sendFile(m.from, data.result, "", m, { caption: 'Convert Sticker Gif To Video' })
             })
-        } else {
+        } else if (isUrl(text)) {
+            let fetch = await fetchUrl(global.api("zenz", "/convert/webp-to-mp4", { url: isUrl(text)[0] }, "apikey"))
+            killua.sendFile(m.from, fetch.result, "", m, { caption: 'Convert Sticker Gif To Video' })
+        }   else {
             return m.reply(`Reply to Supported media With Caption ${prefix + command}`, m.from, { quoted: m })
         }
     }

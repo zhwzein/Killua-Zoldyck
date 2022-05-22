@@ -29,7 +29,7 @@ module.exports = {
                 })
             })
         } else if (isUrl(text)) {
-            if (isUrl(text)) killua.sendFile(m.from, global.api("zenz", "/photoeditor/circle", { url: isUrl(text)[0] }, "apikey"), "", m, { asSticker: true, author: config.exif.author, packname: config.exif.packname, categories: ['😄','😊'] })
+            killua.sendFile(m.from, global.api("zenz", "/photoeditor/circle", { url: isUrl(text)[0] }, "apikey"), "", m, { asSticker: true, author: config.exif.author, packname: config.exif.packname, categories: ['😄','😊'] })
         }   else {
             return m.reply(`Reply to Supported media With Caption ${prefix + command}`, m.from, { quoted: m })
         }

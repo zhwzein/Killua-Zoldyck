@@ -130,6 +130,32 @@ const addPremiumUser = (userId, expired, _db) => {
 		fs.writeFileSync("./database/user.json", JSON.stringify(_db, null, 4))
 	}
 }
+const delPremiumUser = (userId, _db) => {
+    let found = false
+    Object.keys(_db).forEach((i) => {
+        if (_db[i].id === userId) {
+            found = i
+        }
+    })
+    if (found !== false) {
+		_user[found].limit = 0
+		_user[found].premium = false
+		delete _user[found].expired
+		console.log(`Premium Deleted: ${_user[found].id}`)
+		fs.writeFileSync("./database/user.json", JSON.stringify(_user, null, 4))
+	}
+}
+const getPremiumPosition = (userId, _db) => {
+	let position = null
+	Object.keys(_db).forEach((i) => {
+		if (_db[i].id === userId) {
+			position = i;
+		}
+	})
+	if (position !== null) {
+		return position
+	}
+}
 const checkPremiumUser = (userId, _db) => {
 	let position = null
 	Object.keys(_db).forEach((i) => {
@@ -202,6 +228,7 @@ module.exports = {
 	addBalance,
 	getBalance,
 	addPremiumUser,
+	delPremiumUser,
 	checkPremiumUser,
 	getPremiumExpired,
 	expiredCheck,

@@ -8,6 +8,7 @@ const yargs = require("yargs")
 const path = require("path")
 const { Boom } = require("@hapi/boom")
 const { Collection, Simple, Store } = require("./lib")
+const Welcome = require("./lib/welcome");
 const { exit } = require("process")
 const config = JSON.parse(fs.readFileSync('./config.json'))
 const { serialize, WAConnection } = Simple
@@ -89,6 +90,11 @@ const connect = async () => {
             else killua.end(`Unknown DisconnectReason: ${reason}|${connection}`)
         }
     })
+
+    // Welcome
+    killua.ev.on("group-participants.update", async (m) => {
+		Welcome(killua, m);
+	});
 
     killua.ev.on("messages.upsert", async (chatUpdate) => {
         m = serialize(killua, chatUpdate.messages[0])

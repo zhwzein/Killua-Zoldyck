@@ -72,7 +72,9 @@ module.exports = async (killua, m, commands, chatUpdate) => {
         const cmd = commands.get(cmdName) || Array.from(commands.values()).find((v) => v.alias.find((x) => x.toLowerCase() == cmdName)) || ""
 
         if (isOffline && cmdName && !isOwner && !cmd.isOffline) return
-
+        if (isGroup) group.addGroup(m.from)
+        user.addUser(m.sender, m.pushName, _user)
+        
         if (m.message && isGroup) {
             console.log("" + "\n" + chalk.black(chalk.bgWhite('[ GRUP ]')), chalk.black(chalk.bgBlueBright(isGroup ? metadata.subject : m.pushName)) + "\n" + chalk.black(chalk.bgWhite('[ TIME ]')), chalk.black(chalk.bgBlueBright(new Date)) + "\n" + chalk.black(chalk.bgWhite('[ FROM ]')), chalk.black(chalk.bgBlueBright(m.pushName + " @" + m.sender.split('@')[0])) + "\n" + chalk.black(chalk.bgWhite('[ BODY ]')), chalk.black(chalk.bgBlueBright(body || type)) + "\n" + "")
         }
@@ -309,8 +311,6 @@ module.exports = async (killua, m, commands, chatUpdate) => {
 
         try {
 			if (cmd && !cmd.noLimit) {
-                if (isGroup) group.addGroup(m.from)
-                user.addUser(m.sender, m.pushName, _user)
                 if (user.isLimit(m.sender, isPremium, isOwner, config.options.limitCount, _user) && !m.fromMe)
 				return m.reply(`Your limit has run out, please send ${prefix}limit to check the limit`);
 				user.limitAdd(m.sender, isPremium, isOwner, _user);

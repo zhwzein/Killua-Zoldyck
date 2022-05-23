@@ -2,11 +2,15 @@
     {
         "from": "6281288339373-1632225365@g.us",
         "offline": false,
-        "welcome": false,
         "antilink": false,
         "badword": false,
-        "antidelete": true,
+        "antidelete": false,
         "detect": false,
-        "viewOnce": false
+        "viewOnce": false,
+        "welcome": {
+            "status": false,
+            "add": "Welcome To My Group",
+            "remove": "Leave From My Group"
+        }
     }
 ]

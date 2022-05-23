@@ -18,12 +18,16 @@ const addGroup = (id) => {
         const obj = { 
             from: id, 
             offline: false, 
-            welcome: false, 
             antilink: false,
             badword: false,
             antidelete: false,
             detect: false,
             viewOnce: false,
+            welcome: {
+                status: false,
+                add: "Welcome To My Group",
+                remove: "Leave From My Group"
+            },
         }
         _group.push(obj)
         fs.writeFileSync('./database/group.json', JSON.stringify(_group, null, 4))
@@ -142,6 +146,54 @@ const cekAntilink = (userId, _db) => {
     }
 }
 
+// WELCOME
+const addWelcome = (userId, _db) => {
+	let found = false
+	Object.keys(_db).forEach((i) => {
+		if (_db[i].from === userId) {
+			found = i
+		}
+	})
+	if (found !== false) {
+		_db[found].welcome.status = true
+		fs.writeFileSync("./database/group.json", JSON.stringify(_db, null, 4))
+	}
+}
+const delWelcome = (userId, _db) => {
+    let found = false
+    Object.keys(_db).forEach((i) => {
+        if (_db[i].from === userId) {
+            found = i
+        }
+    })
+    if (found !== false) {
+        _db[found].welcome.status = false
+        fs.writeFileSync("./database/group.json", JSON.stringify(_db, null, 4))
+    }
+}
+const cekWelcome = (userId, _db) => {
+    let found = false
+    Object.keys(_db).forEach((i) => {
+        if (_db[i].from === userId) {
+            found = i
+    }
+    })
+    if (found !== false) {
+        return _db[found].welcome.status
+    }
+}
+const welcomeSet = (userId, _db) => {
+    let found = false
+    Object.keys(_db).forEach((i) => {
+        if (_db[i].from === userId) {
+            found = i
+    }
+    })
+    if (found !== false) {
+        return _db[found].welcome
+    }
+}
+
 module.exports = {
     addGroup,
     addAntidelete,
@@ -152,5 +204,9 @@ module.exports = {
     cekOffline,
     addAntilink,
     delAntilink,
-    cekAntilink
+    cekAntilink,
+    addWelcome,
+    delWelcome,
+    cekWelcome,
+    welcomeSet
 }

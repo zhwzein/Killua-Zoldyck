@@ -11,7 +11,7 @@ module.exports = {
         if (global.db.sticker[hash] && global.db.sticker[hash].locked) return m.reply('You have no permission to change this sticker command')
         global.db.sticker[hash] = {
             text,
-            mentions: quoted.mentions,
+            //mentions: quoted.mentions,
             creator: m.sender,
             createAt: + new Date,
             locked: false

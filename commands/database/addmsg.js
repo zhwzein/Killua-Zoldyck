@@ -4,7 +4,7 @@ module.exports = {
     name: "addmsg",
     alias: ['vn', 'msg', 'video', 'gif', 'audio', 'img', 'sticker'].map(v => 'add' + v),
     use: "<query>",
-    desc: "Add Message to Datbase",
+    desc: "Add Message to Database",
     type: "database",
     example: "Reply or send message with caption %prefix%command <name>",
     start: async(killua, m, { prefix, command, text, quoted }) => {

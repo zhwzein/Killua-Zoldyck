@@ -87,6 +87,8 @@ SCAN THE QR USING YOUR WHATSAPP!
 
 <!-- Installation -->
 <b><details><summary>Heroku Deployment</summary></b>  
+
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 	
 <b>Requirements:</b>
 * NodeJS buildpack

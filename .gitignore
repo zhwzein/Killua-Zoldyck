@@ -4,13 +4,3 @@ node_modules
 # lock files
 *-lock.json
 yarn.lock
-
-# database
-database/db.json
-database/group.json
-database/killua-legacy.json
-database/killua-multi.json
-database/user.json
-
-# config file
-config.json

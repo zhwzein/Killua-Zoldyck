@@ -96,8 +96,9 @@ SCAN THE QR USING YOUR WHATSAPP!
 </details>
 
 <!-- Attention -->
-<b><details><summary>Attention !</summary></b>  
 ## IP ACCESS
+
+<b><details><summary>Attention !</summary></b>  
 	
 because many people spread the apiKey. then zenzapis applies a system IP, which is a certain ip that can only make requests.
 	

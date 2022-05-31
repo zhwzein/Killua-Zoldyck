@@ -84,12 +84,26 @@ SCAN THE QR USING YOUR WHATSAPP!
 </details>
 
 ---
+<!--Scan -->
+<b><details><summary>Qr for session id</summary></b>
+
+>Users Who use older version of Whatsapp or is not in Multi Device program -- Click [LEGACY](https://replit.com/@nexusNw/Scanner-for-Legacy-Whatsapp-Users?outputonly=1&lite=1#index.js)
+
+>Users Who use latest version of Whatsapp or is in the Multi Device program -- Click [MD QR](https://replit.com/@nexusNw/Md-Scanner?outputonly=1&lite=1)
+
+</details>
+
+---
 
 <!-- Installation -->
 <b><details><summary>Heroku Deployment</summary></b>  
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
-	
+```
+Users who scanned through MD Scanner- upload file in folder database with naming killua-multi.json
+
+Users who scanned through Legacy QR - Create a file named killua-legacy.json in database folder and paste your session id in it
+```	
 <b>Requirements:</b>
 * NodeJS buildpack
 * FFmpeg buildpack https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git

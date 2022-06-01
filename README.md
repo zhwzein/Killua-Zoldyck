@@ -96,40 +96,9 @@ SCAN THE QR USING YOUR WHATSAPP!
 </details>
 
 <!-- Attention -->
-## IP ACCESS
-
 <b><details><summary>Attention !</summary></b>  
-	
-because many people spread the apiKey. then zenzapis applies a system IP, which is a certain ip that can only make requests.
-	
-<b>How To Get IP access ?</b>
 
-1. First you have to log in to [zenzapis](https://zenzapis.xyz)
-1. Then Go to the profile settings page  
-	
-  <img src="https://i.ibb.co/ysjG2w8/Screenshot-53.png" alt="nz" width="350"/><br>
-	
-See there are 2 IP options,  The first IP is your default Public IP Which is automatically replaced when you last signed in with the same ip or different.
-
-Q: Then what is the second IP option for ?   
-A: The second option is only optional If you deploy BOT to Heroku or another server you have to use this option  
-	
-<b>How To Get IP From Heroku ?</b>
-	
-1. The first way is to open [http://api.ipify.org/](http://api.ipify.org/) You will get Public IP there
-2. The second way is to do the BOT command
-	
-	<img src="https://i.ibb.co/9hCdk4T/photo6091154136113459853.jpg" alt="nz" width="350"/><br>
-	
-3. Then Edit and update To Be Like This
-	
-	<img src="https://i.ibb.co/9qvP39p/Screenshot-52.png" alt="nz" width="350"/><br>
-	
-4. And congratulations you have successfully obtained IP access, and the results:
-	
-| Before |  After |
-| :------: |  :----------: |
-|   <img src="https://i.ibb.co/vZb2xLN/photo6091154136113459854.jpg" alt="nz" width="350"/><br>     |       <img src="https://i.ibb.co/gJHKXNb/photo6091154136113459855.jpg" alt="nz" width="350"/><br>      |
+Read this wiki [How To Get IP access](https://github.com/zhwzein/Killua-Zoldyck/wiki/Get-IP-access)
 	
 </details>
 

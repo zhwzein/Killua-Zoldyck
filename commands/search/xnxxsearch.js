@@ -8,7 +8,7 @@ module.exports = {
     type: "search",
     example: `%prefix%command <query>`,
     start: async(killua, m, { text, command, prefix, toUpper }) => {
-        let fetch = await fetchUrl(global.api("zenz", "/searching/xnxx/search", { query: text }, "apikey"))
+        let fetch = await fetchUrl(global.api("zenz", "/searching/xnxx", { query: text }, "apikey"))
         let caption = `Xnxx Search Query : ${toUpper(text)}\n\n`
         for (let i of fetch.result) {
             caption += `⭔ Title : ${i.title}\n`

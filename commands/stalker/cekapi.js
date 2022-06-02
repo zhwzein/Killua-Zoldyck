@@ -9,7 +9,7 @@ module.exports = {
     example: `%prefix%command <query>`,
     start: async(killua, m, { text }) => {
         try {
-            let fetch = await fetchUrl(global.api("zenz", "/api/cekapi", {apikey: text}))
+            let fetch = await fetchUrl(global.api("zenz", "/user/cekapi", {apikey: text}))
             let caption = `Apikey Checker :\n\n`
             let i = fetch.message
             caption += `⭔ Id : ${i.id}\n`

@@ -2,7 +2,7 @@ const { fetchUrl } = require("../../lib/Function")
 
 module.exports = {
     name: "cekapi",
-    alias: ["apikey"],
+    alias: ["apikey","cekapikey"],
     use: "<query>",
     desc: "Apikey Checker From Zenzapis.xyz",
     type: "stalker",

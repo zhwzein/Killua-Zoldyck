@@ -8,7 +8,16 @@ module.exports = {
     noLimit: true,
     start: async(killua, m, {}) => {
         const sections = [{
-            title: "Random Asupan",
+            title: "Random Asupan MP4",
+            rows: [
+                {title: "Random Asupan MP4", rowId: "asupan"},
+                {title: "Random Asupan TikTok MP4", rowId: "asupantiktok"},
+                {title: "Random Asupan Nata", rowId: "asupannatajadeh"},
+                {title: "Random Asupan Aeuni", rowId: "asupanaeuni"},
+            ]
+        },
+        {
+            title: "Random Asupan Gambar",
             rows: [
                 {title: "Random Cecan", rowId: "randomasupan cecan"},
                 {title: "Random China", rowId: "randomasupan china"},

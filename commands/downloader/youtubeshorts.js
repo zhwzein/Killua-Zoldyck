@@ -2,7 +2,7 @@ const { fetchUrl, isUrl } = require("../../lib/Function")
 
 module.exports = {
     name: "youtubeshorts",
-    alias: ["ytshorts","ytreels],
+    alias: ["ytshorts","ytreels"],
     use: "<url>",
     desc: "Download Media From https://youtube.com",
     type: "downloader",

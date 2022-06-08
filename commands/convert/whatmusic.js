@@ -5,7 +5,7 @@ let BodyForm = require('form-data')
 
 module.exports = {
     name: "whatmusic",
-    alias: ["whatmusic"],
+    alias: ["findmusic"],
     use: "<reply>",
     desc: "Search Music",
     type: "convert",

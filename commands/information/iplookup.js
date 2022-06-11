@@ -8,7 +8,7 @@ module.exports = {
     type: "information",
     example: `%prefix%command 192.168.0.0\n\nCek Your IP here : https://api.myip.com/`,
     start: async(killua, m, { text }) => {
-        let fetch = await fetchUrl(global.api("zenz", "/api/iplookup", { query: text }, "apikey"))
+        let fetch = await fetchUrl(global.api("zenz", "/information/iplookup", { query: text }, "apikey"))
         let caption = `IP Information :\n\n`
         let i = fetch.result
         caption += `⭔ Country : ${i.country}\n`

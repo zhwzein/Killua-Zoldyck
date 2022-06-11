@@ -7,7 +7,7 @@ module.exports = {
     type: "entertainment",
     start: async(killua, m) => {
         if (tebakbendera.hasOwnProperty(m.sender.split('@')[0])) return m.reply("Masih Ada Sesi Yang Belum Diselesaikan!")
-        let fetch = await fetchUrl(global.api("zenz", "/api/tebakbendera", {}, "apikey"))
+        let fetch = await fetchUrl(global.api("zenz", "/entertainment/tebakbendera", {}, "apikey"))
         let result = await fetch.result
         killua.sendFile(m.from, result.img, "", m, { caption: `Silahkan Jawab Pertanyaan Berikut\n\nDeskripsi: ${result.flag}\nWaktu : 30s`}).then(() => {
             tebakbendera[m.sender.split('@')[0]] = result.name.toLowerCase()

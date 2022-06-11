@@ -8,7 +8,7 @@ module.exports = {
     type: "information",
     example: `%prefix%command <query>`,
     start: async(killua, m, { text }) => {
-        let fetch = await fetchUrl(global.api("zenz", "/api/kbbi", { query: text }, "apikey"))
+        let fetch = await fetchUrl(global.api("zenz", "/information/kbbi", { query: text }, "apikey"))
         let caption = `Arti Kbbi Dari ${toUpper(text)} :\n\n`
         let i = fetch.result
         caption += `${i.arti}`

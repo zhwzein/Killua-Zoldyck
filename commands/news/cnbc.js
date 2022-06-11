@@ -7,7 +7,7 @@ module.exports = {
     type: "news",
     example: `%prefix%command`,
     start: async(killua, m, {}) => {
-        let fetch = await fetchUrl(global.api("zenz", "/api/cnbc", {}, "apikey"))
+        let fetch = await fetchUrl(global.api("zenz", "/news/cnbc", {}, "apikey"))
         let caption = `Latest News From CNBC\n\n`
         for (let i of fetch.result) {
             caption += `⭔ Judul Berita : ${i.berita}\n`

@@ -9,7 +9,7 @@ module.exports = {
     example: `\nNekopoi Latest : %prefix%command\nNekopoi Search : %prefix%command <query>\nNekopoi Random : %prefix%command random `,
     start: async(killua, m, { text }) => {
         if (text.toLowerCase() === "random") {
-            let fetch = await fetchUrl(global.api("zenz", "/anime/nekopoi/random", {}, "apikey"))
+            let fetch = await fetchUrl(global.api("zenz", "/animeweb/nekopoi/random", {}, "apikey"))
             let caption = `Nekopoi Random :\n\n`
             let i = fetch.result
             caption += `⭔ Title : ${i.title}\n`
@@ -27,7 +27,7 @@ module.exports = {
             //killua.sendFile(m.from, fetch.result.img, "", m, { caption }) yg gambarnya kena internet positif
             killua.sendText(m.from, caption, m)
         } else if (text) {
-            let fetch = await fetchUrl(global.api("zenz", "/anime/nekopoi/search", { query: text }, "apikey"))
+            let fetch = await fetchUrl(global.api("zenz", "/animeweb/nekopoi/search", { query: text }, "apikey"))
             let caption = `Nekopoi Search :\n\n`
             for (let i of fetch.result) {
                 caption += `⭔ Title : ${i.title}\n`
@@ -36,7 +36,7 @@ module.exports = {
             //killua.sendFile(m.from, fetch.result[0].img, "", m, { caption }) yg gambarnya kena internet positif
             killua.sendText(m.from, caption, m)
         } else {
-            let fetch = await fetchUrl(global.api("zenz", "/anime/nekopoi/latest", {}, "apikey"))
+            let fetch = await fetchUrl(global.api("zenz", "/animeweb/nekopoi/latest", {}, "apikey"))
             let caption = `Nekopoi Latest :\n\n`
             for (let i of fetch.result) {
                 caption += `⭔ Title : ${i.title}\n`

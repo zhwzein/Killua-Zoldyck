@@ -28,7 +28,7 @@ module.exports = {
             }
             killua.sendMessage(m.from, buttonMessage, { quoted: m })
         } else if (text) {
-            let fetch = await fetchUrl(global.api("zenz", "/anime/doujindesu/search", { query: text }, "apikey"))
+            let fetch = await fetchUrl(global.api("zenz", "/animeweb/doujindesu/search", { query: text }, "apikey"))
             let caption = `Doujindesu Search :\n\n`
             for (let i of fetch.result) {
                 caption += `⭔ Title : ${i.title}\n`
@@ -38,7 +38,7 @@ module.exports = {
             }
             killua.sendText(m.from, caption, m)
         } else {
-            let fetch = await fetchUrl(global.api("zenz", "/anime/doujindesu/latest", {}, "apikey"))
+            let fetch = await fetchUrl(global.api("zenz", "/animeweb/doujindesu/latest", {}, "apikey"))
             let caption = `Doujindesu Latest :\n\n`
             for (let i of fetch.result) {
                 caption += `⭔ Title : ${i.title}\n`

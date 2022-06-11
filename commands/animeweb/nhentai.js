@@ -9,7 +9,7 @@ module.exports = {
     example: `%prefix%command 114512`,
     start: async(killua, m, { text }) => {
         try {
-            let fetch = await fetchUrl(global.api("zenz", "/anime/nhentai", { query: text }, "apikey"))
+            let fetch = await fetchUrl(global.api("zenz", "/animeweb/nhentai", { query: text }, "apikey"))
             let caption = `Nhentai Search :\n\n`
             let i = fetch.result
             caption += `⭔ ID : ${i.id}\n`

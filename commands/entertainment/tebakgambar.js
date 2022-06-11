@@ -7,7 +7,7 @@ module.exports = {
     type: "entertainment",
     start: async(killua, m) => {
         if (tebakgambar.hasOwnProperty(m.sender.split('@')[0])) return m.reply("Masih Ada Sesi Yang Belum Diselesaikan!")
-        let fetch = await fetchUrl(global.api("zenz", "/api/tebakgambar", {}, "apikey"))
+        let fetch = await fetchUrl(global.api("zenz", "/entertainment/tebakgambar", {}, "apikey"))
         let result = await fetch.result
         killua.sendFile(m.from, result.img, "", m, { caption: `Silahkan Jawab Pertanyaan Berikut\n\nDeskripsi: ${result.deskripsi}\n\nWaktu : 30s`}).then(() => {
             tebakgambar[m.sender.split('@')[0]] = result.jawaban.toLowerCase()

@@ -8,7 +8,7 @@ module.exports = {
     type: "stalker",
     example: `%prefix%command <query>`,
     start: async(killua, m, { text }) => {
-        let fetch = await fetchUrl(global.api("zenz", "/api/stalker/ig", { username: text }, "apikey"))
+        let fetch = await fetchUrl(global.api("zenz", "/stalker/stalker/ig", { username: text }, "apikey"))
         let caption = `Instagram Profile Stalker :\n\n`
         let i = fetch.result.caption
         caption += `⭔ Fullname : ${i.full_name}\n`

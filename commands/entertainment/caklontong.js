@@ -7,7 +7,7 @@ module.exports = {
     type: "entertainment",
     start: async(killua, m) => {
         if (caklontong.hasOwnProperty(m.sender.split('@')[0])) return m.reply("Masih Ada Sesi Yang Belum Diselesaikan!")
-        let fetch = await fetchUrl(global.api("zenz", "/api/caklontong", {}, "apikey"))
+        let fetch = await fetchUrl(global.api("zenz", "/entertainment/caklontong", {}, "apikey"))
         let result = await fetch.result
         killua.sendText(m.from, `Silahkan Jawab Pertanyaan Berikut\n\n${result.soal}\n\nWaktu : 30s`, m).then(() => {
             caklontong[m.sender.split('@')[0]] = result.jawaban.toLowerCase()

@@ -8,7 +8,7 @@ module.exports = {
     type: "primbon",
     example: `%prefix%command <query>`,
     start: async(killua, m, { text }) => {
-        let fetch = await fetchUrl(global.api("zenz", "/api/artinama", { text: text }, "apikey"))
+        let fetch = await fetchUrl(global.api("zenz", "/primbon/artinama", { text: text }, "apikey"))
         let caption = `Primbon Arti Nama :\n\n`
         let i = fetch.result
         caption += `⭔ Nama : ${i.nama}\n`

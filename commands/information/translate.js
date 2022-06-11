@@ -10,7 +10,7 @@ module.exports = {
     start: async(killua, m, { text, prefix, command }) => {
         if (!text.includes('|')) return m.reply(`Example : ${prefix + command} en|query`)
         let [a, b] = text.split`|`
-        let fetch = await fetchUrl(global.api("zenz", "/api/translate/" + a, { query: b }, "apikey"))
+        let fetch = await fetchUrl(global.api("zenz", "/information/translate/" + a, { query: b }, "apikey"))
         let caption = `Text Translator :\n\n`
         let i = fetch.result
         caption += `⭔ To ${a} : ${i}\n`

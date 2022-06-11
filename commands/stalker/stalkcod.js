@@ -8,7 +8,7 @@ module.exports = {
     type: "stalker",
     example: `%prefix%command 6290150021186841472`,
     start: async(killua, m, { text }) => {
-        let fetch = await fetchUrl(global.api("zenz", "/api/nickcod", { query: text }, "apikey"))
+        let fetch = await fetchUrl(global.api("zenz", "/stalker/nickcod", { query: text }, "apikey"))
         let caption = `Call of Duty Stalker :\n\n`
         let i = fetch.result
         caption += `⭔ GameId : ${i.gameId}\n`

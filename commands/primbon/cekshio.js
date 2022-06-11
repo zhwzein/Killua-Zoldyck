@@ -8,7 +8,7 @@ module.exports = {
     type: "primbon",
     example: `\nList Type :\n\n${type().join("\n")}\n\nExample : %prefix%command <type>`,
     start: async(killua, m, { text }) => {
-        let fetch = await fetchUrl(global.api("zenz", "/api/shio", { query: text }, "apikey"))
+        let fetch = await fetchUrl(global.api("zenz", "/primbon/shio", { query: text }, "apikey"))
         let caption = `Primbon Arti Shio :\n\n`
         let i = fetch.result
         caption += `⭔ Catatan : ${i.result}\n`

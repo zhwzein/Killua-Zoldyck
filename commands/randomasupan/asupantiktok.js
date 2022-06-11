@@ -7,7 +7,7 @@ module.exports = {
     type: "randomasupan",
     example: `%prefix%command`,
     start: async(killua, m, {}) => {
-        let fetch = await global.api("zenz", "/api/random/asupantiktok", {}, "apikey")
+        let fetch = await global.api("zenz", "/randomasupan/asupantiktok", {}, "apikey")
         killua.sendFile(m.from, fetch, "", m, { caption: "Random TikTok Asupan 2" })
     }
 }

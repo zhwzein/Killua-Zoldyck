@@ -7,7 +7,7 @@ module.exports = {
     type: "entertainment",
     start: async(killua, m) => {
         if (family100.hasOwnProperty(m.sender.split('@')[0])) return m.reply("Masih Ada Sesi Yang Belum Diselesaikan!")
-        let fetch = await fetchUrl(global.api("zenz", "/api/family100", {}, "apikey"))
+        let fetch = await fetchUrl(global.api("zenz", "/entertainment/family100", {}, "apikey"))
         let result = await fetch.result
         killua.sendText(m.from, `Silahkan Jawab Pertanyaan Berikut\n\n${result.soal} ?\nPilih Salah Satu Dari ${result.jawaban.length} Jawaban\n\nWaktu : 30s\n`, m).then(() => {
             family100[m.sender.split('@')[0]] = result.jawaban

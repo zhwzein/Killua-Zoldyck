@@ -6,7 +6,7 @@ module.exports = {
     type: "randomasupan",
     example: `\nList Type :\n\n${type().sort((a, b) => a - b).join("\n")}\n\nExample : %prefix%command <type>`,
     start: async(killua, m, { text, toUpper }) => {
-        let fetch = await global.api("zenz", "/api/random/asupan/" + text, {}, "apikey")
+        let fetch = await global.api("zenz", "/randomasupan/" + text, {}, "apikey")
         let buttons = [
             {buttonId: `randomasupan ${text}`, buttonText: { displayText: 'NEXT'}, type: 1 }
         ]

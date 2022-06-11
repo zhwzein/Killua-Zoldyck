@@ -6,7 +6,7 @@ module.exports = {
     type: "randomimage",
     example: `\nList Type :\n\n${type().sort((a, b) => a - b).join("\n")}\n\nExample : %prefix%command <type>`,
     start: async(killua, m, { text, toUpper }) => {
-        let fetch = await global.api("zenz", "/api/random/" + text, {}, "apikey")
+        let fetch = await global.api("zenz", "/randomimage/" + text, {}, "apikey")
         let buttons = [
             {buttonId: `randomimage ${text}`, buttonText: { displayText: 'NEXT'}, type: 1 }
         ]
@@ -23,5 +23,5 @@ module.exports = {
 }
 
 function type() {
-    return ["cosplay","darkjoke","meme","memeindo","anime","waifu","husbu","neko","shinobu","megumin","uniform","maid","marin-kitagawa","mori-calliope","raiden-shogun","oppai","selfies","patrick","waifus","nekos","trap","blowjob","hentai","milf","oral","paizuri","ecchi","ero"]
+    return ["cosplay","darkjoke","meme","memeindo","patrick"]
 }

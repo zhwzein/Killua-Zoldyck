@@ -2,10 +2,10 @@ const { fetchUrl } = require("../../lib/Function")
 
 module.exports = {
     name: "loli",
-    alias: [],
+    alias: ["lolikuy"],
     use: "<query>",
     desc: "Generate Random loli Image From Apis",
-    type: "randomimage",
+    type: "randomanime",
     example: `%prefix%command <type>`,
     start: async(killua, m, { text, toUpper }) => {
         let fetch = await fetchUrl('https://lolikuy.herokuapp.com/')

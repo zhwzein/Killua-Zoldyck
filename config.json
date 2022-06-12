@@ -1,7 +1,7 @@
 {
   "APIs": {
     "zenz": "https://zenzapis.xyz",
-    "apikey": "YOURAPIKEY"
+    "apikey": "4c2b925971"
   },
   "options": {
     "autoRead": false,
@@ -15,12 +15,12 @@
     "multi": "/database/killua-multi.json"
   },
   "exif": {
-    "packname": "zenzapi",
+    "packname": "AixxyBOT",
     "author": "https://zenzapi.xyz"
   },
   "owner": [
-    "62812xxx"
+    "6281223353142"
   ],
   "timezone": "Asia/Jakarta",
-  "footer": "Powered by https://zenzapis.xyz"
+  "footer": "Aixxy"
 }

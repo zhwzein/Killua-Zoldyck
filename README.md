@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://i.ibb.co/TYMKtX8/2169093223010c16908cdc5e6102b65a.jpg" alt="nz" width="350"/>
+<img src="https://zenzapis.xyz/upload/icon.jpg" alt="nz" width="350"/>
 </p>
 
 ## Killua-Zoldyck

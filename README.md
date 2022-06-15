@@ -95,13 +95,6 @@ SCAN THE QR USING YOUR WHATSAPP!
 * FFmpeg buildpack https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git
 </details>
 
-<!-- Attention -->
-<b><details><summary>Attention !</summary></b>  
-
-Read this wiki [How To Get IP access](https://github.com/zhwzein/Killua-Zoldyck/wiki/Get-IP-access)
-	
-</details>
-
 ---
 <details><summary>Available Features</summary><br>
 	

@@ -10,10 +10,6 @@
     "limitCount": 20,
     "limitGame": 20
   },
-  "sessionName": {
-    "legacy": "/database/killua-legacy.json",
-    "multi": "/database/killua-multi.json"
-  },
   "exif": {
     "packname": "zenzapi",
     "author": "https://zenzapi.xyz"

@@ -1,3 +1,3 @@
 :a
-node index.js
+npm start
 goto:a

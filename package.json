@@ -22,7 +22,6 @@
     "parse-ms": "^2.1.0",
     "path": "^0.12.7",
     "pino": "^7.9.2",
-    "pm2": "^5.2.0",
     "qrcode-terminal": "^0.12.0",
     "request": "^2.88.2",
     "util": "^0.12.4",
@@ -35,7 +34,7 @@
     "qrcode-terminal": "^0.12.0"
   },
   "scripts": {
-    "start": "pm2-runtime start index.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

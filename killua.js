@@ -343,5 +343,3 @@ module.exports = async (killua, m, commands, chatUpdate) => {
         console.log(e)
     }
 }
-
-global.reloadFile(__filename)

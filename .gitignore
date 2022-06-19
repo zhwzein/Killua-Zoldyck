@@ -1,5 +1,7 @@
+
 # modules
-node_modules
+node_modules/
+session/
 
 # lock files
 *-lock.json

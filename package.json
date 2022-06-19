@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "commonjs",
   "dependencies": {
-    "@adiwajshing/baileys": "^4.1.0",
+    "@adiwajshing/baileys": "github:adiwajshing/baileys",
     "@adiwajshing/keyed-db": "^0.2.4",
     "axios": "^0.24.0",
     "chalk": "^4.1.2",
@@ -15,7 +15,6 @@
     "file-type": "^16.5.3",
     "fluent-ffmpeg": "^2.1.2",
     "form-data": "^4.0.0",
-    "image-to-pdf": "^1.0.0",
     "moment-timezone": "^0.5.34",
     "node-cron": "^3.0.0",
     "node-webpmux": "^3.1.0",
@@ -30,12 +29,21 @@
   "devDependencies": {
     "@hapi/boom": "^9.1.4",
     "jimp": "^0.16.1",
+    "nodemon": "^2.0.16",
     "pino": "^7.6.5",
     "qrcode-terminal": "^0.12.0"
   },
   "scripts": {
-    "start": "node index.js",
+    "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "database/",
+      "session/",
+      "config.json"
+    ],
+    "delay": 2500
   },
   "repository": {
     "type": "git",

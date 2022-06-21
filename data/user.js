@@ -196,12 +196,12 @@ const expiredCheck = (killua, m, _db) => {
             idny ? killua.sendText(idny, "Your Premium Role has run out", m) : ""
 			idny = false
 		}
-	}, 1000)
+	}, 10000)
 }
 
 // LIMIT RESET
 setInterval(() => {
-	cron.schedule('49 4 * * *', () => {
+	cron.schedule('0 0 * * *', () => {
 		let found = false
 			Object.keys(_user).forEach((i) => {
 				if (_user[i].limit) {
@@ -217,7 +217,7 @@ setInterval(() => {
 		scheduled: true,
 		timezone: config.timezone
 	})
-}, 0)
+}, 10000)
 
 module.exports = {
 	addUser,

@@ -63,7 +63,7 @@ const connect = async() => {
     }
     const killua = new WAConnection(makeWASocket(connOptions))
 
-    store.bind(killua.ev)
+    global.Store = store.bind(killua.ev)
 
 	const sendMessageWTyping = async(msg, jid) => {
 		await killua.presenceSubscribe(jid)

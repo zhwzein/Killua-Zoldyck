@@ -8,7 +8,7 @@ module.exports = {
     example: `%prefix%command`,
     start: async(killua, m, {}) => {
         let fetch = await fetchUrl(global.api("zenz", "/information/bmkg/gempa", {}, "apikey"))
-        let caption = `Covid-19 Information :\n\n`
+        let caption = `Gempa Information :\n\n`
         let i = fetch.result
         caption += `⭔ Tanggal : ${i.tanggal}\n`
         caption += `⭔ Jam : ${i.jam}\n`

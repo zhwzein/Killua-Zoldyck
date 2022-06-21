@@ -199,25 +199,16 @@ const expiredCheck = (killua, m, _db) => {
 	}, 10000)
 }
 
-// LIMIT RESET
-setInterval(() => {
-	cron.schedule('0 0 * * *', () => {
-		let found = false
-			Object.keys(_user).forEach((i) => {
-				if (_user[i].limit) {
-					found = i
-				}
-			})
-			if (found !== false) {
-				_user[found].limit = 0
-				console.log('Resetting user limit...')
-				fs.writeFileSync("./database/user.json", JSON.stringify(_user, null, 4))
-			}
-	}, {
-		scheduled: true,
-		timezone: config.timezone
+cron.schedule('0 0 * * *', () => {
+	Object.keys(_user).forEach((i) => {
+		_user[i].limit = 0
+		fs.writeFileSync("./database/user.json", JSON.stringify(_user, null, 4))
 	})
-}, 10000)
+	console.log('Resetting user limit...')
+}, {
+	scheduled: true,
+	timezone: config.timezone
+})
 
 module.exports = {
 	addUser,

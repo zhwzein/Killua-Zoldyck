@@ -38,10 +38,11 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "nodemonConfig": {
+    "verbose": true,
     "ignore": [
-      "database/",
-      "session/",
-      "config.json"
+        "database/",
+        "temp/",
+        "config.json"
     ],
     "delay": 2500
   },

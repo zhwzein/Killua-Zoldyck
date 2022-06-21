@@ -53,9 +53,6 @@ module.exports = async (killua, m, commands, chatUpdate) => {
         global.isAntilink = group.cekAntilink(m.from, _group)
 
         user.expiredCheck(killua, m, _user);
-
-        if (config.options.autoRead) (killua.type == "legacy") ? await killua.chatRead(m.key, 1) : await killua.sendReadReceipt(from, sender, [m.id])
-        if (config.options.mute && !isOwner) return
         if (config.options.self && !isOwner && !m.fromMe) return
 
         var prefix = /^[°•π÷×¶∆£¢€¥®™+✓_=|~!?@#%^&.©^]/gi.test(body) ? body.match(/^[°•π÷×¶∆£¢€¥®™+✓_=|~!?@#%^&.©^]/gi)[0] : Function.checkPrefix(prefa, body).prefix ?? "#"

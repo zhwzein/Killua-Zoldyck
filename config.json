@@ -6,7 +6,6 @@
   "options": {
     "autoRead": false,
     "self": false,
-    "mute": false,
     "limitCount": 20,
     "limitGame": 20
   },

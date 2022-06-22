@@ -14,7 +14,7 @@ module.exports = {
         if (/image|video|sticker/.test(mime)) {
             let download = await killua.downloadMediaMessage(quoted)
             const form = new BodyForm()
-            form.append('sampleFile', download, { filename: getRandom('mp3') })
+            form.append('sampleFile', download, { filename: getRandom('jpeg') })
             axios.post(global.api("zenz", "/animeweb/sauce", {}, "apikey"), form.getBuffer(), { headers: { "content-type": `multipart/form-data; boundary=${form._boundary}`}
             }).then(({ data }) => {
                 let caption = `Anime Source :\n\n`

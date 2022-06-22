@@ -8,7 +8,7 @@ module.exports = {
     start: async(killua, m, { text, prefix, command }) => {
         if (!text.includes('|')) return m.reply(`Example : ${prefix + command} text|colour|bgcolour`)
         let [a, b, c] = text.split`|`
-        killua.sendFile(m.from, global.api("zenz", "/creator/ttp", { text: a,  text2: b,  text3: c }, "apikey"), "", m)
+        killua.sendFile(m.from, global.api("zenz", "/creator/ttp", { text: a,  colour: b,  bgcolour: c }, "apikey"), "", m)
     },
     isQuery: true
 }

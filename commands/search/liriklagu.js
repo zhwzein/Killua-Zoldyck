@@ -10,6 +10,7 @@ module.exports = {
     start: async(killua, m, { text, toUpper }) => {
         let fetch = await fetchUrl(global.api("zenz", "/searching/liriklagu", { query: text }, "apikey"))
         let caption = `Lyric Search Query : ${toUpper(text)}\n\n`
+        let i = fetch.result
         caption += `⭔ Title : ${i.judul}\n`
         caption += `⭔ Singer : ${i.penyanyi}\n\n`
         caption += `⭔ Lyrics : ${i.lirik}\n`

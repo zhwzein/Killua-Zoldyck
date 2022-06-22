@@ -1,15 +1,15 @@
 const { fetchUrl } = require("../../lib/Function")
 
 module.exports = {
-    name: "stalkcod",
-    alias: ["nickcod"],
+    name: "stalknimo",
+    alias: ["nicknimo"],
     use: "<id>",
-    desc: "Call of Duty Stalker",
+    desc: "Nimo TV Stalker",
     type: "stalker",
     example: `%prefix%command <id>`,
     start: async(killua, m, { text }) => {
-        let fetch = await fetchUrl(global.api("zenz", "/stalker/nickcod", { query: text }, "apikey"))
-        let caption = `Call of Duty Stalker :\n\n`
+        let fetch = await fetchUrl(global.api("zenz", "/stalker/nicknimotv", { query: text }, "apikey"))
+        let caption = `Nimo TV Stalker :\n\n`
         let i = fetch.result
         caption += `⭔ GameId : ${i.gameId}\n`
         caption += `⭔ UserName : ${i.userName}\n`

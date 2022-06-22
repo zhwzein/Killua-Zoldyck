@@ -3,10 +3,10 @@ const { fetchUrl } = require("../../lib/Function")
 module.exports = {
     name: "stalkig",
     alias: ["instagramstalk"],
-    use: "<query>",
+    use: "<username>",
     desc: "Instagram Profile Stalker",
     type: "stalker",
-    example: `%prefix%command <query>`,
+    example: `%prefix%command <username>`,
     start: async(killua, m, { text }) => {
         let fetch = await fetchUrl(global.api("zenz", "/stalker/stalker/ig", { username: text }, "apikey"))
         let caption = `Instagram Profile Stalker :\n\n`

@@ -23,28 +23,19 @@
     "pino": "^7.9.2",
     "qrcode-terminal": "^0.12.0",
     "request": "^2.88.2",
+    "supervisor": "^0.12.0",
     "util": "^0.12.4",
     "yargs": "^17.4.0"
   },
   "devDependencies": {
     "@hapi/boom": "^9.1.4",
     "jimp": "^0.16.1",
-    "nodemon": "^2.0.16",
     "pino": "^7.6.5",
     "qrcode-terminal": "^0.12.0"
   },
   "scripts": {
     "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "nodemonConfig": {
-    "verbose": true,
-    "ignore": [
-        "database/",
-        "temp/",
-        "config.json"
-    ],
-    "delay": 2500
   },
   "repository": {
     "type": "git",

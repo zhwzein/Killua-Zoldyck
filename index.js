@@ -97,7 +97,7 @@ const connect = async () => {
         if (m.key && m.key.remoteJid == "status@broadcast") return
         if (m.key.id.startsWith("BAE5") && m.key.id.length == 16) return
         
-        if (config.options.autoRead) await sock.sendReadReceipt(m.key.remoteJid, m.key.participant, [m.key.id])
+        if (config.options.autoRead) await killua.sendReadReceipt(m.key.remoteJid, m.key.participant, [m.key.id])
         require("./killua")(killua, m, Commands, chatUpdate)
     })
 

@@ -11,6 +11,7 @@ module.exports = {
             title: "Random Image",
             rows: [
                 {title: "Random Anime Couple", rowId: "animecouple"},
+                {title: "Random Holo Live", rowId: "hololive"},
                 {title: "Random Anime", rowId: "randomanime anime"},
                 {title: "Random Waifu", rowId: "randomanime waifu"},
                 {title: "Random Husbu", rowId: "randomanime husbu"},

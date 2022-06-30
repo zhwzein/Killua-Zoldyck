@@ -23,5 +23,26 @@ module.exports = {
 }
 
 function type() {
-    return ["cosplay","darkjoke","meme","memeindo","patrick"]
+    return [
+        "cosplay",
+        "darkjoke",
+        "meme",
+        "memeindo",
+        "onecak",
+        "minecraft",
+        "patrick",
+        "aesthetic",
+        "anjing",
+        "blackpink",
+        "boneka",
+        "cecan",
+        "cogan",
+        "hacker",
+        "kucing",
+        "mobil",
+        "motor",
+        "profil",
+        "pubg",
+        "wallHp"
+    ]
 }

@@ -7,7 +7,7 @@ module.exports = {
     type: "randomanime",
     example: `%prefix%command <type>`,
     start: async(killua, m, { text, toUpper }) => {
-        let fetch = await global.api("zenz", "/randomanime/animeme", {}, "apikey")
+        let fetch = await fetchUrl(global.api("zenz", "/randomanime/animeme", {}, "apikey"))
         let buttons = [
             {buttonId: `animeme`, buttonText: { displayText: 'NEXT'}, type: 1 }
         ]

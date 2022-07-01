@@ -7,7 +7,7 @@ module.exports = {
     type: "randomimage",
     example: `%prefix%command <type>`,
     start: async(killua, m, { text, toUpper }) => {
-        let fetch = await global.api("zenz", "/randomanime/randomimage", {}, "apikey")
+        let fetch = await global.api("zenz", "/randomimage/randomimage", {}, "apikey")
         let buttons = [
             {buttonId: `minecraft`, buttonText: { displayText: 'NEXT'}, type: 1 }
         ]

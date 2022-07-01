@@ -12,7 +12,8 @@ module.exports = {
         let caption = `*Youtube Downloader*\n\n`
         let i = fetch.result
         caption += `⭔ Title : ${i.title}\n`
-        caption += `⭔ Size : ${i.size}\n`
+        caption += `⭔ Audio Size : ${i.sizeAudio}\n`
+        caption += `⭔ Video Size : ${i.sizeVideo}\n`
         caption += `⭔ Views : ${i.views}\n`
         caption += `⭔ Likes : ${i.likes}\n`
         caption += `⭔ Dislike : ${i.dislike}\n`
@@ -20,7 +21,7 @@ module.exports = {
         caption += `⭔ UploadDate : ${i.uploadDate}\n\n`
         caption += `⭔ Desc : ${i.desc}\n`
         let buttons = [
-            {buttonId: `dl audio ${i.getVideo}`, buttonText: { displayText: 'Get Audio'}, type: 1 },
+            {buttonId: `dl audio ${i.getAudio}`, buttonText: { displayText: 'Get Audio'}, type: 1 },
             {buttonId: `dl ${i.getVideo}`, buttonText: { displayText: 'Get Video'}, type: 1 }
         ]
         let buttonMessage = {

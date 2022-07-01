@@ -1,4 +1,6 @@
-const { isUrl } = require("../../lib/Function")
+const { isUrl, getRandom } = require("../../lib/Function")
+const fs = require('fs')
+const ffmpeg = require('fluent-ffmpeg')
 
 module.exports = {
     name: "dl",
@@ -11,10 +13,18 @@ module.exports = {
         if (!isUrl(text)) return  m.reply(`Invalid url`)
         let [a, b] = args
         if (a.toLowerCase() === "audio") {
-            killua.sendMessage(m.from, { audio: { url: isUrl(b)[0] }, mimetype: "audio/mpeg", fileName: ".mp3" }, { quoted: m })
+            const zen = getRandom('mp3')
+            ffmpeg(b)
+            .audioBitrate(128)
+            .save('../temp/' + zen)
+            .on('end', () => {
+                killua.sendFile(m.from, fs.readFileSync('./temp/' + zen), "", m).then(data => {
+                    fs.unlinkSync('../temp/' + zen);
+                })
+            })
         } else {
             killua.sendFile(m.from, isUrl(a)[0], "", m)
         }
     },
     isQuery: true
-}
+} 

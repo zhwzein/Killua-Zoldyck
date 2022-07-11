@@ -46,7 +46,7 @@ module.exports = async (killua, m, commands, chatUpdate) => {
         let isAdmin = isGroup ? groupAdmin.includes(sender) : false
         let isOwner = [killua.user?.jid, ...config.owner].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(sender)
         
-        global.isPremium = user.checkPremiumUser(m.sender, _user)
+        global.isPremium = user.checkPremiumUser(m.sender, isOwner, _user)
         global.isAntidelete = group.cekAntidelete(m.from, _group)
         global.isOffline = group.cekOffline(from, _group)
         global.isAntilink = group.cekAntilink(m.from, _group)

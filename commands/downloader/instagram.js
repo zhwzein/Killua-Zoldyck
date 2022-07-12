@@ -9,7 +9,7 @@ module.exports = {
     example: "%prefix%command <url>",
     start: async(killua, m, { text }) => {
         let fetch = await fetchUrl(global.api("zenz", "/downloader/instagram", { url:isUrl(text)[0] }, "apikey"))
-        for (let url of fetch.result) killua.sendFile(m.from, url, "", m, { caption: `Download Media From : ${isUrl(text)[0]}` })
+        for (let i of fetch.result) killua.sendFile(m.from, i.url, "", m, { caption: `Download Media From : ${isUrl(text)[0]}` })
     },
     isQuery: true
 }

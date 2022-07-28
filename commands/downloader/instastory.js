@@ -9,11 +9,11 @@ module.exports = {
     example: "%prefix%command <url>",
     start: async(killua, m, { text }) => {
         if (isUrl(text)) {
-            let fetch = await fetchUrl(global.api("zenz", "/downloader/instastory", { url:isUrl(text)[0] }, "apikey"))
-            killua.sendFile(m.from, fetch.result.media[0].url, "", m, { caption: `Download Story From : ${isUrl(text)[0]}\n\nType: ${fetch.result.type}` })
+            let fetch = await fetchUrl(global.api("zenz", "/downloader/instagram/story/v2", { url:isUrl(text)[0] }, "apikey"))
+            killua.sendFile(m.from, fetch.result[0], "", m, { caption: `Download Story From : ${isUrl(text)[0]}` })
         } else {
-            let fetch = await fetchUrl(global.api("zenz", "/downloader/igstory", { username: text }, "apikey"))
-            for (let i of fetch.result) killua.sendFile(m.from, i.url, "", m, { caption: `Download Story From : ${text}\n\nType: ${i.type}` })
+            let fetch = await fetchUrl(global.api("zenz", "/downloader/instagram/story", { username: text }, "apikey"))
+            for (let i of fetch.result) killua.sendFile(m.from, i.url_list, "", m, { caption: `Download Story From : ${text}` })
         }
     },
     isQuery: true

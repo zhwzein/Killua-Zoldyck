@@ -12,16 +12,16 @@ module.exports = {
             let fetch = await fetchUrl(global.api("zenz", "/animeweb/nhentai", { query: text }, "apikey"))
             let caption = `Nhentai Search :\n\n`
             let i = fetch.result
-            caption += `⭔ ID : ${i.id}\n`
-            caption += `⭔ English Title : ${i.title.english ?? ""}\n`
-            caption += `⭔ Japanese Title : ${i.title.japanese ?? ""}\n`
-            caption += `⭔ Pretty Title : ${i.title.pretty ?? ""}\n`
-            caption += `⭔ Image Length : ${i.image.length}\n`
+            caption += `⭔ Title : ${i.title ?? ""}\n`
+            caption += `⭔ Native Title : ${i.nativeTitle ?? ""}\n`
+            caption += `⭔ Pages Length : ${i.pages.length}\n`
+            caption += `⭔ Upload Date : ${i.upload_date}\n`
+            caption += `⭔ Link : ${i.link}\n`
             let buttons = [
                 {buttonId: `nhpdf ${text}`, buttonText: { displayText: 'Download PDF'}, type: 1 },
             ]
             let buttonMessage = {
-                image: { url: i.image[0] },
+                image: { url: i.thumbnails[0] },
                 caption: caption,
                 footer: config.footer,
                 buttons: buttons,

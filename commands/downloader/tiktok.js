@@ -23,8 +23,8 @@ module.exports = {
             }
             killua.sendMessage(m.from, buttonMessage, { quoted: m })
         } else {
-            let fetch = await fetchUrl(global.api("zenz", "/downloader/asupantiktok", { query: text }, "apikey"))
-            let caption = `Random Asupan Tiktok ${text}\n\n`
+            let fetch = await fetchUrl(global.api("zenz", "/downloader/randomtiktok", { username: text }, "apikey"))
+            let caption = `Random Tiktok Video From ${text}\n\n`
             let i = fetch.result
             caption += `⭔ Username : ${i.username}\n`
             caption += `⭔ Followers : ${i.followers}\n`

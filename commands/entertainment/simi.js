@@ -9,7 +9,7 @@ module.exports = {
     example: `%prefix%command <query>`,
     start: async(killua, m, { text }) => {
         try {
-            let fetch = await fetchUrl(global.api("zenz", "/entertainment/simisimi", { text: encodeURIComponent(text) }, "apikey"))
+            let fetch = await fetchUrl(global.api("zenz", "/entertainment/simisimi" || "/entertainment/simisimi/v2", { text: text }, "apikey"))
             result = fetch.result.message
             killua.sendText(m.from, result, m)
         } catch {

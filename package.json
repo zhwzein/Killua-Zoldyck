@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "commonjs",
   "dependencies": {
-    "@adiwajshing/baileys": "github:adiwajshing/baileys",
+    "@adiwajshing/baileys": "github:FatihArridho/Baileys",
     "@adiwajshing/keyed-db": "^0.2.4",
     "axios": "^0.24.0",
     "chalk": "^4.1.2",

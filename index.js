@@ -15,7 +15,7 @@ global.prefa = /^[#$+.?_&<>!/\\]/
 Commands.prefix = prefa
  
 global.api = (name, path = '/', query = {}, apikeyqueryname) => (name in config.APIs ? config.APIs[name] : name) + path + (query || apikeyqueryname ? '?' + new URLSearchParams(Object.entries({ ...query, ...(apikeyqueryname ? { [apikeyqueryname]: config.APIs.apikey } : {}) })) : '')
-const { state, saveState } = useSingleFileAuthState(path.resolve('./database/session.json'), pino({ level: 'silent' }))
+const { state, saveState } = useSingleFileAuthState(path.resolve('./database/session.json'))
 
 const readCommands = () => {
     let dir = path.join(__dirname, "./commands")

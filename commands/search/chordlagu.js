@@ -11,7 +11,7 @@ module.exports = {
         let fetch = await fetchUrl(global.api("zenz", "/searching/chordlagu", { query: text }, "apikey"))
         let caption = `Chord Lagu Search Query : ${toUpper(text)}\n\n`
         let i = fetch.result
-        caption += `⭔ Result : ${i.result}\n`
+        caption += `⭔ Result : ${i}\n`
         killua.sendText(m.from, caption, m)
     },
     isQuery: true

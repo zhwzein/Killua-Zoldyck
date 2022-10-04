@@ -137,6 +137,6 @@ Group Support [Here](https://chat.whatsapp.com/G1e0U2lOTVAGKNjyFHjDGP)
 * [`Mhankbarbar`](https://github.com/MhankBarBar)
 * [`DikaArdnt`](https://github.com/DikaArdnt)
 * [`Faizbastomi`](https://github.com/FaizBastomi)
-
+* [`FatihArridho`](https://github.com/FatihArridho)
 
 License: [MIT](https://en.wikipedia.org/wiki/MIT_License)

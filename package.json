@@ -1,7 +1,7 @@
 {
   "name": "killua-zoldyck",
-  "version": "3.0.0",
-  "description": "WhatsApp Bot Using Lib Baileys",
+  "version": "3.1.0",
+  "description": "WhatsApp Bot Script",
   "main": "index.js",
   "type": "commonjs",
   "dependencies": {
@@ -24,8 +24,7 @@
     "qrcode-terminal": "^0.12.0",
     "request": "^2.88.2",
     "supervisor": "^0.12.0",
-    "util": "^0.12.4",
-    "yargs": "^17.4.0"
+    "util": "^0.12.4"
   },
   "devDependencies": {
     "@hapi/boom": "^9.1.4",
@@ -34,7 +33,7 @@
     "qrcode-terminal": "^0.12.0"
   },
   "scripts": {
-    "start": "supervisor index.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -42,7 +41,7 @@
     "url": "git+https://github.com/zhwzein/Killua-Zoldyck.git"
   },
   "keywords": [
-    "multi-devices",
+    "multi-device",
     "whatsapp-bot",
     "zenzapis"
   ],

@@ -28,14 +28,13 @@ module.exports = {
             }
 
             teks += `Send ${prefix}help followed by a command name to get detail of command, ex: ${prefix}help sticker`;
-            let templateButtons = [
-                { urlButton: { displayText: "Source Code", url: "https://github.com/zhwzein/Killua-Zoldyck" } },
-                { urlButton: { displayText: "Main APIs", url: "http://zenzapis.xyz" } },
-                { quickReplyButton: { displayText: "Button 1", id: "#" } },
-                { quickReplyButton: { displayText: "Button 2", id: "#" } },
-                { quickReplyButton: { displayText: "Button 3", id: "#" } },
-            ]
             
+            let templateButtons = [
+                {index: 1, urlButton: { displayText: "Source Code", url: "https://github.com/zhwzein/Killua-Zoldyck" }},
+                {index: 2, urlButton: { displayText: "Main APIs", url: "http://zenzapis.xyz" }},
+                {index: 3, quickReplyButton: {displayText: 'This is a reply, just like normal buttons!', id: 'id-like-buttons-message'}},
+            ]
+
             let templateMessage = {
                 image: { url: 'https://camo.githubusercontent.com/23f3195d91e7095ae37ef6a22475b9f1206f8334bc3e5ca61637f7d7e8cf962a/68747470733a2f2f692e70696e696d672e636f6d2f373336782f66662f38372f62372f66663837623730653963396465613464396361333263393533386138316333622e6a7067' },
                 caption: teks,

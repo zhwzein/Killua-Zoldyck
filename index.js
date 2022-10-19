@@ -1,21 +1,26 @@
 require("./global")
-const { default: WASocket, DisconnectReason, useSingleFileAuthState, fetchLatestBaileysVersion, delay, jidNormalizedUser, makeWALegacySocket, useSingleFileLegacyAuthState, DEFAULT_CONNECTION_CONFIG, DEFAULT_LEGACY_CONNECTION_CONFIG } = require("@adiwajshing/baileys")
+const P = require ('pino')
+const { Boom } = require ('@hapi/boom')
+const { default: makeWASocket, delay, DisconnectReason, fetchLatestBaileysVersion, makeInMemoryStore, useMultiFileAuthState, useSingleFileAuthState,  jidNormalizedUser } = require ('@adiwajshing/baileys')
 const fs = require("fs")
-const chalk = require("chalk")
-const pino = require("pino")
-const yargs = require("yargs")
 const path = require("path")
-const { Boom } = require("@hapi/boom")
 const { Collection, Simple, Store } = require("./lib")
-const Welcome = require("./lib/Welcome");
+
+const Welcome = require("./lib/Welcome")
 const config = JSON.parse(fs.readFileSync('./config.json'))
 const { serialize, WAConnection } = Simple
 const Commands = new Collection()
+
 global.prefa = /^[#$+.?_&<>!/\\]/
 Commands.prefix = prefa
  
+const store = makeInMemoryStore({ logger: P().child({ level: 'silent', stream: 'store' }) })
+store.readFromFile('./session/baileys_store.json')
+setInterval(() => {
+	store.writeToFile('./session/baileys_store.json')
+}, 10000)
+
 global.api = (name, path = '/', query = {}, apikeyqueryname) => (name in config.APIs ? config.APIs[name] : name) + path + (query || apikeyqueryname ? '?' + new URLSearchParams(Object.entries({ ...query, ...(apikeyqueryname ? { [apikeyqueryname]: config.APIs.apikey } : {}) })) : '')
-const { state, saveState } = useSingleFileAuthState(path.resolve('./database/session.json'))
 
 const readCommands = () => {
     let dir = path.join(__dirname, "./commands")
@@ -43,21 +48,22 @@ const readCommands = () => {
 
 const connect = async () => {
     await readCommands()
+    let { state, saveCreds } = await useMultiFileAuthState(path.resolve('./session'))
     let { version, isLatest } = await fetchLatestBaileysVersion()
-    let connOptions = {
-        printQRInTerminal: true,
-        logger: pino({ level: "silent" }),
-        auth: state,
-        version
-    }
-    const killua = new WAConnection(WASocket(connOptions))
-    if (config.APIs.apikey == "YOURAPIKEY") {
-        console.log(chalk.black(chalk.bgRedBright('Apikey is not valid, please check at config.json')))
-        process.exit();
-    }
-    global.Store = Store.bind(killua)
+    console.log(`using WA v${version.join('.')}, isLatest: ${isLatest}`)
 
-    killua.ev.on("creds.update", saveState)
+    let connOptions = {
+        version,
+        logger: P({ level: 'silent' }),
+        printQRInTerminal: true,
+        auth: state,
+        syncFullHistory: true
+    }
+
+    const killua = new WAConnection(makeWASocket(connOptions))
+    //global.Store = Store.bind(killua)
+
+    killua.ev.on("creds.update", saveCreds)
 
     killua.ev.on("connection.update", async(update) => {
         if (update.connection == "open" && killua.type == "legacy") {
@@ -87,8 +93,8 @@ const connect = async () => {
 
     // Welcome
     killua.ev.on("group-participants.update", async (m) => {
-		Welcome(killua, m);
-	});
+		Welcome(killua, m)
+	})
 
     killua.ev.on("messages.upsert", async (chatUpdate) => {
         m = serialize(killua, chatUpdate.messages[0])
@@ -102,7 +108,9 @@ const connect = async () => {
     })
 
     if (killua.user && killua.user?.id) killua.user.jid = jidNormalizedUser(killua.user?.id)
-    killua.logger = (killua.type == "legacy") ? DEFAULT_LEGACY_CONNECTION_CONFIG.logger.child({ }) : DEFAULT_CONNECTION_CONFIG.logger.child({ })
+
+	return killua
+
 }
 
 connect()

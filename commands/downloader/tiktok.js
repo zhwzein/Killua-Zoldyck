@@ -6,42 +6,29 @@ module.exports = {
     use: "<url>",
     desc: "Download Media From https://tiktok.com",
     type: "downloader",
-    example: "%prefix%command <username> or <url>",
+    example: "%prefix%command <url>",
     start: async(killua, m, { text }) => {
-        if (isUrl(text)) {
-            let fetch = await fetchUrl(global.api("zenz", "/downloader/musically", { url: isUrl(text)[0] }, "apikey"))
-            let buttons = [
-                {buttonId: `tiktokwm ${text}`, buttonText: {displayText: '► With Watermark'}, type: 1},
-                {buttonId: `tiktokmp3 ${text}`, buttonText: {displayText: '♫ Audio'}, type: 1}
-            ]
-            let buttonMessage = {
-                video: { url: fetch.result.nowm },
-                caption: `Download Tiktok From : ${isUrl(text)[0]}`,
-                footer: config.footer,
-                buttons: buttons,
-                headerType: 5
-            }
-            killua.sendMessage(m.from, buttonMessage, { quoted: m })
-        } else {
-            let fetch = await fetchUrl(global.api("zenz", "/downloader/randomtiktok", { username: text }, "apikey"))
-            let caption = `Random Tiktok Video From ${text}\n\n`
+            let fetch = await fetchUrl(global.api("zenz", "/downloader/tiktok", { url: isUrl(text)[0] }, "apikey"))
+            let caption = `*Tiktok Downloader*\n\n`
             let i = fetch.result
-            caption += `⭔ Username : ${i.username}\n`
-            caption += `⭔ Followers : ${i.followers}\n`
-            caption += `⭔ Caption : ${i.media.caption}\n`
+
+            caption += `⭔ Author : ${i.author.unique_id}\n`
+            caption += `⭔ Created At : ${i.created_at}\n`
+            caption += `⭔ Title : ${i.title}\n`
 
             let buttons = [
-                {buttonId: `tiktok ${text}`, buttonText: {displayText: '► NEXT'}, type: 1},
+                {buttonId: `dl ${i.video.noWatermark}`, buttonText: {displayText: '► No Watermark'}, type: 1},
+                {buttonId: `dl ${i.video.watermark}`, buttonText: {displayText: '► With Watermark'}, type: 1},
+                {buttonId: `dl ${i.music.play_url}`, buttonText: {displayText: '► Sound Only'}, type: 1}
             ]
             let buttonMessage = {
-                video: { url: i.media.videourl },
+                image: { url: i.video.cover },
                 caption: caption,
                 footer: config.footer,
                 buttons: buttons,
-                headerType: 5
+                headerType: 4
             }
             killua.sendMessage(m.from, buttonMessage, { quoted: m })
-        }
     },
     isQuery: true
 }

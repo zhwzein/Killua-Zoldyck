@@ -84,18 +84,6 @@ SCAN THE QR USING YOUR WHATSAPP!
 </details>
 
 ---
-
-<!-- Installation -->
-<b><details><summary>Heroku Deployment</summary></b>  
-
-[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
-	
-<b>Requirements:</b>
-* NodeJS buildpack
-* FFmpeg buildpack https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git
-</details>
-
----
 <details><summary>Available Features</summary><br>
 	
 | Features |  Availability |

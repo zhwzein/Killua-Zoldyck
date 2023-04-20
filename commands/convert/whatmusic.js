@@ -10,7 +10,7 @@ module.exports = {
     desc: "Search Music",
     type: "convert",
     example: `%prefix%command <text> --audio reply`,
-    start: async(killua, m, { command, prefix, text, mime }) => {
+    start: async(killua, m, { command, quoted, prefix, text, mime }) => {
         if (/audio/.test(mime)) {
             let download = await killua.downloadMediaMessage(quoted)
             const form = new BodyForm()

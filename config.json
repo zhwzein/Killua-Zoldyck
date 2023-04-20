@@ -1,21 +1,21 @@
 {
   "APIs": {
     "zenz": "https://api.zahwazein.xyz",
-    "apikey": "YOURAPIKEY"
+    "apikey": "andarazahwa"
   },
   "options": {
-    "autoRead": false,
+    "autoRead": true,
     "self": false,
     "limitCount": 20,
     "limitGame": 20
   },
   "exif": {
-    "packname": "zenzapis",
-    "author": "https://zenzapis.xyz"
+    "packname": "Killua Zoldyck",
+    "author": "https://api.zahwazein.xyz"
   },
   "owner": [
-    "62812xxx"
+    "6281288339373"
   ],
   "timezone": "Asia/Jakarta",
-  "footer": "Powered by https://zenzapis.xyz"
+  "footer": "Powered by https://api.zahwazein.xyz"
 }

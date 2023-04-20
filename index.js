@@ -1,7 +1,7 @@
 require("./global")
 const P = require ('pino')
 const { Boom } = require ('@hapi/boom')
-const { default: makeWASocket, delay, DisconnectReason, fetchLatestBaileysVersion, makeInMemoryStore, useMultiFileAuthState, useSingleFileAuthState,  jidNormalizedUser } = require ('@adiwajshing/baileys')
+const { default: makeWASocket, delay, DisconnectReason, fetchLatestBaileysVersion, makeInMemoryStore, useMultiFileAuthState, useSingleFileAuthState,  jidNormalizedUser } = require ('baileys')
 const fs = require("fs")
 const path = require("path")
 const { Collection, Simple, Store } = require("./lib")

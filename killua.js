@@ -1,5 +1,5 @@
 require("./global")
-const { generateWAMessage, areJidsSameUser, proto } = require("@adiwajshing/baileys")
+const { generateWAMessage, areJidsSameUser, proto } = require("baileys")
 const { Simple, Collection, Function } = require("./lib")
 const { isUrl, isNumber } = Function
 const Func = require("./lib")
@@ -57,8 +57,10 @@ module.exports = async (killua, m, commands, chatUpdate) => {
         var prefix = /^[°•π÷×¶∆£¢€¥®™+✓_=|~!?@#%^&.©^]/gi.test(body) ? body.match(/^[°•π÷×¶∆£¢€¥®™+✓_=|~!?@#%^&.©^]/gi)[0] : Function.checkPrefix(prefa, body).prefix ?? "#"
 
         let isCmd = body.startsWith(prefix)
-        let quoted = m.quoted ? m.quoted : m
-        let mime = (quoted.msg || m.msg).mimetype
+        let fatih = (m.quoted || m)
+        let zhw = (fatih.mtype == 'buttonsMessage') ? fatih[Object.keys(fatih)[1]] : (fatih.mtype == 'templateMessage') ? fatih.hydratedTemplate[Object.keys(fatih.hydratedTemplate)[1]] : (fatih.mtype == 'product') ? fatih[Object.keys(fatih)[0]] : (fatih.mtype == 'viewOnceMessage') ? fatih.message[Object.keys(fatih.message)[0]] : m.quoted ? m.quoted : m
+        let quoted = (zhw.msg || zhw)
+        let mime = (zhw.msg || zhw).mimetype || ''
         let isMedia = /image|video|sticker|audio/.test(mime)
         let budy = (typeof m.text == "string" ? m.text : "")
         let args = body.trim().split(/ +/).slice(1)
@@ -143,14 +145,14 @@ module.exports = async (killua, m, commands, chatUpdate) => {
             if (asahotak.hasOwnProperty(m.sender.split('@')[0]) && !isCmd) {
                 jawaban = asahotak[m.sender.split('@')[0]]
                 if (budy.toLowerCase() == jawaban) {
-                    await killua.sendMessage(m.from, { text:`Selamat Jawaban ${budy} Benar 🎉\n\nIngin bermain lagi? Tekan Tombol Lanjut dibawah\n`, footer:'Entertainment\nPowered By https://zenzapis.xyz', buttons:[{ buttonId:'asahotak', buttonText:{ displayText:'Lanjut'}, type:1 }], headerType:4 }, { quoted: m })
+                    await killua.sendMessage(m.from, { text:`Selamat Jawaban ${budy} Benar 🎉\n\nIngin bermain lagi? Tekan Tombol Lanjut dibawah\n`, footer:`Entertainment\n${config.footer}`, buttons:[{ buttonId:'asahotak', buttonText:{ displayText:'Lanjut'}, type:1 }], headerType:4 }, { quoted: m })
                     delete asahotak[m.sender.split('@')[0]]
                 } else m.reply('*Jawaban Salah!*')
             }
             if (caklontong.hasOwnProperty(m.sender.split('@')[0]) && !isCmd) {
                 jawaban = caklontong[m.sender.split('@')[0]]
                 if (budy.toLowerCase() == jawaban) {
-                    await killua.sendMessage(m.from, { text:`Selamat Jawaban ${budy} Benar 🎉\n\nIngin bermain lagi? Tekan Tombol Lanjut dibawah\n`, footer:'Entertainment\nPowered By https://zenzapis.xyz', buttons:[{ buttonId:'caklontong', buttonText:{ displayText:'Lanjut'}, type:1 }], headerType:4 }, { quoted: m })
+                    await killua.sendMessage(m.from, { text:`Selamat Jawaban ${budy} Benar 🎉\n\nIngin bermain lagi? Tekan Tombol Lanjut dibawah\n`, footer:`Entertainment\n${config.footer}`, buttons:[{ buttonId:'caklontong', buttonText:{ displayText:'Lanjut'}, type:1 }], headerType:4 }, { quoted: m })
                     delete caklontong[m.sender.split('@')[0]]
                 } else m.reply('*Jawaban Salah!*')
             }
@@ -158,84 +160,84 @@ module.exports = async (killua, m, commands, chatUpdate) => {
                 jawaban = family100[m.sender.split('@')[0]]
                 result = Array.from(jawaban).find((v) => v === budy)
                 if (budy.toLowerCase() == result) {
-                    await killua.sendMessage(m.from, { text:`Benar Salah Satu Jawabanya Adalah ${budy} Selamat 🎉\n\nIngin bermain lagi? Tekan Tombol Lanjut dibawah\n`, footer:'Entertainment\nPowered By https://zenzapis.xyz', buttons:[{ buttonId:'family100', buttonText:{ displayText:'Lanjut'}, type:1 }], headerType:4 }, { quoted: m })
+                    await killua.sendMessage(m.from, { text:`Benar Salah Satu Jawabanya Adalah ${budy} Selamat 🎉\n\nIngin bermain lagi? Tekan Tombol Lanjut dibawah\n`, footer:`Entertainment\n${config.footer}`, buttons:[{ buttonId:'family100', buttonText:{ displayText:'Lanjut'}, type:1 }], headerType:4 }, { quoted: m })
                     delete family100[m.sender.split('@')[0]]
                 } else m.reply('*Jawaban Salah!*')
             }
             if (siapakah.hasOwnProperty(m.sender.split('@')[0]) && !isCmd) {
                 jawaban = siapakah[m.sender.split('@')[0]]
                 if (budy.toLowerCase() == jawaban) {
-                    await killua.sendMessage(m.from, { text:`Selamat Jawaban ${budy} Benar 🎉\n\nIngin bermain lagi? Tekan Tombol Lanjut dibawah\n`, footer:'Entertainment\nPowered By https://zenzapis.xyz', buttons:[{ buttonId:'siapakah', buttonText:{ displayText:'Lanjut'}, type:1 }], headerType:4 }, { quoted: m })
+                    await killua.sendMessage(m.from, { text:`Selamat Jawaban ${budy} Benar 🎉\n\nIngin bermain lagi? Tekan Tombol Lanjut dibawah\n`, footer:`Entertainment\n${config.footer}`, buttons:[{ buttonId:'siapakah', buttonText:{ displayText:'Lanjut'}, type:1 }], headerType:4 }, { quoted: m })
                     delete siapakah[m.sender.split('@')[0]]
                 } else m.reply('*Jawaban Salah!*')
             }
             if (susunkata.hasOwnProperty(m.sender.split('@')[0]) && !isCmd) {
                 jawaban = susunkata[m.sender.split('@')[0]]
                 if (budy.toLowerCase() == jawaban) {
-                    await killua.sendMessage(m.from, { text:`Selamat Jawaban ${budy} Benar 🎉\n\nIngin bermain lagi? Tekan Tombol Lanjut dibawah\n`, footer:'Entertainment\nPowered By https://zenzapis.xyz', buttons:[{ buttonId:'susunkata', buttonText:{ displayText:'Lanjut'}, type:1 }], headerType:4 }, { quoted: m })
+                    await killua.sendMessage(m.from, { text:`Selamat Jawaban ${budy} Benar 🎉\n\nIngin bermain lagi? Tekan Tombol Lanjut dibawah\n`, footer:`Entertainment\n${config.footer}`, buttons:[{ buttonId:'susunkata', buttonText:{ displayText:'Lanjut'}, type:1 }], headerType:4 }, { quoted: m })
                     delete susunkata[m.sender.split('@')[0]]
                 } else m.reply('*Jawaban Salah!*')
             }
             if (tebakbendera.hasOwnProperty(m.sender.split('@')[0]) && !isCmd) {
                 jawaban = tebakbendera[m.sender.split('@')[0]]
                 if (budy.toLowerCase() == jawaban) {
-                    await killua.sendMessage(m.from, { text:`Selamat Jawaban ${budy} Benar 🎉\n\nIngin bermain lagi? Tekan Tombol Lanjut dibawah\n`, footer:'Entertainment\nPowered By https://zenzapis.xyz', buttons:[{ buttonId:'tebakbendera', buttonText:{ displayText:'Lanjut'}, type:1 }], headerType:4 }, { quoted: m })
+                    await killua.sendMessage(m.from, { text:`Selamat Jawaban ${budy} Benar 🎉\n\nIngin bermain lagi? Tekan Tombol Lanjut dibawah\n`, footer:`Entertainment\n${config.footer}`, buttons:[{ buttonId:'tebakbendera', buttonText:{ displayText:'Lanjut'}, type:1 }], headerType:4 }, { quoted: m })
                     delete tebakbendera[m.sender.split('@')[0]]
                 } else m.reply('*Jawaban Salah!*')
             }
             if (tebakgambar.hasOwnProperty(m.sender.split('@')[0]) && !isCmd) {
                 jawaban = tebakgambar[m.sender.split('@')[0]]
                 if (budy.toLowerCase() == jawaban) {
-                    await killua.sendMessage(m.from, { text:`Selamat Jawaban ${budy} Benar 🎉\n\nIngin bermain lagi? Tekan Tombol Lanjut dibawah\n`, footer:'Entertainment\nPowered By https://zenzapis.xyz', buttons:[{ buttonId:'tebakgambar', buttonText:{ displayText:'Lanjut'}, type:1 }], headerType:4 }, { quoted: m })
+                    await killua.sendMessage(m.from, { text:`Selamat Jawaban ${budy} Benar 🎉\n\nIngin bermain lagi? Tekan Tombol Lanjut dibawah\n`, footer:`Entertainment\n${config.footer}`, buttons:[{ buttonId:'tebakgambar', buttonText:{ displayText:'Lanjut'}, type:1 }], headerType:4 }, { quoted: m })
                     delete tebakgambar[m.sender.split('@')[0]]
                 } else m.reply('*Jawaban Salah!*')
             }
             if (tebakkabupaten.hasOwnProperty(m.sender.split('@')[0]) && !isCmd) {
                 jawaban = tebakkabupaten[m.sender.split('@')[0]]
                 if (budy.toLowerCase() == jawaban) {
-                    await killua.sendMessage(m.from, { text:`Selamat Jawaban ${budy} Benar 🎉\n\nIngin bermain lagi? Tekan Tombol Lanjut dibawah\n`, footer:'Entertainment\nPowered By https://zenzapis.xyz', buttons:[{ buttonId:'tebakkabupaten', buttonText:{ displayText:'Lanjut'}, type:1 }], headerType:4 }, { quoted: m })
+                    await killua.sendMessage(m.from, { text:`Selamat Jawaban ${budy} Benar 🎉\n\nIngin bermain lagi? Tekan Tombol Lanjut dibawah\n`, footer:`Entertainment\n${config.footer}`, buttons:[{ buttonId:'tebakkabupaten', buttonText:{ displayText:'Lanjut'}, type:1 }], headerType:4 }, { quoted: m })
                     delete tebakkabupaten[m.sender.split('@')[0]]
                 } else m.reply('*Jawaban Salah!*')
             }
             if (tebakkalimat.hasOwnProperty(m.sender.split('@')[0]) && !isCmd) {
                 jawaban = tebakkalimat[m.sender.split('@')[0]]
                 if (budy.toLowerCase() == jawaban) {
-                    await killua.sendMessage(m.from, { text:`Selamat Jawaban ${budy} Benar 🎉\n\nIngin bermain lagi? Tekan Tombol Lanjut dibawah\n`, footer:'Entertainment\nPowered By https://zenzapis.xyz', buttons:[{ buttonId:'tebakkalimat', buttonText:{ displayText:'Lanjut'}, type:1 }], headerType:4 }, { quoted: m })
+                    await killua.sendMessage(m.from, { text:`Selamat Jawaban ${budy} Benar 🎉\n\nIngin bermain lagi? Tekan Tombol Lanjut dibawah\n`, footer:`Entertainment\n${config.footer}`, buttons:[{ buttonId:'tebakkalimat', buttonText:{ displayText:'Lanjut'}, type:1 }], headerType:4 }, { quoted: m })
                     delete tebakkalimat[m.sender.split('@')[0]]
                 } else m.reply('*Jawaban Salah!*')
             }
             if (tebakkata.hasOwnProperty(m.sender.split('@')[0]) && !isCmd) {
                 jawaban = tebakkata[m.sender.split('@')[0]]
                 if (budy.toLowerCase() == jawaban) {
-                    await killua.sendMessage(m.from, { text:`Selamat Jawaban ${budy} Benar 🎉\n\nIngin bermain lagi? Tekan Tombol Lanjut dibawah\n`, footer:'Entertainment\nPowered By https://zenzapis.xyz', buttons:[{ buttonId:'tebakkata', buttonText:{ displayText:'Lanjut'}, type:1 }], headerType:4 }, { quoted: m })
+                    await killua.sendMessage(m.from, { text:`Selamat Jawaban ${budy} Benar 🎉\n\nIngin bermain lagi? Tekan Tombol Lanjut dibawah\n`, footer:`Entertainment\n${config.footer}`, buttons:[{ buttonId:'tebakkata', buttonText:{ displayText:'Lanjut'}, type:1 }], headerType:4 }, { quoted: m })
                     delete tebakkata[m.sender.split('@')[0]]
                 } else m.reply('*Jawaban Salah!*')
             }
             if (tebaklagu.hasOwnProperty(m.sender.split('@')[0]) && !isCmd) {
                 jawaban = tebaklagu[m.sender.split('@')[0]]
                 if (budy.toLowerCase() == jawaban) {
-                    await killua.sendMessage(m.from, { text:`Selamat Jawaban ${budy} Benar 🎉\n\nIngin bermain lagi? Tekan Tombol Lanjut dibawah\n`, footer:'Entertainment\nPowered By https://zenzapis.xyz', buttons:[{ buttonId:'tebaklagu', buttonText:{ displayText:'Lanjut'}, type:1 }], headerType:4 }, { quoted: m })
+                    await killua.sendMessage(m.from, { text:`Selamat Jawaban ${budy} Benar 🎉\n\nIngin bermain lagi? Tekan Tombol Lanjut dibawah\n`, footer:`Entertainment\n${config.footer}`, buttons:[{ buttonId:'tebaklagu', buttonText:{ displayText:'Lanjut'}, type:1 }], headerType:4 }, { quoted: m })
                     delete tebaklagu[m.sender.split('@')[0]]
                 } else m.reply('*Jawaban Salah!*')
             }
             if (tekateki.hasOwnProperty(m.sender.split('@')[0]) && !isCmd) {
                 jawaban = tekateki[m.sender.split('@')[0]]
                 if (budy.toLowerCase() == jawaban) {
-                    await killua.sendMessage(m.from, { text:`Selamat Jawaban ${budy} Benar 🎉\n\nIngin bermain lagi? Tekan Tombol Lanjut dibawah\n`, footer:'Entertainment\nPowered By https://zenzapis.xyz', buttons:[{ buttonId:'tekateki', buttonText:{ displayText:'Lanjut'}, type:1 }], headerType:4 }, { quoted: m })
+                    await killua.sendMessage(m.from, { text:`Selamat Jawaban ${budy} Benar 🎉\n\nIngin bermain lagi? Tekan Tombol Lanjut dibawah\n`, footer:`Entertainment\n${config.footer}`, buttons:[{ buttonId:'tekateki', buttonText:{ displayText:'Lanjut'}, type:1 }], headerType:4 }, { quoted: m })
                     delete tekateki[m.sender.split('@')[0]]
                 } else m.reply('*Jawaban Salah!*')
             }
             if (tebaklirik.hasOwnProperty(m.sender.split('@')[0]) && !isCmd) {
                 jawaban = tebaklirik[m.sender.split('@')[0]]
                 if (budy.toLowerCase() == jawaban) {
-                    await killua.sendMessage(m.from, { text:`Selamat Jawaban ${budy} Benar 🎉\n\nIngin bermain lagi? Tekan Tombol Lanjut dibawah\n`, footer:'Entertainment\nPowered By https://zenzapis.xyz', buttons:[{ buttonId:'tebaklirik', buttonText:{ displayText:'Lanjut'}, type:1 }], headerType:4 }, { quoted: m })
+                    await killua.sendMessage(m.from, { text:`Selamat Jawaban ${budy} Benar 🎉\n\nIngin bermain lagi? Tekan Tombol Lanjut dibawah\n`, footer:`Entertainment\n${config.footer}`, buttons:[{ buttonId:'tebaklirik', buttonText:{ displayText:'Lanjut'}, type:1 }], headerType:4 }, { quoted: m })
                     delete tebaklirik[m.sender.split('@')[0]]
                 } else m.reply('*Jawaban Salah!*')
             }
             if (tebaktebakan.hasOwnProperty(m.sender.split('@')[0]) && !isCmd) {
                 jawaban = tebaktebakan[m.sender.split('@')[0]]
                 if (budy.toLowerCase() == jawaban) {
-                    await killua.sendMessage(m.from, { text:`Selamat Jawaban ${budy} Benar 🎉\n\nIngin bermain lagi? Tekan Tombol Lanjut dibawah\n`, footer:'Entertainment\nPowered By https://zenzapis.xyz', buttons:[{ buttonId:'tebaktebakan', buttonText:{ displayText:'Lanjut'}, type:1 }], headerType:4 }, { quoted: m })
+                    await killua.sendMessage(m.from, { text:`Selamat Jawaban ${budy} Benar 🎉\n\nIngin bermain lagi? Tekan Tombol Lanjut dibawah\n`, footer:`Entertainment\n${config.footer}`, buttons:[{ buttonId:'tebaktebakan', buttonText:{ displayText:'Lanjut'}, type:1 }], headerType:4 }, { quoted: m })
                     delete tebaktebakan[m.sender.split('@')[0]]
                 } else m.reply('*Jawaban Salah!*')
             }
@@ -243,7 +245,7 @@ module.exports = async (killua, m, commands, chatUpdate) => {
             console.error(e)
         }
 
-        /* uncomment jika ingin menggunakan
+        // uncomment jika ingin menggunakan
         if (!isOffline && isCmd && !cmd) {
             var array = Array.from(commands.keys());
             Array.from(commands.values()).map((v) => v.alias).join(" ").replace(/ +/gi, ",").split(",").map((v) => array.push(v))
@@ -262,7 +264,7 @@ module.exports = async (killua, m, commands, chatUpdate) => {
             if (user.isLimit(m.sender, isPremium, isOwner, config.options.limitCount, _user) && !m.fromMe)
             return m.reply(`Your limit has run out, please send ${prefix}limit to check the limit`);
             user.limitAdd(m.sender, isPremium, isOwner, _user);
-        }*/
+        }
 
         if (cmd.isMedia && !isMedia) {
             return global.mess("media", m)

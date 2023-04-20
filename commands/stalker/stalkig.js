@@ -11,13 +11,16 @@ module.exports = {
         let fetch = await fetchUrl(global.api("zenz", "/stalker/ig", { username: text }, "apikey"))
         let caption = `Instagram Profile Stalker :\n\n`
         let i = fetch.result
-        caption += `⭔ Fullname : ${i.fullname}\n`
-        caption += `⭔ Username : ${i.username}\n`
-        caption += `⭔ Post : ${i.post}\n`
-        caption += `⭔ Followers : ${i.followers}\n`
-        caption += `⭔ Following : ${i.following}\n`
-        caption += `⭔ Bio : ${i.bio}\n`
-        killua.sendFile(m.from, i.profile, "", m, { caption })
+        caption += `⭔ Fullname : ${i.data.fullname}\n`
+        caption += `⭔ Username : ${text.toLowerCase()}\n`
+        caption += `⭔ Verified : ${i.data.verified ? "✅" : "❎" }\n`
+        caption += `⭔ Status : ${i.data.private ? "Private" : "Public"}\n`
+        caption += `⭔ Total Post : ${i.data.timeline}\n`
+        caption += `⭔ Video Post : ${i.data.videotimeline}\n`
+        caption += `⭔ Followers : ${i.data.follower}\n`
+        caption += `⭔ Following : ${i.data.following}\n`
+        caption += `⭔ Bio : ${i.data.bio}\n`
+        killua.sendFile(m.from, i.profile.high, "", m, { caption })
     },
     isQuery: true
 }

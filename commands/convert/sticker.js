@@ -11,11 +11,8 @@ module.exports = {
     start: async(killua, m, { command, prefix, text, quoted, mime }) => {
         if (!quoted) return  m.reply(`Reply to Supported media With Caption ${prefix + command}`)
         if (/image|video|sticker/.test(mime)) {
-            let download = await quoted.download()
+            let download = await killua.downloadMediaMessage(quoted)
             killua.sendFile(m.from, download, "", m, { asSticker: true, author: config.exif.author, packname: config.exif.packname, categories: ['😄','😊'] })
-        } else if (quoted.mentions[0]) {
-            let url = await killua.profilePictureUrl(quoted.mentions[0], "image")
-            killua.sendFile(m.from, url, "", m, { asSticker: true, author: config.exif.author, packname: config.exif.packname, categories: ['😄','😊'] })
         } else if (isUrl(text)) {
             if (isUrl(text)) killua.sendFile(m.from, isUrl(text)[0], "", m, { asSticker: true, author: config.exif.author, packname: config.exif.packname, categories: ['😄','😊'] })
             else m.reply('No Url Match')
@@ -26,13 +23,14 @@ module.exports = {
                 killua.sendFile(m.from, url, "", m, { asSticker: true, author: config.exif.author, packname: config.exif.packname, categories: ['😄','😊'] })
             }
         } else if (quoted.type == "templateMessage") {
-            let message = quoted.imageMessage || quoted.videoMessage
-            let download = await killua.downloadMediaMessage(message)
+            let download = await killua.downloadMediaMessage(quoted)
             killua.sendFile(m.from, download, "", m, { asSticker: true, author: config.exif.author, packname: config.exif.packname, categories: ['😄','😊'] })
         } else if (quoted.type == "buttonsMessage") {
-            let message = quoted.imageMessage || quoted.videoMessage
-            let download = await killua.downloadMediaMessage(message)
+            let download = await killua.downloadMediaMessage(quoted)
             killua.sendFile(m.from, download, "", m, { asSticker: true, author: config.exif.author, packname: config.exif.packname, categories: ['😄','😊'] })
+        } else if (quoted.mentions[0]) {
+            let url = await killua.profilePictureUrl(quoted.mentions[0], "image")
+            killua.sendFile(m.from, url, "", m, { asSticker: true, author: config.exif.author, packname: config.exif.packname, categories: ['😄','😊'] })
         } else {
             return m.reply(`Reply to Supported media With Caption ${prefix + command}`, m.from, { quoted: m })
         }

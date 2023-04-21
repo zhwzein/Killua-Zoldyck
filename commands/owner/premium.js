@@ -13,21 +13,21 @@ module.exports = {
         if (ar[0] === 'add') {
 			if (m.mentions.length !== 0) {
 				for (let i = 0; i < m.mentions.length; i++) {
-					user.addPremiumUser(m.mentions[0], args[2], _user);
+					premium.addPremiumUser(m.mentions[0], args[2], _premium);
 					m.reply(`*「 PREMIUM ADDED 」*\n\n*ID :* ${args[1]}\n*Expired :* ${ms(toMs(args[2])).days} day ${ms(toMs(args[2])).hours} hour ${ms(toMs(args[2])).minutes} minute`)
 				}
 			} else {
-				user.addPremiumUser(args[1] + "@s.whatsapp.net", args[2], _user);
+				premium.addPremiumUser(args[1] + "@s.whatsapp.net", args[2], _premium);
 				m.reply(`*「 PREMIUM ADDED 」*\n\n*ID :* ${args[1]}\n*Expired :* ${ms(toMs(args[2])).days} day ${ms(toMs(args[2])).hours} hour ${ms(toMs(args[2])).minutes} minute`)
 			}
 		} else if (ar[0] === 'del') {
 			if (m.mentions.length !== 0) {
 				for (let i = 0; i < m.mentions.length; i++) {
-					user.delPremiumUser(m.mentions[0], _user)
+					premium.delPremiumUser(m.mentions[0], _premium)
 					m.reply('Premium Deleted')
 				}
 			} else {
-				user.delPremiumUser(args[1] + "@s.whatsapp.net", _user);
+				premium.delPremiumUser(args[1] + "@s.whatsapp.net", _premium);
 				m.reply('Premium Deleted')
 			}
 		} else {

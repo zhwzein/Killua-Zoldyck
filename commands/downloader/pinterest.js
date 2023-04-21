@@ -9,14 +9,7 @@ module.exports = {
     example: "%prefix%command <url>",
     start: async(killua, m, { text }) => {
         let fetch = await fetchUrl(global.api("zenz", "/downloader/pinterestdl", { url: isUrl(text)[0] }, "apikey"))
-        const zen = getRandom('mp3')
-        ffmpeg(fetch.result)
-        .save('../temp/' + zen)
-        .on('end', () => {
-            killua.sendFile(m.from, fs.readFileSync('./temp/' + zen), "", m).then(data => {
-                fs.unlinkSync('../temp/' + zen);
-            })
-        })
+        killua.sendFile(m.from, fetch.result, "", m)
     },
     isQuery: true
 }

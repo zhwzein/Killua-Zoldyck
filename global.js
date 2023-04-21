@@ -1,8 +1,14 @@
 const fs = require("fs")
 
+global.level = require("./data/level")
+
+global.premium = require("./data/premium")
+global._premium = JSON.parse(fs.readFileSync("./database/premium.json"))
+
 global.user = require("./data/user")
-global.group = require("./data/group")
 global._user = JSON.parse(fs.readFileSync("./database/user.json"))
+
+global.group = require("./data/group")
 global._group = JSON.parse(fs.readFileSync("./database/group.json"))
 
 global.mess = (type, m) => {

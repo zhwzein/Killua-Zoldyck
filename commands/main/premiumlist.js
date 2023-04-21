@@ -5,7 +5,7 @@ module.exports = {
     type: "main",
     example: "%prefix%command",
     start: async(killua, m) => {
-        let data = _user.filter((x)=>x.premium === true)
+        let data = _premium
         let caption = `List Prem\nAmount : ${data.length}\n\n`
         for (let i of data) {
             let checkExp = require("parse-ms")(i.expired - Date.now());

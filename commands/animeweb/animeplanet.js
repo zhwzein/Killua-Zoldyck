@@ -2,7 +2,7 @@ const { fetchUrl } = require("../../lib/Function")
 
 module.exports = {
     name: "animeplanet",
-    alias: [],
+    alias: ["animeplanet"],
     use: "<query>",
     desc: "Search Anime From Animeplanet",
     type: "animeweb",
@@ -14,8 +14,8 @@ module.exports = {
             caption += `⭔ Title : ${i.manga_name}\n`
             caption += `⭔ Link : ${i.manga_url}\n\n`
         }
-        //killua.sendFile(m.from, fetch.result[0].manga_thumb, "", m, { caption }) yg gambarnya kena internet positif
-        killua.sendText(m.from, caption, m)
+        killua.sendFile(m.from, fetch.result[0].manga_thumb, "", m, { caption })
+        // killua.sendText(m.from, caption, m)
     },
     isQuery: true
 }

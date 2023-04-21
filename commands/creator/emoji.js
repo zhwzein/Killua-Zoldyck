@@ -5,7 +5,7 @@ module.exports = {
     alias: ["emot", "emoticon"],
     use: "<query>",
     desc: "Convert Emoji To Sticker",
-    type: "convert",
+    type: "creator",
     example: `\nList Type :\n\n${type().sort((a, b) => a - b).join("\n")}\n\nEmoji : %prefix%command 🤔\nEmoji 2 : %prefix%command 🤔 <type>`,
     start: async(killua, m, { args }) => {
         let [a, b] = args

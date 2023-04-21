@@ -23,6 +23,8 @@ const addGroup = (id) => {
             antidelete: false,
             detect: false,
             viewOnce: false,
+            nsfw: false,
+            leveling: false,
             welcome: {
                 status: false,
                 add: "Welcome To My Group",
@@ -194,6 +196,80 @@ const welcomeSet = (userId, _db) => {
     }
 }
 
+// LEVELING
+const addLeveling = (userId, _db) => {
+	let found = false
+	Object.keys(_db).forEach((i) => {
+		if (_db[i].from === userId) {
+			found = i
+		}
+	})
+	if (found !== false) {
+		_db[found].leveling = true
+		fs.writeFileSync("./database/group.json", JSON.stringify(_db, null, 4))
+	}
+}
+const delLeveling = (userId, _db) => {
+    let found = false
+    Object.keys(_db).forEach((i) => {
+        if (_db[i].from === userId) {
+            found = i
+        }
+    })
+    if (found !== false) {
+        _db[found].leveling = false
+        fs.writeFileSync("./database/group.json", JSON.stringify(_db, null, 4))
+    }
+}
+const cekLeveling = (userId, _db) => {
+    let found = false
+    Object.keys(_db).forEach((i) => {
+        if (_db[i].from === userId) {
+            found = i
+    }
+    })
+    if (found !== false) {
+        return _db[found].leveling
+    }
+}
+
+// LEVELING
+const addNsfw = (userId, _db) => {
+	let found = false
+	Object.keys(_db).forEach((i) => {
+		if (_db[i].from === userId) {
+			found = i
+		}
+	})
+	if (found !== false) {
+		_db[found].nsfw = true
+		fs.writeFileSync("./database/group.json", JSON.stringify(_db, null, 4))
+	}
+}
+const delNsfw = (userId, _db) => {
+    let found = false
+    Object.keys(_db).forEach((i) => {
+        if (_db[i].from === userId) {
+            found = i
+        }
+    })
+    if (found !== false) {
+        _db[found].nsfw = false
+        fs.writeFileSync("./database/group.json", JSON.stringify(_db, null, 4))
+    }
+}
+const cekNsfw = (userId, _db) => {
+    let found = false
+    Object.keys(_db).forEach((i) => {
+        if (_db[i].from === userId) {
+            found = i
+    }
+    })
+    if (found !== false) {
+        return _db[found].nsfw
+    }
+}
+
 module.exports = {
     addGroup,
     addAntidelete,
@@ -208,5 +284,11 @@ module.exports = {
     addWelcome,
     delWelcome,
     cekWelcome,
-    welcomeSet
+    welcomeSet,
+    addLeveling,
+    delLeveling,
+    cekLeveling,
+    addNsfw,
+    delNsfw,
+    cekNsfw
 }

@@ -12,13 +12,8 @@ module.exports = {
         let caption = `*Youtube Shorts Downloader*\n\n`
         let i = fetch.result
         caption += `⭔ Title : ${i.title}\n`
-        caption += `⭔ Size : ${i.size}\n`
-        caption += `⭔ Views : ${i.views}\n`
-        caption += `⭔ Likes : ${i.likes}\n`
-        caption += `⭔ Dislike : ${i.dislike}\n`
-        caption += `⭔ Channel : ${i.channel}\n`
-        caption += `⭔ UploadDate : ${i.uploadDate}\n\n`
-        caption += `⭔ Desc : ${i.desc}\n`
+        caption += `⭔ source : ${i.source}\n`
+        caption += `⭔ duration : ${i.duration}\n\n`
         let buttons = [
             {buttonId: `dl audio ${i.getVideo}`, buttonText: { displayText: 'Get Audio'}, type: 1 },
             {buttonId: `dl ${i.getVideo}`, buttonText: { displayText: 'Get Video'}, type: 1 }

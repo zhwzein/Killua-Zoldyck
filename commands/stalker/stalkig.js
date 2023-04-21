@@ -2,7 +2,7 @@ const { fetchUrl } = require("../../lib/Function")
 
 module.exports = {
     name: "stalkig",
-    alias: ["instagramstalk"],
+    alias: ["instagramstalk", "igstalk"],
     use: "<username>",
     desc: "Instagram Profile Stalker",
     type: "stalker",

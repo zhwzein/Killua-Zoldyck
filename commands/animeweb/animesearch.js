@@ -2,7 +2,7 @@ const { fetchUrl, parseResult } = require("../../lib/Function")
 
 module.exports = {
     name: "animesearch",
-    alias: [],
+    alias: ["animesearch"],
     use: "<query>",
     desc: "Search Anime From MyAnime",
     type: "animeweb",

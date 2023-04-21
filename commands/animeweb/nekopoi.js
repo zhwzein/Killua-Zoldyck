@@ -2,7 +2,7 @@ const { fetchUrl } = require("../../lib/Function")
 
 module.exports = {
     name: "nekopoi",
-    alias: [],
+    alias: ["nekopoi"],
     use: "<query>",
     desc: "Latest or Random or Search Anime From Nekopoi",
     type: "animeweb",
@@ -24,26 +24,30 @@ module.exports = {
             caption += `⭔ Genre : ${i.genre}\n`
             caption += `⭔ Duration : ${i.duration}\n`
             caption += `⭔ Score : ${i.score}\n`
-            //killua.sendFile(m.from, fetch.result.img, "", m, { caption }) yg gambarnya kena internet positif
-            killua.sendText(m.from, caption, m)
+            killua.sendFile(m.from, fetch.result.image, "", m, { caption })
+            // killua.sendText(m.from, caption, m)
         } else if (text) {
             let fetch = await fetchUrl(global.api("zenz", "/animeweb/nekopoi/search", { query: text }, "apikey"))
             let caption = `Nekopoi Search :\n\n`
             for (let i of fetch.result) {
+                caption += `⭔ Id : ${i.id}\n`
+                caption += `⭔ Date : ${i.date}\n`
                 caption += `⭔ Title : ${i.title}\n`
-                caption += `⭔ Link : ${i.link}\n\n`
+                caption += `⭔ Description : ${i.description}\n\n`
             }
-            //killua.sendFile(m.from, fetch.result[0].img, "", m, { caption }) yg gambarnya kena internet positif
-            killua.sendText(m.from, caption, m)
+            killua.sendFile(m.from, fetch.result[0].image, "", m, { caption })
+            // killua.sendText(m.from, caption, m)
         } else {
             let fetch = await fetchUrl(global.api("zenz", "/animeweb/nekopoi/latest", {}, "apikey"))
             let caption = `Nekopoi Latest :\n\n`
             for (let i of fetch.result) {
+                caption += `⭔ Id : ${i.id}\n`
+                caption += `⭔ Date : ${i.date}\n`
                 caption += `⭔ Title : ${i.title}\n`
-                caption += `⭔ Link : ${i.link}\n\n`
+                caption += `⭔ Description : ${i.description}\n\n`
             }
-            //killua.sendFile(m.from, fetch.result[0].img, "", m, { caption }) yg gambarnya kena internet positif
-            killua.sendText(m.from, caption, m)
+            killua.sendFile(m.from, fetch.result[0].image, "", m, { caption })
+            // killua.sendText(m.from, caption, m)
         }
     }
 }

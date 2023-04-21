@@ -1,7 +1,7 @@
 {
   "APIs": {
     "zenz": "https://api.zahwazein.xyz",
-    "apikey": "andarazahwa"
+    "apikey": "YOURAPIKEY"
   },
   "options": {
     "autoRead": true,
@@ -14,7 +14,7 @@
     "author": "https://api.zahwazein.xyz"
   },
   "owner": [
-    "6281288339373"
+    "62812XXX"
   ],
   "timezone": "Asia/Jakarta",
   "footer": "Powered by https://api.zahwazein.xyz"

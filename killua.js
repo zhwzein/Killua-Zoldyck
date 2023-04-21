@@ -45,13 +45,14 @@ module.exports = async (killua, m, commands, chatUpdate) => {
         let isBotAdmin = isGroup ? groupAdmin.includes(killua.user?.jid) : false
         let isAdmin = isGroup ? groupAdmin.includes(sender) : false
         let isOwner = [killua.user?.jid, ...config.owner].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(sender)
-        
-        global.isPremium = user.checkPremiumUser(m.sender, isOwner, _user)
+
+        global.isPremium = premium.checkPremiumUser(m.sender, isOwner, _premium)
+        global.isLevelingOn = group.cekLeveling(m.from, _group)
         global.isAntidelete = group.cekAntidelete(m.from, _group)
         global.isOffline = group.cekOffline(from, _group)
         global.isAntilink = group.cekAntilink(m.from, _group)
 
-        user.expiredCheck(killua, m, _user);
+        premium.expiredCheck(killua, m, _premium);
         if (config.options.self && !isOwner && !m.fromMe) return
 
         var prefix = /^[°•π÷×¶∆£¢€¥®™+✓_=|~!?@#%^&.©^]/gi.test(body) ? body.match(/^[°•π÷×¶∆£¢€¥®™+✓_=|~!?@#%^&.©^]/gi)[0] : Function.checkPrefix(prefa, body).prefix ?? "#"

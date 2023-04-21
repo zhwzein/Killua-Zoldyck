@@ -3,7 +3,7 @@ module.exports = {
     alias: ["mixemoji"],
     use: "<query>",
     desc: "Convert And Mix Emoji To Sticker",
-    type: "convert",
+    type: "creator",
     example: "\nEmojimix : %prefix%command 🤔\nEmojimix 2 : %prefix%command 😅🤔",
     start: async(killua, m, { args }) => {
         let [a, b] = args.join("")

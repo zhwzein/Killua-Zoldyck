@@ -2,7 +2,7 @@ const { fetchUrl } = require("../../lib/Function")
 
 module.exports = {
     name: "klikmanga",
-    alias: [],
+    alias: ["klikmanga"],
     use: "<query>",
     desc: "Search Anime From Klikmanga",
     type: "animeweb",

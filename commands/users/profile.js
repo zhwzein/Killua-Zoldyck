@@ -13,7 +13,7 @@ module.exports = {
 		} catch {
 			statuses = "Nothing.."
 		}
-		let cekprem = require("parse-ms")((await user.getPremiumExpired(m.sender, _user)) - Date.now())
+		let cekprem = require("parse-ms")((await premium.getPremiumExpired(m.sender, _premium)) - Date.now())
 		const premi = isPremium ? `-${cekprem.days} Days` : 'No'
 		const level = 10
 		const xp = 50

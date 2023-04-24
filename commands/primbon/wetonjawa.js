@@ -7,6 +7,7 @@ module.exports = {
     desc: "Cek Primbon Rahasia Nagahari",
     type: "primbon",
     example: `%prefix%command 11 06 2007`,
+    disable: true,
     start: async(killua, m, { args, prefix, command }) => {
         let [a, b, c] = args
         if (!a, !b, !c) return m.reply(`Example : ${prefix + command} 11 06 2007`)

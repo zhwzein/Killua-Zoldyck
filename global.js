@@ -11,11 +11,14 @@ global._user = JSON.parse(fs.readFileSync("./database/user.json"))
 global.group = require("./data/group")
 global._group = JSON.parse(fs.readFileSync("./database/group.json"))
 
+global.rpg = require("./data/rpg")
+global._rpg = JSON.parse(fs.readFileSync("./database/rpg.json"))
+
 global.mess = (type, m) => {
     let msg = {
         wait: 'Wait, in progress',
         owner: 'Perintah ini hanya dapat digunakan oleh Owner!',
-        premium: 'Perintah ini hanya dapat digunakan oleh Premium!',
+        premium: 'Perintah ini hanya dapat digunakan oleh Premium! chatt owner untuk membeli premium ketik #owner',
         group: 'Perintah ini hanya dapat digunakan di group!',
         private: 'Perintah ini hanya dapat digunakan di private chat!',
         admin: 'Perintah ini hanya dapat digunakan oleh admin group!',

@@ -7,6 +7,7 @@ module.exports = {
     desc: "Download Video From https://facebook.com",
     type: "downloader",
     example: "%prefix%command <url>",
+    isPremium: true,
     start: async(killua, m, { text }) => {
         let fetch = await fetchUrl(global.api("zenz", "/downloader/facebook", { url: isUrl(text)[0] }, "apikey"))
         let caption = `*Facebook Downloader*\n\n`

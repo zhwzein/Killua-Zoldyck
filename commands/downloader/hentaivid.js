@@ -6,6 +6,7 @@ module.exports = {
     desc: "Generate Random Video From hentaivid",
     type: "downloader",
     example: "%prefix%command",
+    isPremium: true,
     start: async(killua, m, {}) => {
         if (text.toLowerCase() === "longer") {
             let fetch = await fetchUrl(global.api("zenz", "/downloader/hentaivid/longer", {}, "apikey"))

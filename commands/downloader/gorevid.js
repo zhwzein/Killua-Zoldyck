@@ -6,6 +6,7 @@ module.exports = {
     desc: "Generate Random Gore Video",
     type: "downloader",
     example: "%prefix%command",
+    isPremium: true,
     start: async(killua, m, {}) => {
         let fetch = await fetchUrl(global.api("zenz", "/downloader/gore", {}, "apikey"))
         let teks = `⭔ Title : ${fetch.result.title}\n⭔ Tag : ${fetch.result.tag}\n⭔ Upload : ${fetch.result.upload}\n⭔ Author : ${fetch.result.author}`

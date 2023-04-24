@@ -7,6 +7,7 @@ module.exports = {
     desc: "Download Media From https://youtube.com",
     type: "downloader",
     example: "%prefix%command <url>",
+    isPremium: true,
     start: async (killua, m, { text }) => {
         if (m.text.toLowerCase().endsWith("audio")) {
             killua.sendMessage(m.from, { audio: { url: isUrl(text)[0] }, mimetype: "audio/mpeg" }, { quoted: m })

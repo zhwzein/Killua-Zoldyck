@@ -7,6 +7,7 @@ module.exports = {
     desc: "Download Media From https://www.tiktok.com",
     type: "downloader",
     example: "%prefix%command <query>",
+    isPremium: true,
     start: async(killua, m, { text }) => {
         let fetch = await fetchUrl(global.api("zenz", "/downloader/randomtiktok", { username: text }, "apikey"))
             let caption = `*Random Tiktok Video* \nFrom ${text}\n\n`

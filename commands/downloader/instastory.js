@@ -7,6 +7,7 @@ module.exports = {
     desc: "Download Story From https://instagram.com",
     type: "downloader",
     example: "%prefix%command <url>",
+    isPremium: true,
     start: async(killua, m, { text }) => {
         if (isUrl(text)) {
             let fetch = await fetchUrl(global.api("zenz", "/downloader/instagram/story", { url:isUrl(text)[0] }, "apikey"))

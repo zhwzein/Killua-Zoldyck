@@ -7,6 +7,7 @@ module.exports = {
     desc: "Download Media From https://bayfiles.com",
     type: "downloader",
     example: "%prefix%command <url>",
+    isPremium: true,
     start: async(killua, m, { text }) => {
         let fetch = await fetchUrl(global.api("zenz", "/downloader/bayfiles", { url: isUrl(text)[0] }, "apikey"))
         let { sizeH, mime, data } = await killua.getFile(fetch.result)

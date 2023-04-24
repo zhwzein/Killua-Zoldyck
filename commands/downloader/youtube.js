@@ -7,6 +7,7 @@ module.exports = {
     desc: "Download Media From https://youtube.com",
     type: "downloader",
     example: "%prefix%command <url>",
+    isPremium: true,
     start: async(killua, m, { text }) => {
         let fetch = await fetchUrl(global.api("zenz", "/downloader/youtube", { url: isUrl(text)[0] }, "apikey"))
         let caption = `*Youtube Downloader*\n\n`

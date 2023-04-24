@@ -9,6 +9,7 @@ module.exports = {
     desc: "Download Media From https://nz",
     type: "downloader",
     example: "%prefix%command <url>",
+    isPremium: true,
     start: async(killua, m, { text }) => {
         let url = /mega/i.test(await isUrl(text)[0]) ? await isUrl(text)[0]  : await axios(await isUrl(text)[0]).then((a) => a.request.res.responseUrl)
         

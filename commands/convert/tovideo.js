@@ -9,6 +9,7 @@ module.exports = {
     desc: "Convert Sticker Gif To Video",
     type: "convert",
     example: `%prefix%command --sticker reply`,
+    isPremium: true,
     start: async(killua, m, { command, prefix, quoted, mime, text }) => {
         if (/image|video|sticker/.test(mime)) {
             let download = await killua.downloadMediaMessage(quoted)

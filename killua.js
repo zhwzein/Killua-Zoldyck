@@ -33,6 +33,9 @@ global.tebaklagu = db.game.tebaklagu = {}
 global.tekateki = db.game.tekateki = {}
 global.tebaklirik = db.game.tebaklirik = {}
 global.tebaktebakan = db.game.tebaktebakan = {}
+global.mancing = db.game.mancing = {}
+global.nambang = db.game.nambang = {}
+global.casino = db.game.casino = {}
 
 module.exports = async (killua, m, commands, chatUpdate) => {
     try {
@@ -72,6 +75,8 @@ module.exports = async (killua, m, commands, chatUpdate) => {
 
         if (isOffline && cmdName && !isOwner && !cmd.isOffline) return
         if (isGroup) group.addGroup(m.from)
+
+        rpg.addRpg(m.sender, _rpg)
         user.addUser(m.sender, m.pushName, _user)
         
         if (m.message && isGroup) {
@@ -311,7 +316,7 @@ module.exports = async (killua, m, commands, chatUpdate) => {
         try {
 			if (cmd && !cmd.noLimit) {
                 if (user.isLimit(m.sender, isPremium, isOwner, config.options.limitCount, _user) && !m.fromMe)
-				return m.reply(`Your limit has run out, please send ${prefix}limit to check the limit`);
+				return m.reply(`Your limit has run out, please send ${prefix}limit to check the limit or buy Premium`);
 				user.limitAdd(m.sender, isPremium, isOwner, _user);
 			}
 			cmd.start(killua, m, {

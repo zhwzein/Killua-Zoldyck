@@ -9,6 +9,7 @@ module.exports = {
     desc: "Send Media From URL",
     type: "downloader",
     example: "%prefix%command <url>",
+    isPremium: true,
     start: async(killua, m, { text, args }) => {
         if (!isUrl(text)) return  m.reply(`Invalid url`)
         let [a, b] = args

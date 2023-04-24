@@ -9,6 +9,7 @@ module.exports = {
     desc: "Photo Image Editor",
     type: "photoeditor",
     example: `%prefix%command --image reply`,
+    isPremium: true,
     start: async(killua, m, { command, prefix, quoted, mime }) => {
         if (!quoted) return  m.reply(`Reply to Supported media With Caption ${prefix + command}`)
         if (/image/.test(mime)) {

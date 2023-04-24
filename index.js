@@ -4,6 +4,7 @@ const { Boom } = require ('@hapi/boom')
 const { default: makeWASocket, delay, DisconnectReason, fetchLatestBaileysVersion, makeInMemoryStore, useMultiFileAuthState, useSingleFileAuthState,  jidNormalizedUser } = require ('baileys')
 const fs = require("fs")
 const path = require("path")
+const cron = require('node-cron')
 const { Collection, Simple, Store } = require("./lib")
 
 const Welcome = require("./lib/Welcome")
@@ -13,7 +14,7 @@ const Commands = new Collection()
 
 global.prefa = /^[#$+.?_&<>!/\\]/
 Commands.prefix = prefa
- 
+
 const store = makeInMemoryStore({ logger: P().child({ level: 'silent', stream: 'store' }) })
 store.readFromFile('./session/baileys_store.json')
 setInterval(() => {
@@ -134,5 +135,30 @@ const connect = async () => {
 	return killua
 
 }
+
+cron.schedule('0 0 * * *', () => {
+    var folder = './temp/'
+    fs.readdir(folder, (err, files) => {
+        if (err) throw err
+        for (const file of files) {
+            console.log(file + ' : File Deleted Successfully.')
+            fs.unlink(folder + file, function (err) {
+                if (err && err.code == 'ENOENT') {
+                    // file doens't exist
+                    console.info("File doesn't exist, won't remove it.");
+                } else if (err) {
+                    // other errors, e.g. maybe we don't have enough permission
+                    console.error("Error occurred while trying to remove file");
+                } else {
+                    console.info(`removed`);
+                }
+            });
+        }
+    })
+    console.log('Success Deleted temp Folder')
+}, {
+    scheduled: true,
+    timezone: config.timezone
+})
 
 connect()

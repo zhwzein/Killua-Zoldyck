@@ -7,6 +7,7 @@ module.exports = {
     desc: "Download Media From https://joox.com",
     type: "downloader",
     example: "%prefix%command <query>",
+    isPremium: true,
     start: async(killua, m, { text }) => {
         let fetch = await fetchUrl(global.api("zenz", "/downloader/joox", { query: text }, "apikey"))
         let teks = `⭔ Title : ${fetch.result.lagu}\n⭔ Album : ${fetch.result.album}\n⭔ Penyanyi : ${fetch.result.penyanyi}\n⭔ Publish : ${fetch.result.publish}`

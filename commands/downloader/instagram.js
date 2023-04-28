@@ -10,7 +10,7 @@ module.exports = {
     isPremium: true,
     start: async(killua, m, { text }) => {
         let fetch = await fetchUrl(global.api("zenz", "/downloader/instagram", { url:isUrl(text)[0] }, "apikey"))
-        for (let i of fetch.result.data) killua.sendFile(m.from, i.url, "", m, { caption: `Download Media From : ${isUrl(text)[0]}\n\n${i.meta.title}` })
+        for (let i of fetch.result) killua.sendFile(m.from, i.url, "", m, { caption: `Download Media From : ${isUrl(text)[0]}\n\n${i.meta.title}` })
     },
     isQuery: true
 }

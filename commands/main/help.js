@@ -1,6 +1,6 @@
 module.exports = {
     name: "menu",
-    alias: ["help","?"],
+    alias: ["help","?","menu"],
     desc: "List all command",
     type: "main",
     start: async(killua, m, { commands, args, prefix, text, toUpper }) => {

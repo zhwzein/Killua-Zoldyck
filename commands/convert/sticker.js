@@ -1,5 +1,5 @@
 const { delay, extractMessageContent } = require("@adiwajshing/baileys")
-const { isUrl } = require("../../lib/Function")
+const { isUrl, fetchUrl } = require("../../lib/Function")
 
 module.exports = {
     name: "sticker",
@@ -28,9 +28,9 @@ module.exports = {
         } else if (quoted.type == "buttonsMessage") {
             let download = await killua.downloadMediaMessage(quoted)
             killua.sendFile(m.from, download, "", m, { asSticker: true, author: config.exif.author, packname: config.exif.packname, categories: ['😄','😊'] })
-        } else if (quoted.mentions[0]) {
-            let url = await killua.profilePictureUrl(quoted.mentions[0], "image")
-            killua.sendFile(m.from, url, "", m, { asSticker: true, author: config.exif.author, packname: config.exif.packname, categories: ['😄','😊'] })
+        // } else if (quoted.mentions[0]) {
+        //     let url = await killua.profilePictureUrl(quoted.mentions[0], "image")
+        //     killua.sendFile(m.from, url, "", m, { asSticker: true, author: config.exif.author, packname: config.exif.packname, categories: ['😄','😊'] })
         } else {
             return m.reply(`Reply to Supported media With Caption ${prefix + command}`, m.from, { quoted: m })
         }

@@ -7,7 +7,6 @@ module.exports = {
     desc: "Cek Arti Zodiak",
     type: "primbon",
     example: `\nList Type :\n\n${type().join("\n")}\n\nExample : %prefix%command <type>`,
-    disable: true,
     start: async(killua, m, { text }) => {
         let fetch = await fetchUrl(global.api("zenz", "/primbon/zodiak", { query: text }, "apikey"))
         let caption = `Primbon Arti Zodiak :\n\n`

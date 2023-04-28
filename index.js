@@ -144,10 +144,8 @@ cron.schedule('0 0 * * *', () => {
             console.log(file + ' : File Deleted Successfully.')
             fs.unlink(folder + file, function (err) {
                 if (err && err.code == 'ENOENT') {
-                    // file doens't exist
                     console.info("File doesn't exist, won't remove it.");
                 } else if (err) {
-                    // other errors, e.g. maybe we don't have enough permission
                     console.error("Error occurred while trying to remove file");
                 } else {
                     console.info(`removed`);
@@ -156,6 +154,26 @@ cron.schedule('0 0 * * *', () => {
         }
     })
     console.log('Success Deleted temp Folder')
+}, {
+    scheduled: true,
+    timezone: config.timezone
+})
+
+// Backup Database Tiap Pukul 00:00
+cron.schedule('0 0 * * *', () => {
+    var zipper = require("zip-local");
+    zipper.zip("./database/", function (error, zipped) {
+        if (!error) {
+            zipped.compress();
+            var buff = zipped.memory();
+            zipped.save("./database.zip", async function (error) {
+                if (!error) {
+                    console.log("saved successfully !");
+                }
+            });
+        }
+    })
+    console.log('saved successfully !')
 }, {
     scheduled: true,
     timezone: config.timezone

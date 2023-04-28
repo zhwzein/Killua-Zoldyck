@@ -45,6 +45,19 @@ const checkUser = (userId, _db) => {
    return status
 }
 
+const verify = (userId, _db) => {
+	let found = false
+	Object.keys(_db).forEach((i) => {
+		if (_db[i].id === userId) {
+			found = i
+		}
+	})
+	if (found !== false) {
+		_db[found].verified = true
+		fs.writeFileSync("./database/user.json", JSON.stringify(_db, null, 4))
+	}
+}
+
 // LIMIT USERDATA
 const isLimit = (userId, isPremium, isOwner, limitCount, _db) => {
 	if (isPremium || isOwner) return false
@@ -229,6 +242,7 @@ cron.schedule('0 0 * * *', () => {
 module.exports = {
 	addUser,
 	checkUser,
+	verify,
 	isLimit,
 	limitAdd,
 	getLimit,

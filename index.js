@@ -159,24 +159,4 @@ cron.schedule('0 0 * * *', () => {
     timezone: config.timezone
 })
 
-// Backup Database Tiap Pukul 00:00
-cron.schedule('0 0 * * *', () => {
-    var zipper = require("zip-local");
-    zipper.zip("./database/", function (error, zipped) {
-        if (!error) {
-            zipped.compress();
-            var buff = zipped.memory();
-            zipped.save("./database.zip", async function (error) {
-                if (!error) {
-                    console.log("saved successfully !");
-                }
-            });
-        }
-    })
-    console.log('saved successfully !')
-}, {
-    scheduled: true,
-    timezone: config.timezone
-})
-
 connect()

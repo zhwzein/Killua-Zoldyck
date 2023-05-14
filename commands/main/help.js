@@ -54,7 +54,8 @@ module.exports = {
                 headerType: 4
             }
             
-            killua.sendMessage(m.from, buttonMessage, { quoted: m })
+            // killua.sendMessage(m.from, teks, { quoted: m })
+            killua.sendText(m.from, teks, m)
         }
     },
     noLimit: true,

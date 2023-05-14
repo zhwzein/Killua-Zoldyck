@@ -1,7 +1,7 @@
 require("./global")
 const P = require ('pino')
 const { Boom } = require ('@hapi/boom')
-const { default: makeWASocket, delay, DisconnectReason, fetchLatestBaileysVersion, makeInMemoryStore, useMultiFileAuthState, useSingleFileAuthState,  jidNormalizedUser } = require ('baileys')
+const { default: makeWASocket, delay, DisconnectReason, fetchLatestBaileysVersion, makeInMemoryStore, useMultiFileAuthState, useSingleFileAuthState,  jidNormalizedUser } = require ('@whiskeysockets/baileys')
 const fs = require("fs")
 const path = require("path")
 const cron = require('node-cron')
@@ -57,6 +57,7 @@ const connect = async () => {
         version,
         logger: P({ level: 'silent' }),
         printQRInTerminal: true,
+        markOnlineOnConnect: false,
         patchMessageBeforeSending: (message) => {
 
                 const requiresPatch = !!(

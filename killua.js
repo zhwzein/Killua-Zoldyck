@@ -1,5 +1,5 @@
 require("./global")
-const { generateWAMessage, areJidsSameUser, proto } = require("baileys")
+const { generateWAMessage, areJidsSameUser, proto } = require('@whiskeysockets/baileys')
 const { Simple, Collection, Function } = require("./lib")
 const { isUrl, isNumber } = Function
 const Func = require("./lib")

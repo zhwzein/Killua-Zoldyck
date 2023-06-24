@@ -6,15 +6,15 @@
   "options": {
     "autoRead": true,
     "self": false,
-    "limitCount": 20,
-    "limitGame": 20
+    "limitCount": 9999999,
+    "limitGame": 9999999
   },
   "exif": {
     "packname": "Killua Zoldyck",
     "author": "https://api.zahwazein.xyz"
   },
   "owner": [
-    "62812XXX"
+    "6289653417254"
   ],
   "timezone": "Asia/Jakarta",
   "footer": "Powered by https://api.zahwazein.xyz"

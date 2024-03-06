@@ -60,7 +60,7 @@ Add FFmpeg to PATH environment variable
 <b><details><summary>Edit config.json</summary></b>
 ```bash
 "APIs": {
-    "zenz": "https://api.zahwazein.xyz",
+    "zenz": "https://api.ouzen.xyz",
     "apikey": "YOURAPIKEY"
  },
 "owner": [

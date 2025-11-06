@@ -1,12 +1,12 @@
 <p align="center">
-<img src="https://api.zahwazein.xyz/upload/icon.png" alt="nz" width="350"/>
+<img src="https://api.andaraz.com/upload/icon.png" alt="nz" width="350"/>
 </p>
 
 ## Killua-Zoldyck
 
 > Example case from Zenz Rest APIs for WhatsApp Bot
 
-> User must have zenz apikey to use this repo, register [here](https://api.zahwazein.xyz) to get apikey
+> User must have zenz apikey to use this repo, register [here](https://api.andaraz.com/) to get apikey
 
 > This Script WhatsApp Bot Using Library Baileys & Script is free for everyone, not for Sale!
 
@@ -60,7 +60,7 @@ Add FFmpeg to PATH environment variable
 <b><details><summary>Edit config.json</summary></b>
 ```bash
 "APIs": {
-    "zenz": "https://api.ouzen.xyz",
+    "zenz": "https://api.andaraz.com/",
     "apikey": "YOURAPIKEY"
  },
 "owner": [

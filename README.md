@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://api.andaraz.com/upload/icon.png" alt="nz" width="350"/>
+<img src="https://i.pinimg.com/736x/93/d1/8e/93d18e42fbd353c4964662f03b0f5123.jpg" alt="nz" width="350"/>
 </p>
 
 ## Killua-Zoldyck

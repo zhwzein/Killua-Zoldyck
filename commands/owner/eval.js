@@ -1,5 +1,5 @@
 const fs = require("fs")
-const baileys = require("@adiwajshing/baileys")
+const baileys = require("@whiskeysockets/baileys")
 
 
 module.exports = {

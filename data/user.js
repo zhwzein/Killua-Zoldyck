@@ -6,7 +6,7 @@
 
 const fs = require("fs")
 const cron = require('node-cron')
-const config = JSON.parse(fs.readFileSync('./config.json'))
+const config = global.config
 const time = require("moment-timezone").tz(config.timezone).format('DD/MM HH:mm:ss')
 
 // STORE USERDATA

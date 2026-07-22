@@ -4,9 +4,19 @@
 
 ## Killua-Zoldyck
 
-> Example case from Zenz Rest APIs for WhatsApp Bot
+### 🚀 Pembaruan Terbaru (Latest Updates)
+* **Baileys v7 Upgrade**: Pembaruan library ke `@whiskeysockets/baileys@7.0.0-rc13` untuk kestabilan protokol WhatsApp terbaru.
+* **Konfigurasi .env**: Migrasi seluruh konfigurasi dari `config.json` ke `.env` untuk keamanan data.
+* **Dua Metode Login**: Mendukung login dengan **QR Code** atau **Pairing Code** (menggunakan nomor HP).
+* **Render QR Manual**: Penanganan render QR otomatis secara mandiri menggunakan `qrcode-terminal` untuk kompatibilitas Baileys v7.
+* **Bug Fixes**: Patch pemetaan subplatform desktop untuk mengatasi kendala stuck `connecting` dan pengalihan CDN media download.
 
-> User must have zenz apikey to use this repo, register [here](https://api.andaraz.com/) to get apikey
+> [!NOTE]
+> Beberapa endpoint API di dalam folder commands belum diperbarui sepenuhnya ke API Andaraz yang baru (SOON yaa wkwk).
+
+> Example case from Andaraz APIs for WhatsApp Bot
+
+> User must have andaraz apikey to use this repo, register [here](https://api.andaraz.com/) to get apikey
 
 > This Script WhatsApp Bot Using Library Baileys & Script is free for everyone, not for Sale!
 
@@ -51,21 +61,33 @@ Add FFmpeg to PATH environment variable
 > git clone https://github.com/zhwzein/Killua-Zoldyck
 > cd Killua-Zoldyck
 > pkg install yarn
-> yarn add @adiwajshing/baileys
-> yarn
+> yarn install
 ```
 </details>
 
 <!-- Edit -->
-<b><details><summary>Edit config.json</summary></b>
+<b><details><summary>Edit .env</summary></b>
 ```bash
-"APIs": {
-    "zenz": "https://api.andaraz.com/",
-    "apikey": "YOURAPIKEY"
- },
-"owner": [
-    "62812xxx"
- ],
+# Metode login: true = Pairing Code, false = QR Code
+PAIRING_CODE=false
+PHONE_NUMBER=
+
+# APIs
+API_ZENZ=https://api.andaraz.com
+API_KEY=YOURAPIKEY
+
+# Options
+AUTO_READ=true
+SELF_MODE=false
+LIMIT_COUNT=20
+LIMIT_GAME=20
+
+# Exif Sticker
+EXIF_PACKNAME=Killua Zoldyck
+EXIF_AUTHOR=https://api.andaraz.com
+
+# Owner
+OWNER=62812XXX
 ```
 </details>
 
@@ -121,7 +143,7 @@ Group Support [Here](https://chat.whatsapp.com/G1e0U2lOTVAGKNjyFHjDGP)
 
 
 ## Thanks To
-* [`@adiwajshing/baileys`](https://github.com/adiwajshing/baileys)
+* [`@whiskeysockets/baileys`](https://github.com/WhiskeySockets/Baileys)
 * [`Mhankbarbar`](https://github.com/MhankBarBar)
 * [`DikaArdnt`](https://github.com/DikaArdnt)
 * [`Faizbastomi`](https://github.com/FaizBastomi)

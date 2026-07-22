@@ -1,1 +1,26 @@
-[]
+[
+    {
+        "id": "628888557979@s.whatsapp.net",
+        "verified": false,
+        "name": null,
+        "time": "23/07 01:40:39",
+        "limit": 0,
+        "limitgame": 0,
+        "balance": 0,
+        "premium": false,
+        "xp": 0,
+        "level": 0
+    },
+    {
+        "id": "239908702658579@lid",
+        "verified": false,
+        "name": "Zen",
+        "time": "23/07 01:40:39",
+        "limit": 6,
+        "limitgame": 0,
+        "balance": 0,
+        "premium": false,
+        "xp": 0,
+        "level": 0
+    }
+]

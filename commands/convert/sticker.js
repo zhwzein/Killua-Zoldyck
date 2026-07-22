@@ -1,4 +1,4 @@
-const { delay, extractMessageContent } = require("@adiwajshing/baileys")
+const { delay, extractMessageContent } = require("@whiskeysockets/baileys")
 const { isUrl, fetchUrl } = require("../../lib/Function")
 
 module.exports = {

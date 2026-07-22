@@ -8,7 +8,6 @@ const moment = require("moment-timezone")
 const chalk = require("chalk")
 const { correct } = require("./lib/Correct")
 
-global.config = JSON.parse(fs.readFileSync('./config.json'))
 global.db = JSON.parse(fs.readFileSync("./database/db.json"))
 if (global.db) global.db = {
     sticker: {},

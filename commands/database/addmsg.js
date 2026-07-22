@@ -1,4 +1,4 @@
-const { proto } = require("@adiwajshing/baileys")
+const { proto } = require("@whiskeysockets/baileys")
 
 module.exports = {
     name: "addmsg",

@@ -1,5 +1,5 @@
 let { fetchUrl } = require("../../lib/Function")
-let { delay } = require("@adiwajshing/baileys")
+let { delay } = require("@whiskeysockets/baileys")
 
 module.exports = {
     name: "ssearch",

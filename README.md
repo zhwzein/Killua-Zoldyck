@@ -2,7 +2,7 @@
 <img src="https://i.pinimg.com/736x/93/d1/8e/93d18e42fbd353c4964662f03b0f5123.jpg" alt="nz" width="350"/>
 </p>
 
-## Killua-Zoldyck
+## ،ツ𖤍ْ ᴝȷᓄ᎗ɹ̈ᓄ⅃Ȋ බᴝȊ᎗ɹ̤ᓆ⅃Ȋ メ̷ِ۪⁦👑⃕ 
 
 ### 🚀 Pembaruan Terbaru (Latest Updates)
 * **Baileys v7 Upgrade**: Pembaruan library ke `@whiskeysockets/baileys@7.0.0-rc13` untuk kestabilan protokol WhatsApp terbaru.
